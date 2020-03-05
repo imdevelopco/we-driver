@@ -13,8 +13,16 @@ const routes = [
   {
     path: "/",
     component: DashboardLayout,
-    redirect: "/dashboard",
+    redirect: "/maps",
     children: [
+      {
+        path: "maps",
+        name: "Maps",
+        meta: {
+          hideFooter: true
+        },
+        component: Maps
+      },
       {
         path: "dashboard",
         name: "Dashboard",
@@ -39,14 +47,6 @@ const routes = [
         path: "icons",
         name: "Icons",
         component: Icons
-      },
-      {
-        path: "maps",
-        name: "Maps",
-        meta: {
-          hideFooter: true
-        },
-        component: Maps
       },
       {
         path: "notifications",

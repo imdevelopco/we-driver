@@ -3,51 +3,49 @@
     <notifications></notifications>
 
     <side-bar>
-      <mobile-menu slot="content"></mobile-menu>
+      <MobileMenu slot="content"></MobileMenu>
+
+      <sidebar-link to="/maps">
+        <md-icon>location_on</md-icon>
+        <p>Mapa</p>
+      </sidebar-link>
+
       <sidebar-link to="/dashboard">
         <md-icon>dashboard</md-icon>
         <p>Dashboard</p>
       </sidebar-link>
+
       <sidebar-link to="/user">
-        <md-icon>person</md-icon>
-        <p>User Profile</p>
+        <md-icon>input</md-icon>
+        <p>Agregar</p>
       </sidebar-link>
+
       <sidebar-link to="/table">
-        <md-icon>content_paste</md-icon>
-        <p>Table list</p>
+        <md-icon>settings</md-icon>
+        <p>Configuración</p>
       </sidebar-link>
+
       <sidebar-link to="/typography">
         <md-icon>library_books</md-icon>
-        <p>Typography</p>
+        <p>Cerrar sesión</p>
       </sidebar-link>
-      <sidebar-link to="/icons">
-        <md-icon>bubble_chart</md-icon>
-        <p>Icons</p>
-      </sidebar-link>
-      <sidebar-link to="/maps">
-        <md-icon>location_on</md-icon>
-        <p>Maps</p>
-      </sidebar-link>
-      <sidebar-link to="/notifications">
-        <md-icon>notifications</md-icon>
-        <p>Notifications</p>
-      </sidebar-link>
-      <sidebar-link to="/upgrade" class="active-pro">
-        <md-icon>unarchive</md-icon>
-        <p>Upgrade to PRO</p>
-      </sidebar-link>
+    
     </side-bar>
 
     <div class="main-panel">
-      <top-navbar></top-navbar>
+      <TopNavbar></TopNavbar>
 
-      <dashboard-content> </dashboard-content>
+      <DashboardContent> </DashboardContent>
 
-      <content-footer v-if="!$route.meta.hideFooter"></content-footer>
+      <ContentFooter v-if="!$route.meta.hideFooter"></ContentFooter>
     </div>
   </div>
 </template>
+
+
 <style lang="scss"></style>
+
+
 <script>
 import TopNavbar from "./TopNavbar.vue";
 import ContentFooter from "./ContentFooter.vue";
