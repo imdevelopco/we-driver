@@ -1,0 +1,69 @@
+/*@import url('https://fonts.google.com/?selection.family=Roboto');*/
+
+html,body{padding: opx; margin: opx; width: 100%; height: 100vh; font-family: sans-serif; color: #333333;}
+
+
+.divlogin{
+    background: url(../img/background.jpg) no-repeat;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-size: cover;
+    background-position: center center;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-content: center;
+    align-items: center;
+}
+.divlogin .container{
+    width: 100%;
+    text-align: center;
+}
+
+.divlogin .container .contenido{
+    width: 100%;
+    max-width: 300px;
+    background: rgba(255, 255, 255, 1);
+    padding: 20px;
+    display: inline-block;
+}
+
+.divlogin .container .contenido h2{
+    margin-top: 0%;
+    color: red;
+}
+
+.divlogin .container .contenido .plogin{
+    font-size: 16px;
+    color: #acacac;
+}
+
+.divlogin .container .contenido input{
+    height: 30px;
+    margin: 0px;
+    border: 2px solid #acacac;
+    padding: 10px;
+    width: 90%;
+    margin-bottom: 10px;
+}
+
+.divlogin .container .contenido input.error{
+    border-bottom: 3px solid red;
+}
+
+.divlogin .container .contenido button{
+    height: 50px;
+    margin: 0px;
+    border: 0px;
+    display: block;
+    padding: 10px;
+    width: 100%;   
+    background: #ee3333;
+    color: #ffffff;
+    border-radius: 5px;
+}
+
+.divlogin .container .contenido a{
+    font-size: 12px;
+    margin-right: 10px;
+    color: #333333;
+}
