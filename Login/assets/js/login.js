@@ -51,7 +51,7 @@ new Vue({
             }
         },
         title(){
-            return (this.form.type==0)?'Sing in':(this.form.type==1)?'Sing up':'Recovery password';
+            return (this.form.type==0)?'Sing in':(this.form.type==1)?'Sing up':'Reset password';
         }
     }
 })
