@@ -14,12 +14,16 @@ import UpgradeToPRO from "@/pages/UpgradeToPRO.vue";
 const routes = [
   {
     path: "*",
-    redirect: "/login"
+    redirect: "/login",
+    name:"All"
   },
   {
     path: "/",
     name:'Home',
     component: Welcome,
+    meta:{
+      welcomePage: true
+    }
   },
   {
     path: "/login",

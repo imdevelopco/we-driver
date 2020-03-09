@@ -9,18 +9,20 @@ const router = new VueRouter({
   });
   
   router.beforeEach((to, from, next) => {
-      console.log("I am here", to, from)
-    let user = {name:"camilo"} //usuario logueado, si no esta logueado esto sera null o un objeto vacio, no se
-    let pageProtected = to.matched.some(record => record.meta.userLoged)
-    console.log("pageProtected", pageProtected)
-    console.log("user", user)
-    if(pageProtected && !user ){ //si es una pagina protegida y no esta logueado
-        console.log("a login")
-        next('login')
+
+    let user = {name:"camilo"} //usuario logueado
+    let pageProtected = to.matched.some(record => record.meta.userLoged),
+        welcomePage = to.matched.some( record => record.meta.welcomePage)
+
+    if(pageProtected && !user ){ //si es una pagina protegida y no esta logueado, lo envia a la pagina de login 
+        next('/login')
     }
-    else if(!pageProtected && user){
-        console.log("a app")
-        next('app')
+    else if(!pageProtected && user){ //si no es una pagina protegida y esta logueado (evita que entre a la pagina login)
+        if(welcomePage){ //si es el home, si se le permite visitarla
+            next()
+        }else{
+            next('/app/maps')
+        }
     }
     else{
         next()
