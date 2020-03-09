@@ -1,5 +1,6 @@
 import Welcome from '@/pages/Layout/Welcome';
 import Login from '@/pages/Layout/Login';
+import Registro from '@/pages/Layout/Register'
 import DashboardLayout from "@/pages/Layout/DashboardLayout.vue";
 
 import Dashboard from "@/pages/Dashboard.vue";
@@ -29,6 +30,14 @@ const routes = [
     path: "/login",
     component: Login,
     name:"Login",
+    meta:{
+      userLoged : false
+    }
+  },
+  {
+    path: "/registro",
+    name: "Registro",
+    component : Registro,
     meta:{
       userLoged : false
     }

@@ -10,7 +10,7 @@ const router = new VueRouter({
   
   router.beforeEach((to, from, next) => {
 
-    let user = {name:"camilo"} //usuario logueado
+    let user = null//{name:"camilo"} //usuario logueado
     let pageProtected = to.matched.some(record => record.meta.userLoged),
         welcomePage = to.matched.some( record => record.meta.welcomePage)
 
