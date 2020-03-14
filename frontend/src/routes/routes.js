@@ -1,3 +1,6 @@
+import Welcome from '@/pages/Layout/Welcome';
+import Login from '@/pages/Layout/Login';
+import Registro from '@/pages/Layout/Register'
 import DashboardLayout from "@/pages/Layout/DashboardLayout.vue";
 
 import Dashboard from "@/pages/Dashboard.vue";
@@ -11,9 +14,41 @@ import UpgradeToPRO from "@/pages/UpgradeToPRO.vue";
 
 const routes = [
   {
+    path: "*",
+    redirect: "/login",
+    name:"All"
+  },
+  {
     path: "/",
+    name:'Home',
+    component: Welcome,
+    meta:{
+      welcomePage: true
+    }
+  },
+  {
+    path: "/login",
+    component: Login,
+    name:"Login",
+    meta:{
+      userLoged : false
+    }
+  },
+  {
+    path: "/registro",
+    name: "Registro",
+    component : Registro,
+    meta:{
+      userLoged : false
+    }
+  },
+  {
+    path: "/app",
     component: DashboardLayout,
-    redirect: "/maps",
+    redirect: "maps",
+    meta:{
+      userLoged : true //userLoged debe ser true para poder acceder a caulquiera de sus hijos
+    },
     children: [
       {
         path: "maps",
