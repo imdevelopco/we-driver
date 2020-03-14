@@ -1,6 +1,6 @@
 
 ## WE_DRIVER
-![Nuestra Marca](https://raw.githubusercontent.com/CamiloArias47/we-driver/master/src/assets/img/weDrive.png)
+![Nuestra Marca](https://raw.githubusercontent.com/CamiloArias47/we-driver/master/frontend/src/assets/img/weDrive.png)
 
 Una aplicación que busca ayudar a los ciudadanos en tiempo real para que no sean sorprendidos
 por estas *cámaras*, que en muchos casos, son ubicadas premeditadamente para no ser visibles.
