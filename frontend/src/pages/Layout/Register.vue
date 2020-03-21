@@ -5,7 +5,7 @@
         <figure id="logotipo">
           <img class="img" :src="LoginLogo" width="200">
         </figure>
-        <h2>Sing Up</h2>
+        <h2>Sign Up</h2>
         <form @submit.prevent="sendForm">
           <input 
             type="text" 
@@ -30,8 +30,8 @@
             placeholder="confirm password"
             v-model="form.password2"
           />
-          <button>Sing up</button>
-          <p>By sing up you agree to our <br> Terms & Conditions</p> 
+          <button>Sign up</button>
+          <p>By sign up you agree to our <br> Terms & Conditions</p> 
         </form>
 
         <router-link to="../login" style="font-size: 18px; color: black;">Cancel</router-link>
@@ -107,6 +107,7 @@ export default {
 
 <style scoped>
 .divlogin {
+  background: url('../../assets/img/fondo_transparente.jpg');
   background-color: rgba(0, 0, 0, 0.5);
   background-size: cover;
   background-position: center center;
@@ -128,7 +129,6 @@ export default {
   background: rgba(255, 255, 255, 1);
   padding: 20px;
   display: inline-block;
-  font-family: "RobotoMono-Bold";
   margin-left: auto;
 }
 
@@ -137,7 +137,6 @@ export default {
   margin-bottom: 20px;
   color: red;
   font-size: 2em;
-  font-family: "RobotoMono-Bold";
 }
 
 .divlogin .container .contenido input {
@@ -147,7 +146,6 @@ export default {
   border: 2px solid #acacac;
   padding: 10px;
   width: 70%;
-  font-family: "RobotoMono-Bold";
 }
 
 .divlogin .container .contenido input.error {
@@ -164,14 +162,12 @@ export default {
   color: #ffffff;
   font-size: 18px;
   border-radius: 5px;
-  font-family: "RobotoMono-Bold";
 }
 
 .divlogin .container .contenido a {
   margin: 10px;
   font-size: 12px;
   color: #333333;
-  font-family: "RobotoMono-Bold";
   text-decoration: none;
   display: block;
 }

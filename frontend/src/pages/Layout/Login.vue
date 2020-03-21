@@ -1,5 +1,5 @@
 <template>
-  <div class="divlogin">
+  <div class="divlogin">    
     <div class="container">
       <div class="contenido">
         <figure id="logotipo">
@@ -29,11 +29,12 @@
           @click="form.type = 1"
           v-if="form.type == 0"
         >Forgot your password?</a>
-        <router-link to="../registro" style="font-size: 18px; color: black;" v-if="form.type == 0">Sing up</router-link>
+        <router-link to="../registro" style="font-size: 18px; color: black;" v-if="form.type == 0">Sign up</router-link>
         <a
           href="javascript:void(0)"
           @click="form.type = 0"
           v-if="form.type == 1"
+          style="font-size: 18px; color: black;"
         >Cancel</a>
       </div>
     </div>
@@ -46,6 +47,10 @@ export default {
         LoginLogo: {
         type: String,
         default: require("@/assets/img/logo.jpg")
+        },
+        FondoTrasparente: {
+        type: String,
+        default: require("@/assets/img/fondo_transparente.jpg")
         }
     },
 
@@ -55,7 +60,11 @@ export default {
         type: 0, //0 = login, 1 = recuperar contraseña
         email: "",
         password: ""
+      },
+      objetoEstilo: {
+        color: 'red'
       }
+
     };
   },
   methods: {
@@ -93,7 +102,7 @@ export default {
     },
     title() {
       return this.form.type == 0
-        ? "Sing in"
+        ? "Sign in"
         : "Reset password";
     }
   }
@@ -101,7 +110,7 @@ export default {
 </script>
 
 <style scoped>
-/*
+
 html,body {
   padding: 0px;
   margin: 0px;
@@ -110,8 +119,9 @@ html,body {
   font-family: "RobotoMono-Bold";
   color: #333333;
 }
-*/
+
 .divlogin {
+  background: url('../../assets/img/fondo_transparente.jpg');
   background-color: rgba(0, 0, 0, 0.5);
   background-size: cover;
   background-position: center center;
