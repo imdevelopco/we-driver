@@ -11,7 +11,7 @@ import Notifications from "./components/NotificationPlugin";
 
 // MaterialDashboard plugin
 import MaterialDashboard from "./material-dashboard";
-
+//Chartist
 import Chartist from "chartist";
 
 
