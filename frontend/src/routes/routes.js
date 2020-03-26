@@ -10,7 +10,7 @@ import Typography from "@/pages/Typography.vue";
 import Icons from "@/pages/Icons.vue";
 import Maps from "@/pages/Maps.vue";
 import Notifications from "@/pages/Notifications.vue";
-import UpgradeToPRO from "@/pages/UpgradeToPRO.vue";
+import Usuarios from "@/pages/Users.vue";
 
 const routes = [
   {
@@ -64,6 +64,11 @@ const routes = [
         component: Dashboard
       },
       {
+        path: "usuarios",
+        name: "Usuarios",
+        component: Usuarios
+      },
+      {
         path: "user",
         name: "User Profile",
         component: UserProfile
@@ -87,11 +92,6 @@ const routes = [
         path: "notifications",
         name: "Notifications",
         component: Notifications
-      },
-      {
-        path: "upgrade",
-        name: "Upgrade to PRO",
-        component: UpgradeToPRO
       }
     ]
   }
