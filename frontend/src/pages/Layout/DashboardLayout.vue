@@ -5,27 +5,27 @@
     <side-bar>
       <MobileMenu slot="content"></MobileMenu>
 
-      <sidebar-link to="/maps">
+      <sidebar-link to="/app/maps">
         <md-icon>location_on</md-icon>
         <p>Mapa</p>
       </sidebar-link>
 
-      <sidebar-link to="/dashboard">
+      <sidebar-link to="/app/dashboard">
         <md-icon>dashboard</md-icon>
         <p>Dashboard</p>
       </sidebar-link>
 
-      <sidebar-link to="/user">
+      <sidebar-link to="/app/user">
         <md-icon>input</md-icon>
         <p>Agregar</p>
       </sidebar-link>
 
-      <sidebar-link to="/table">
+      <sidebar-link to="/app/table">
         <md-icon>settings</md-icon>
         <p>Configuración</p>
       </sidebar-link>
 
-      <sidebar-link to="/typography">
+      <sidebar-link to="/app/typography">
         <md-icon>library_books</md-icon>
         <p>Cerrar sesión</p>
       </sidebar-link>
