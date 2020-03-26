@@ -22,7 +22,7 @@
 
       <sidebar-link to="/app/table">
         <md-icon>settings</md-icon>
-        <p>Configuración</p>
+        <p>Administración</p>
       </sidebar-link>
 
       <sidebar-link to="/app/typography">
