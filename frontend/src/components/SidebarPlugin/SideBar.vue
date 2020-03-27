@@ -11,14 +11,6 @@
           <img :src="imgLogo" alt="" />
         </div>
       </a>
-
-      <a
-        href="https://www.creative-tim.com/product/vue-material-dashboard"
-        target="_blank"
-        class="simple-text logo-normal"
-      >
-        {{ title }}
-      </a>
     </div>
     <div class="sidebar-wrapper">
       <slot name="content"></slot>
@@ -45,17 +37,13 @@ export default {
     SidebarLink
   },
   props: {
-    title: {
-      type: String,
-      default: "We Driver"
-    },
     backgroundImage: {
       type: String,
       default: require("@/assets/img/sidebar-2.jpg")
     },
     imgLogo: {
       type: String,
-      default: require("@/assets/img/weDrive.png")
+      default: require("@/assets/img/weDriveMenu.png")
     },
     activeColor: {
       type: String,

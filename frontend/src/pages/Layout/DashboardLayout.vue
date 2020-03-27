@@ -3,7 +3,7 @@
     <notifications></notifications>
 
     <side-bar>
-      <MobileMenu slot="content"></MobileMenu>
+      <MobileMenu slot="content" v-bind:notifications="notifications"></MobileMenu>
 
       <sidebar-link to="/app/maps">
         <md-icon>location_on</md-icon>
@@ -13,6 +13,11 @@
       <sidebar-link to="/app/dashboard">
         <md-icon>dashboard</md-icon>
         <p>Dashboard</p>
+      </sidebar-link>
+
+      <sidebar-link to="/app/usuarios">
+        <md-icon>group</md-icon>
+        <p>Usuarios</p>
       </sidebar-link>
 
       <sidebar-link to="/app/user">
@@ -33,7 +38,7 @@
     </side-bar>
 
     <div class="main-panel">
-      <TopNavbar></TopNavbar>
+      <TopNavbar v-bind:notifications="notifications"></TopNavbar>
 
       <DashboardContent> </DashboardContent>
 
@@ -53,6 +58,15 @@ import DashboardContent from "./Content.vue";
 import MobileMenu from "@/pages/Layout/MobileMenu.vue";
 
 export default {
+  data(){
+    return{
+      notifications:[
+        "Estación de gasolina aprovada",
+        "Actualización precio gasolina",
+        "Foto multa cerca"
+      ]
+    }
+  },
   components: {
     TopNavbar,
     DashboardContent,

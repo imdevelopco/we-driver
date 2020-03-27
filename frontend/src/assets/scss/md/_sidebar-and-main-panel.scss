@@ -203,8 +203,6 @@
         }
 
         .logo-mini{
-          float: left;
-          width: 40px;
           text-align: center;
           margin-left: 25px;
           margin-right: 11px;
@@ -228,17 +226,13 @@
             }
 
             .logo-img{
-              width: 40px;
               display: inline-block;
-              height: 40px;
-              background: $white-color;
-              border-radius: 50%;
+              height: 45px;
               text-align: center;
               overflow: hidden;
-              @include shadow-big();
 
                 img{
-                  width: 55%;
+                  width: 100%;
                   vertical-align: -webkit-baseline-middle;
                 }
             }
