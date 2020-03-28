@@ -1,13 +1,13 @@
 <template>
     <div>
-        <div  class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-50">
+        <div  class="md-layout-item md-medium-size-100 md-xsmall-size-100">
             <md-card>
                 <md-card-header data-background-color="orange">
                     <h4 class="title">Usuarios</h4>
                     <p class="category"></p>
                 </md-card-header>
                 <md-card-content>
-                    <ordered-table table-header-color="orange"></ordered-table>
+                    <ordered-table table-header-color="orange" v-bind:usersProps="users"></ordered-table>
                 </md-card-content>
             </md-card>
         </div>
@@ -18,7 +18,11 @@
 import {OrderedTable} from "@/components";
 
 export default {
-   
+    computed:{
+        users(){
+            return this.$store.state.users
+        }
+    },
     components:{
         OrderedTable
     }

@@ -51,18 +51,18 @@
       >
         <stats-card data-background-color="green">
           <template slot="header">
-            <md-icon>store</md-icon>
+            <md-icon>supervised_user_circle</md-icon>
           </template>
 
           <template slot="content">
-            <p class="category">Revenue</p>
-            <h3 class="title">$34,245</h3>
+            <p class="category">Usuarios</p>
+            <h3 class="title">{{ totalUsers }}</h3>
           </template>
 
           <template slot="footer">
             <div class="stats">
-              <md-icon>date_range</md-icon>
-              Last 24 Hours
+              <md-icon>account_circle</md-icon>
+              total de usuarios registrados
             </div>
           </template>
         </stats-card>
@@ -72,21 +72,20 @@
       >
         <stats-card data-background-color="orange">
           <template slot="header">
-            <md-icon>content_copy</md-icon>
+            <md-icon>camera_alt</md-icon>
           </template>
 
           <template slot="content">
-            <p class="category">Used Space</p>
+            <p class="category">Fotomultas</p>
             <h3 class="title">
-              49/50
-              <small>GB</small>
+              {{ totalCameras }}
             </h3>
           </template>
 
           <template slot="footer">
             <div class="stats">
-              <md-icon class="text-danger">warning</md-icon>
-              <a href="#pablo">Get More Space...</a>
+              <md-icon class="text-danger">videocam</md-icon>
+              total de fotomultas reistradas
             </div>
           </template>
         </stats-card>
@@ -96,18 +95,18 @@
       >
         <stats-card data-background-color="red">
           <template slot="header">
-            <md-icon>info_outline</md-icon>
+            <md-icon>local_gas_station</md-icon>
           </template>
 
           <template slot="content">
-            <p class="category">Fixed Issues</p>
-            <h3 class="title">75</h3>
+            <p class="category">Estaciones</p>
+            <h3 class="title">{{ totalGasStation }}</h3>
           </template>
 
           <template slot="footer">
             <div class="stats">
-              <md-icon>local_offer</md-icon>
-              Tracked from Github
+              <md-icon>ev_station</md-icon>
+              Total estaciones de gasolina registradas
             </div>
           </template>
         </stats-card>
@@ -117,18 +116,18 @@
       >
         <stats-card data-background-color="blue">
           <template slot="header">
-            <i class="fab fa-twitter"></i>
+            <md-icon>drive_eta</md-icon>
           </template>
 
           <template slot="content">
-            <p class="category">Folowers</p>
-            <h3 class="title">+245</h3>
+            <p class="category">Gasolina</p>
+            <h3 class="title">{{ avgGas }}</h3>
           </template>
 
           <template slot="footer">
             <div class="stats">
-              <md-icon>update</md-icon>
-              Just Updated
+              <md-icon>local_gas_station</md-icon>
+              Promedio precio galón de gasolina
             </div>
           </template>
         </stats-card>
@@ -144,10 +143,20 @@ import {
   ChartCard
 } from "@/components";
 
+import { mapState } from 'vuex'
+
 export default {
   components: {
     StatsCard,
     ChartCard
+  },
+  computed:{
+    ...mapState({
+      totalCameras : 'totalCameras',
+      totalUsers : 'totalUsers',
+      totalGasStation : 'totalGasStation',
+      avgGas : 'avgGas'
+    })
   },
   data() {
     return {

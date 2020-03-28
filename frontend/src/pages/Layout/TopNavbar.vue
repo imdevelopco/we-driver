@@ -41,7 +41,7 @@
                       data-toggle="dropdown"
                     >
                       <md-icon>notifications</md-icon>
-                      <span class="notification" v-if="notifications.length > 0">{{ notifications.length }}</span>
+                      <span class="notification" v-if="totalNotifications > 0">{{ totalNotifications }}</span>
                       <p class="hidden-lg hidden-md">Notifications</p>
                     </md-button>
                     <ul class="dropdown-menu dropdown-menu-right">
@@ -90,8 +90,13 @@ export default {
       resentSearches: []
     };
   },
-  props:{
-    notifications:{ type:Array}
+  computed:{
+    totalNotifications(){
+      return this.$store.getters.totalNotifications
+    },
+    notifications(){
+      return this.$store.state.notifications
+    }
   },
   methods: {
     toggleSidebar() {

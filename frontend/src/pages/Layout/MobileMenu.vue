@@ -10,7 +10,7 @@
       <drop-down>
         <a slot="title" class="dropdown-toggle" data-toggle="dropdown">
           <i class="material-icons">notifications</i>
-          <span class="notification"  v-if="notifications.length > 0">{{ notifications.length }}</span>
+          <span class="notification"  v-if="totalNotifications > 0">{{ totalNotifications }}</span>
           <p>Notifications</p>
         </a>
         <ul class="dropdown-menu dropdown-menu-right">
@@ -37,8 +37,13 @@ export default {
       employees: [ ]
     };
   },
-  props:{
-    notifications:{ type: Array}
+  computed:{
+    totalNotifications(){
+      return this.$store.getters.totalNotifications
+    },
+    notifications(){
+      return this.$store.state.notifications
+    }
   }
 };
 </script>

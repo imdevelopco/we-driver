@@ -3,7 +3,7 @@
     <notifications></notifications>
 
     <side-bar>
-      <MobileMenu slot="content" v-bind:notifications="notifications"></MobileMenu>
+      <MobileMenu slot="content"></MobileMenu>
 
       <sidebar-link to="/app/maps">
         <md-icon>location_on</md-icon>
@@ -38,7 +38,7 @@
     </side-bar>
 
     <div class="main-panel">
-      <TopNavbar v-bind:notifications="notifications"></TopNavbar>
+      <TopNavbar></TopNavbar>
 
       <DashboardContent> </DashboardContent>
 
@@ -60,11 +60,7 @@ import MobileMenu from "@/pages/Layout/MobileMenu.vue";
 export default {
   data(){
     return{
-      notifications:[
-        "Estación de gasolina aprovada",
-        "Actualización precio gasolina",
-        "Foto multa cerca"
-      ]
+     
     }
   },
   components: {
