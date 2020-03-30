@@ -10,6 +10,7 @@ export const store = new Vuex.Store({
             {id:2, name: 'Pedro Nel', barrio: 'Terron', city : 'Cali', location:'Oeste' },
             {id:3, name: 'Martha', barrio: 'Terron', city : 'Cali', location:'Oeste' },
             {id:4, name: 'Carlos', barrio: 'Mariano Ramos', city : 'Cali', location:'Oriente' },
+            {id:5, name: 'Sebas', barrio: 'Melendez', city : 'Cali', location:'Sur' },
         ],
         notifications:[
             "Estación de gasolina aprovada",
@@ -23,7 +24,7 @@ export const store = new Vuex.Store({
         avgGas: 8400,
         usersRegisterdata: {
             data: {
-              labels: ["M", "T", "W", "T", "F", "S", "S"],
+              labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"],
               series: [[12, 17, 7, 17, 23, 18, 38]]
             },
             options: {
@@ -40,7 +41,7 @@ export const store = new Vuex.Store({
         },
         stationsChart: {
             data: {
-              labels: ["12am", "3pm", "6pm", "9pm", "12pm", "3am", "6am", "9am"],
+              labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto"],
               series: [[230, 750, 450, 300, 280, 240, 200, 190]]
             },
     
@@ -59,18 +60,18 @@ export const store = new Vuex.Store({
         camerasChart: {
             data: {
               labels: [
-                "Ja",
+                "En",
                 "Fe",
                 "Ma",
-                "Ap",
-                "Mai",
-                "Ju",
+                "Ab",
+                "Ma",
+                "Jun",
                 "Jul",
-                "Au",
+                "Ag",
                 "Se",
                 "Oc",
                 "No",
-                "De"
+                "Di"
               ],
               series: [[542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895]]
             },

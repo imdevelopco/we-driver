@@ -61,22 +61,31 @@ const routes = [
       {
         path: "dashboard",
         name: "Dashboard",
-        component: Dashboard
+        component: Dashboard,
+        meta:{
+          admin : true 
+        }
       },
       {
         path: "usuarios",
         name: "Usuarios",
-        component: Usuarios
+        component: Usuarios,
+        meta:{
+          admin : true 
+        }
       },
       {
-        path: "user",
-        name: "User Profile",
+        path: "crear",
+        name: "Create Profile",
         component: UserProfile
       },
       {
-        path: "table",
-        name: "Table List",
-        component: TableList
+        path: "admin",
+        name: "Administración",
+        component: TableList,
+        meta:{
+          admin : true 
+        }
       },
       {
         path: "typography",

@@ -20,12 +20,12 @@
         <p>Usuarios</p>
       </sidebar-link>
 
-      <sidebar-link to="/app/user">
+      <sidebar-link to="/app/crear">
         <md-icon>input</md-icon>
         <p>Agregar</p>
       </sidebar-link>
 
-      <sidebar-link to="/app/table">
+      <sidebar-link to="/app/admin">
         <md-icon>settings</md-icon>
         <p>Administración</p>
       </sidebar-link>
