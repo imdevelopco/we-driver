@@ -106,8 +106,9 @@ export const store = new Vuex.Store({
         },
 
         //Settings Google maps
+        versionMaps: {version: '3.40'},
         googleMapSetting:{
-          zoom: 13,
+          zoom: 15,
           center: {},
           scrollwheel: false, // deshabilitar scroll
           styles: [

@@ -43,8 +43,9 @@
 
 
 <script>
-import {Loader, LoaderOptions} from "google-maps";
+import {Loader} from "google-maps";
 import { mapState } from 'vuex'
+import apiKey from '../../apiKey';
 
 export default {
   name: "create-form",
@@ -71,7 +72,7 @@ export default {
     initMap(google) {
       var mapOptions = this.$store.state.googleMapSetting,
           map = new google.maps.Map(document.getElementById("map"), mapOptions);
-
+         
       var marker = new google.maps.Marker({
         position: this.myLatlng,
         title: "Crear Cámara, Fotomulta"
@@ -83,33 +84,19 @@ export default {
     canIuseGeolocation(){
         return (navigator.geolocation) ? true : false;
     },
-    getCurrentPosition(position){
-        console.log(position.coords.latitude);
-        console.log(position.coords.longitude);
-    },
-
   },
   mounted() {
-      console.log("[DEBUG] Loader LoaderOptions: ", Loader, LoaderOptions)
-    const options: LoaderOptions = {version: 'v=3.39'};
-    const loader = new Loader("", options);
+    var _this = this;
+    const loader = new Loader(apiKey.apiKey, this.$store.state.versionMaps);
 
-    const google = await loader.load();
-    const map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: -34.397, lng: 150.644},
-        zoom: 8,
-    });
-
-    GoogleMapsLoader.KEY = "";
-    GoogleMapsLoader.load(google => {
+    loader.load().then( google => {
         navigator.geolocation.getCurrentPosition(position => {
             var startLocation = {
                 lat: position.coords.latitude, 
                 long: position.coords.longitude
             } 
-            console.log("[DEBUG] startLocation: ", startLocation)
-            this.$store.commit('setCenterMap',new google.maps.LatLng(startLocation.lat, startLocation.long) )
-            this.initMap(google);
+            _this.$store.commit('setCenterMap',new google.maps.LatLng(startLocation.lat, startLocation.long) )
+            _this.initMap(google);
         })
     });
   }

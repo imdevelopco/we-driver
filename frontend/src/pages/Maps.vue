@@ -3,91 +3,43 @@
 </template>
 
 <script>
-import GoogleMapsLoader from "google-maps";
+import {Loader} from "google-maps";
+import { mapState } from 'vuex';
+import apiKey from '../apiKey';
+
 export default {
+  computed:{
+      ...mapState({
+          myLatlng: state => state.googleMapSetting.center,
+      })
+  },
   methods: {
     initMap(google) {
-      var myLatlng = new google.maps.LatLng(40.748817, -73.985428);
-      var mapOptions = {
-        zoom: 13,
-        center: myLatlng,
-        scrollwheel: false, // we disable de scroll over the map, it is a really annoing when you scroll through page
-        styles: [
-          {
-            featureType: "water",
-            stylers: [
-              { saturation: 43 },
-              { lightness: -11 },
-              { hue: "#0088ff" }
-            ]
-          },
-          {
-            featureType: "road",
-            elementType: "geometry.fill",
-            stylers: [
-              { hue: "#ff0000" },
-              { saturation: -100 },
-              { lightness: 99 }
-            ]
-          },
-          {
-            featureType: "road",
-            elementType: "geometry.stroke",
-            stylers: [{ color: "#808080" }, { lightness: 54 }]
-          },
-          {
-            featureType: "landscape.man_made",
-            elementType: "geometry.fill",
-            stylers: [{ color: "#ece2d9" }]
-          },
-          {
-            featureType: "poi.park",
-            elementType: "geometry.fill",
-            stylers: [{ color: "#ccdca1" }]
-          },
-          {
-            featureType: "road",
-            elementType: "labels.text.fill",
-            stylers: [{ color: "#767676" }]
-          },
-          {
-            featureType: "road",
-            elementType: "labels.text.stroke",
-            stylers: [{ color: "#ffffff" }]
-          },
-          { featureType: "poi", stylers: [{ visibility: "off" }] },
-          {
-            featureType: "landscape.natural",
-            elementType: "geometry.fill",
-            stylers: [{ visibility: "on" }, { color: "#b8cb93" }]
-          },
-          { featureType: "poi.park", stylers: [{ visibility: "on" }] },
-          {
-            featureType: "poi.sports_complex",
-            stylers: [{ visibility: "on" }]
-          },
-          { featureType: "poi.medical", stylers: [{ visibility: "on" }] },
-          {
-            featureType: "poi.business",
-            stylers: [{ visibility: "simplified" }]
-          }
-        ]
-      };
-      var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-
+      var mapOptions = this.$store.state.googleMapSetting,
+          map = new google.maps.Map(document.getElementById("map"), mapOptions);
+         
       var marker = new google.maps.Marker({
-        position: myLatlng,
-        title: "Hello World!"
+        position: this.myLatlng,
+        title: "Crear Cámara, Fotomulta"
       });
 
-      // To add the marker to the map, call setMap();
+      // Poner el marcador en el mapa, setMap();
       marker.setMap(map);
-    }
+    },
   },
   mounted() {
-    GoogleMapsLoader.KEY = "AIzaSyADCQ0Bdny3n4PcNC7amhQ_RofZZz0exqM";
-    GoogleMapsLoader.load(google => {
-      this.initMap(google);
+    var _this = this;
+    const loader = new Loader(apiKey.apiKey, this.$store.state.versionMaps);
+
+    loader.load().then( google => {
+        navigator.geolocation.getCurrentPosition(position => {
+            var startLocation = {
+                lat: position.coords.latitude, 
+                long: position.coords.longitude
+            } 
+            _this.$store.commit('setCenterMap',new google.maps.LatLng(startLocation.lat, startLocation.long) )
+            _this.initMap(google);
+        })
     });
   }
 };
