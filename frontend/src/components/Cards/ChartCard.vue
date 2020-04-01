@@ -1,9 +1,6 @@
 <template>
   <md-card>
-    <md-card-header
-      class="card-chart"
-      :data-background-color="dataBackgroundColor"
-    >
+    <md-card-header class="card-chart" :data-background-color="dataBackgroundColor">
       <div :id="chartId" class="ct-chart"></div>
     </md-card-header>
 
@@ -16,6 +13,8 @@
     </md-card-actions>
   </md-card>
 </template>
+
+
 <script>
 export default {
   name: "chart-card",
@@ -65,7 +64,7 @@ export default {
   },
   methods: {
     /***
-     * Initializes the chart by merging the chart options sent via props and the default chart options
+     * Init the chart with props data
      */
     initChart() {
       var chartIdQuery = `#${this.chartId}`;

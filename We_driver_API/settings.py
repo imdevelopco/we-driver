@@ -51,7 +51,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'We_driver.urls'
+ROOT_URLCONF = 'We_driver_API.urls'
 
 TEMPLATES = [
     {
@@ -69,16 +69,25 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'We_driver.wsgi.application'
+WSGI_APPLICATION = 'We_driver_API.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
+   # 'default': {
+   #    'ENGINE': 'django.db.backends.sqlite3',
+   #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+   # }
+
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'iuzkzlzp',
+        'USER': 'iuzkzlzp',
+        'PASSWORD': 'bVPwNLrNUVJjK-6o5yK5bpwgEWh_JW3E',
+        'HOST': 'salt.db.elephantsql.com',
+        'PORT': '',
     }
 }
 

@@ -11,8 +11,11 @@ import Notifications from "./components/NotificationPlugin";
 
 // MaterialDashboard plugin
 import MaterialDashboard from "./material-dashboard";
-
+//Chartist
 import Chartist from "chartist";
+
+//state
+import { store } from './store'
 
 
 
@@ -28,6 +31,7 @@ Vue.use(Notifications);
 new Vue({
   el: "#app",
   render: h => h(App),
+  store,
   router,
   data: {
     Chartist: Chartist
