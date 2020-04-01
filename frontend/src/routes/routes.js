@@ -76,7 +76,7 @@ const routes = [
       },
       {
         path: "crear",
-        name: "Create Profile",
+        name: "Crear Fotomulta y cámara",
         component: UserProfile
       },
       {

@@ -85,7 +85,7 @@ export default {
     }
   },
   mounted() {
-    GoogleMapsLoader.KEY = "";
+    GoogleMapsLoader.KEY = "AIzaSyADCQ0Bdny3n4PcNC7amhQ_RofZZz0exqM";
     GoogleMapsLoader.load(google => {
       this.initMap(google);
     });

@@ -8,10 +8,24 @@
         <md-table-cell md-label="Ciudad" md-sort-by="ciudad">{{ item.city }}</md-table-cell>
         <md-table-cell md-label="Ubicación" md-sort-by="ubicacion">{{ item.location }}</md-table-cell>
         <md-table-cell md-label="Acciones">
-          <md-button class="md-accent">Accent</md-button>
+          <md-button class="md-just-icon md-simple md-primary">
+            <md-icon>edit</md-icon>                     
+            <md-tooltip md-direction="top">Actualizar</md-tooltip>
+          </md-button>
+          <md-button class="md-just-icon md-simple md-danger" v-on:click="confirmDelete(item)">
+            <md-icon>close</md-icon>
+            <md-tooltip md-direction="top">Eliminar</md-tooltip>
+          </md-button>
         </md-table-cell>
       </md-table-row>
     </md-table>
+
+    <md-dialog-confirm
+      :md-active.sync="openComfirnDelete"
+      md-content="Realmente deseas eliminar a <strong v-bind:user'userSelectedToDelete.name'> </strong>"
+      md-confirm-text="Eliminar"
+      md-cancel-text="Cancelar"
+      @md-confirm="onConfirmDelete" />
   </div>
 </template>
 
@@ -30,8 +44,20 @@ export default {
   data() {
     return {
       selected: [],
-      users: this.usersProps
+      users: this.usersProps,
+      openComfirnDelete: false,
+      userSelectedToDelete:{}
     };
+  },
+  methods:{
+    confirmDelete(user){
+      this.openComfirnDelete = true 
+      this.userSelectedToDelete = user
+    },
+    onConfirmDelete(){
+      console.log("Eliminado: ",this.userSelectedToDelete.name)
+      alert("eliminado: ",this.userSelectedToDelete.name)
+    }
   }
 };
 </script>
