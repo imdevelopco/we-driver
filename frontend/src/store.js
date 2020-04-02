@@ -171,7 +171,12 @@ export const store = new Vuex.Store({
               stylers: [{ visibility: "simplified" }]
             }
           ]
-        }
+        },
+
+        //formulario crear
+        velMax:0,
+        picture:null,
+        comment:"",
     },
     getters:{
         totalNotifications: state =>{
@@ -190,5 +195,8 @@ export const store = new Vuex.Store({
         setCenterMap(state, center){
           state.googleMapSetting.center = center;
         }
+
+        //datos formularo crear
+        
     }
 })
