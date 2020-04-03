@@ -42,31 +42,53 @@
                     <md-input v-model="nameStation" type="text"></md-input>
                 </md-field>
 
-                <div class="md-layout">  
-                    <div class="md-layout-item md-small-size-50 md-size-50"> 
-                      <md-field>
-                          <label>Combustible</label>
-                          <md-input v-model="nameGas" type="text"></md-input>
-                      </md-field> 
-                    </div>
-                    <div class="md-layout-item md-small-size-50 md-size-50">  
-                      <md-field>
-                          <label>Precio</label>
-                          <md-input v-model="priceGas" type="text"></md-input>
-                      </md-field>
-                    </div>
-
-                    <div class="md-layout-item md-size-100 text-right">
-                      <md-button class="md-icon-button md-raised">
-                        <md-icon>add</md-icon>
-                      </md-button>
-                    </div>
-                </div>
-
                 <md-field>
                     <label>Foto</label>
                     <md-file v-model="picture" accept="image/*" />
                 </md-field>
+
+                <div class="md-layout">  
+                    <div class="md-layout-item md-xsmall-size-50"> 
+                      <md-field>
+                          <label>Combustible</label>
+                          <md-input v-model="nameGas[0]" type="text"></md-input>
+                      </md-field> 
+                    </div>
+                    <div class="md-layout-item md-xsmall-size-50">  
+                      <md-field>
+                          <label>Precio</label>
+                          <md-input v-model="priceGas[0]" type="text"></md-input>
+                      </md-field>
+                    </div>
+                </div>
+
+                <div class="md-layout" v-for="i in addFields" v-bind:key="i">  
+                    <div class="md-layout-item md-xsmall-size-45"> 
+                      <md-field>
+                          <label>Combustible</label>
+                          <md-input v-model="nameGas[i]" type="text"></md-input>
+                      </md-field> 
+                    </div>
+                    <div class="md-layout-item md-xsmall-size-45">  
+                      <md-field>
+                          <label>Precio</label>
+                          <md-input v-model="priceGas[i]" type="text"></md-input>
+                      </md-field>
+                    </div>
+
+                    <div class="md-layout-item md-xsmall-size-10"> 
+                        <md-button class="md-icon-button md-raised" v-on:click="addFields -= 1">
+                          <md-icon>delete</md-icon>
+                        </md-button>
+                    </div>
+                </div>
+
+                <div class="md-layout-item md-size-100 text-right">
+                  <md-button class="md-icon-button md-raised" v-on:click="addFields += 1">
+                    <md-icon>add</md-icon>
+                  </md-button>
+                </div>
+                
 
                 <md-field maxlength="5">
                     <label>Comentario</label>
@@ -104,9 +126,12 @@ export default {
       velMax: null,
       picture:null,
       nameStation:"",
+      nameGas1:"",
+      priceGas:"",
       nameGas:[],
       priceGas:[],
-      comment:""
+      comment:"",
+      addFields:0,
     };
   },
   computed:{
@@ -129,7 +154,7 @@ export default {
     },
     canIuseGeolocation(){
         return (navigator.geolocation) ? true : false;
-    },
+    }
   },
   mounted() {
     var _this = this;
