@@ -10,7 +10,7 @@ import Typography from "@/pages/Typography.vue";
 import Icons from "@/pages/Icons.vue";
 import Maps from "@/pages/Maps.vue";
 import Notifications from "@/pages/Notifications.vue";
-import UpgradeToPRO from "@/pages/UpgradeToPRO.vue";
+import Usuarios from "@/pages/Users.vue";
 
 const routes = [
   {
@@ -61,17 +61,31 @@ const routes = [
       {
         path: "dashboard",
         name: "Dashboard",
-        component: Dashboard
+        component: Dashboard,
+        meta:{
+          admin : true 
+        }
       },
       {
-        path: "user",
-        name: "User Profile",
+        path: "usuarios",
+        name: "Usuarios",
+        component: Usuarios,
+        meta:{
+          admin : true 
+        }
+      },
+      {
+        path: "crear",
+        name: "Crear Fotomulta y cámara",
         component: UserProfile
       },
       {
-        path: "table",
-        name: "Table List",
-        component: TableList
+        path: "admin",
+        name: "Administración",
+        component: TableList,
+        meta:{
+          admin : true 
+        }
       },
       {
         path: "typography",
@@ -87,11 +101,6 @@ const routes = [
         path: "notifications",
         name: "Notifications",
         component: Notifications
-      },
-      {
-        path: "upgrade",
-        name: "Upgrade to PRO",
-        component: UpgradeToPRO
       }
     ]
   }
