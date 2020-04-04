@@ -51,18 +51,18 @@
                     <div class="md-layout-item md-xsmall-size-50"> 
                       <md-field>
                           <label>Combustible</label>
-                          <md-input v-model="nameGas[0]" type="text"></md-input>
+                          <md-input v-model="nameGas" type="text"></md-input>
                       </md-field> 
                     </div>
                     <div class="md-layout-item md-xsmall-size-50">  
                       <md-field>
                           <label>Precio</label>
-                          <md-input v-model="priceGas[0]" type="text"></md-input>
+                          <md-input v-model="priceGas" type="text"></md-input>
                       </md-field>
                     </div>
                 </div>
 
-                <div class="md-layout" v-for="i in addFields" v-bind:key="i">  
+                <div class="md-layout" v-for="(field, i) in nameGas" v-bind:key="i">  
                     <div class="md-layout-item md-xsmall-size-45"> 
                       <md-field>
                           <label>Combustible</label>
@@ -77,14 +77,15 @@
                     </div>
 
                     <div class="md-layout-item md-xsmall-size-10"> 
-                        <md-button class="md-icon-button md-raised" v-on:click="addFields -= 1">
-                          <md-icon>delete</md-icon>
+                        <md-button class="md-just-icon md-simple md-danger" v-on:click="addFields -= 1">
+                          <md-icon>close</md-icon>
+                          <md-tooltip md-direction="top">Eliminar</md-tooltip>
                         </md-button>
                     </div>
                 </div>
 
                 <div class="md-layout-item md-size-100 text-right">
-                  <md-button class="md-icon-button md-raised" v-on:click="addFields += 1">
+                  <md-button class="md-icon-button md-raised" v-on:click="nameGas.push({tipeGas:'',index:''})">
                     <md-icon>add</md-icon>
                   </md-button>
                 </div>
@@ -127,7 +128,7 @@ export default {
       picture:null,
       nameStation:"",
       nameGas1:"",
-      priceGas:"",
+      priceGas1:"",
       nameGas:[],
       priceGas:[],
       comment:"",
