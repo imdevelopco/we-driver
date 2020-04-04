@@ -51,33 +51,33 @@
                     <div class="md-layout-item md-xsmall-size-50"> 
                       <md-field>
                           <label>Combustible</label>
-                          <md-input v-model="nameGas" type="text"></md-input>
+                          <md-input v-model="nameGas1" type="text"></md-input>
                       </md-field> 
                     </div>
                     <div class="md-layout-item md-xsmall-size-50">  
                       <md-field>
                           <label>Precio</label>
-                          <md-input v-model="priceGas" type="text"></md-input>
+                          <md-input v-model="priceGas1" type="text"></md-input>
                       </md-field>
                     </div>
                 </div>
 
-                <div class="md-layout" v-for="(field, i) in nameGas" v-bind:key="i">  
-                    <div class="md-layout-item md-xsmall-size-45"> 
+                <div class="md-layout md-alignment-bottom-null" v-for="gas in nameGas" v-bind:key="gas.index">  
+                    <div class="md-layout-item md-xsmall-size-45 md-size-45"> 
                       <md-field>
                           <label>Combustible</label>
-                          <md-input v-model="nameGas[i]" type="text"></md-input>
+                          <md-input v-model="gas.name" type="text"></md-input>
                       </md-field> 
                     </div>
-                    <div class="md-layout-item md-xsmall-size-45">  
+                    <div class="md-layout-item md-xsmall-size-45 md-size-45">  
                       <md-field>
                           <label>Precio</label>
-                          <md-input v-model="priceGas[i]" type="text"></md-input>
+                          <md-input v-model="gas.price" type="text"></md-input>
                       </md-field>
                     </div>
 
-                    <div class="md-layout-item md-xsmall-size-10"> 
-                        <md-button class="md-just-icon md-simple md-danger" v-on:click="addFields -= 1">
+                    <div class="md-layout-item md-xsmall-size-10 md-size-10"> 
+                        <md-button class="md-just-icon md-simple md-danger" v-on:click="deleteRow(gas.index)">
                           <md-icon>close</md-icon>
                           <md-tooltip md-direction="top">Eliminar</md-tooltip>
                         </md-button>
@@ -85,7 +85,7 @@
                 </div>
 
                 <div class="md-layout-item md-size-100 text-right">
-                  <md-button class="md-icon-button md-raised" v-on:click="nameGas.push({tipeGas:'',index:''})">
+                  <md-button class="md-icon-button md-raised" v-on:click="addRow()">
                     <md-icon>add</md-icon>
                   </md-button>
                 </div>
@@ -99,7 +99,7 @@
           </div>
 
           <div class="md-layout-item md-size-100 text-right">
-            <md-button class="md-raised md-success">Guardar</md-button>
+            <md-button class="md-raised md-success" v-on:click="showData()">Guardar</md-button>
           </div>
         </div>
       </md-card-content>
@@ -123,16 +123,16 @@ export default {
   },
   data() {
     return {
-      tipo: null,
+      tipo: "camara",
       velMax: null,
       picture:null,
       nameStation:"",
       nameGas1:"",
       priceGas1:"",
       nameGas:[],
-      priceGas:[],
       comment:"",
       addFields:0,
+      coordinates:{}
     };
   },
   computed:{
@@ -144,23 +144,47 @@ export default {
     initMap(google) {
       var mapOptions = this.$store.state.googleMapSetting,
           map = new google.maps.Map(document.getElementById("map"), mapOptions);
-         
+
       var marker = new google.maps.Marker({
         position: this.myLatlng,
-        title: "Crear Cámara, Fotomulta"
+        map:map,
+        draggable:true,
+        title: "Establece la posición"
+      });
+
+      google.maps.event.addListener(marker, 'dragend',  evt => {
+        console.log("[Debug] moviendo...")
+        console.info(evt.latLng.lat() )
+        console.info(evt.latLng.lng() )
+          this.coordinates = {lat: evt.latLng.lat(), lng:evt.latLng.lng()}
       });
 
       // Poner el marcador en el mapa, setMap();
-      marker.setMap(map);
+      //marker.setMap(map);
     },
     canIuseGeolocation(){
         return (navigator.geolocation) ? true : false;
+    },
+    addRow(){
+      this.addFields += 1
+      this.nameGas.push({index:this.addFields, name:"", price:""})
+    },
+    deleteRow(index){
+      let _this = this;
+      var getIndex =  position => {
+        return  (_this.nameGas[position].index == index) ? position : getIndex(position+1) 
+      }
+      let dell = getIndex(0)
+      this.nameGas.splice( dell, 1 );
+    },
+    showData(){
+      console.log("[DEBUG] estas son las coordenadas:")
+      console.info( this.coordinates )
     }
   },
   mounted() {
     var _this = this;
     const loader = new Loader(apiKey.apiKey, this.$store.state.versionMaps);
-
     loader.load().then( google => {
         navigator.geolocation.getCurrentPosition(position => {
             var startLocation = {

@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import GoogleMapsLoader from "google-maps";
 
 Vue.use(Vuex);
 

@@ -20,7 +20,7 @@ export default {
          
       var marker = new google.maps.Marker({
         position: this.myLatlng,
-        title: "Crear Cámara, Fotomulta"
+        title: "posicion camaras"
       });
 
       // Poner el marcador en el mapa, setMap();
