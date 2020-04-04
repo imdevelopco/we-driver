@@ -76,17 +76,12 @@ WSGI_APPLICATION = 'We_driver_API.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-   # 'default': {
-   #    'ENGINE': 'django.db.backends.sqlite3',
-   #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-   # }
-
-    'default': {
+       'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'iuzkzlzp',
-        'USER': 'iuzkzlzp',
-        'PASSWORD': 'bVPwNLrNUVJjK-6o5yK5bpwgEWh_JW3E',
-        'HOST': 'salt.db.elephantsql.com',
+        'NAME': 'mwowubut',
+        'USER': 'mwowubut',
+        'PASSWORD': '0aL9UEQ4puKKHrElhu2UFbBbiRJzayKh',
+        'HOST': 'drona.db.elephantsql.com',
         'PORT': '',
     }
 }
