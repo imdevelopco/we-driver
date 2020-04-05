@@ -184,8 +184,8 @@ export default {
   },
   mounted() {
     var _this = this;
-    const loader = new Loader(apiKey.apiKey, this.$store.state.versionMaps);
-    loader.load().then( google => {
+    
+    this.$store.state.loader.load().then( google => {
         navigator.geolocation.getCurrentPosition(position => {
             var startLocation = {
                 lat: position.coords.latitude, 
