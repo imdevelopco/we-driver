@@ -30,7 +30,7 @@
         <p>Administración</p>
       </sidebar-link>
 
-      <sidebar-link to="/app/typography">
+      <sidebar-link to="/login">
         <md-icon>library_books</md-icon>
         <p>Cerrar sesión</p>
       </sidebar-link>

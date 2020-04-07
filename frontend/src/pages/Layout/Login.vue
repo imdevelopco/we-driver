@@ -6,7 +6,7 @@
           <img class="img" :src="LoginLogo" width="200">
         </figure>
         <h2>{{title}}</h2>
-        <form @submit.prevent="sendForm">
+        <form >
           <input
             type="email"
             :class="{ error: validaEmail }"
@@ -20,7 +20,8 @@
             placeholder="password"
             v-model="form.password"
           />
-          <button>{{title}}</button>
+          <button v-on:click="sendForm">{{title}}</button>
+          <button v-on:click="sendForm">hola</button>
           <button v-if="form.type == 0">Sign in with Google</button>
         </form>
 

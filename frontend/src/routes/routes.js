@@ -14,16 +14,12 @@ import Usuarios from "@/pages/Users.vue";
 
 const routes = [
   {
-    path: "*",
-    redirect: "/login",
-    name:"All"
-  },
-  {
     path: "/",
     name:'Home',
     component: Welcome,
     meta:{
-      welcomePage: true
+      welcomePage: true,
+      userLoged: false
     }
   },
   {
@@ -84,7 +80,7 @@ const routes = [
         name: "Administración",
         component: TableList,
         meta:{
-          admin : true 
+          admin : true, 
         }
       },
       {
