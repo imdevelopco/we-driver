@@ -31,7 +31,7 @@
             v-model="form.password2"
           />
           <button>Sign up</button>
-          <p>By sign up you agree to our <br> Terms & Conditions</p> 
+          <p style="font-size: 12px; color: #333;">By sign up you agree to our <br> <span>Terms & Conditions</span></p> 
         </form>
 
         <router-link to="../login" style="font-size: 18px; color: black;">Cancel</router-link>
@@ -45,7 +45,7 @@ export default {
     props: {
         LoginLogo: {
         type: String,
-        default: require("@/assets/img/logo.jpg")
+        default: require("@/assets/img/weDrive.png")
         }
     },
 
@@ -130,6 +130,7 @@ export default {
   padding: 20px;
   display: inline-block;
   margin-left: auto;
+  font-weight: bold;
 }
 
 .divlogin .container .contenido h2 {
@@ -137,6 +138,7 @@ export default {
   margin-bottom: 20px;
   color: red;
   font-size: 2em;
+  font-weight: bold;
 }
 
 .divlogin .container .contenido input {
@@ -174,11 +176,6 @@ export default {
 
 #logotipo {
   margin: 0px;
-}
-
-.divlogin .container .contenido router-link {
-    color: red;
-    font-size: 32px;
 }
 
 </style>
