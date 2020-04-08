@@ -39,6 +39,11 @@ import { CheckTable } from "@/components";
 import { mapState } from 'vuex';
 
 export default {
+  data(){
+    return{
+      act: 'cambar'
+    }
+  },
   components: {
     CheckTable,
   },
@@ -51,16 +56,40 @@ export default {
   methods: {
     initMap(google) {
       var mapOptions = this.$store.state.googleMapSetting,
-          map = new google.maps.Map(document.getElementById("map"), mapOptions);
-         
+          map = new google.maps.Map(document.getElementById("map"), mapOptions),
+          _this = this;
+         console.info(_this)
       this.$store.state.checkSource.cameras.forEach(cam => {
         var marker = new google.maps.Marker({
           position: new google.maps.LatLng( cam.lat, cam.lng),
           title: "posicion camaras",
           map:map
         });
+
+        let picture = require("@/assets/img/cameras/"+cam.foto+""),
+            sayHai = _this.sayHi;
+
+        var infowindow = new google.maps.InfoWindow({
+          content: '<div>'+
+                      '<ul>'+
+                        '<li><b>ID:</b> '+cam.id+'</li>'+
+                        '<li><b>Velocidad:</b> '+cam.velocidad+'</li>'+
+                        '<li><b>Comentario:</b> '+cam.comentario+'</li>'+
+                        '<li><img src="'+picture+'" /></li>'+
+                        '<li><a class="acceptButton" data-id="'+cam.id+'">Aceptar</a></li>'+
+                     ' </ul>'+
+                   '</div>'
+        });
+
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+
       });
     },
+    sayHi(){
+      alert("Hole Perro!")
+    }
   },
    mounted() {
     var _this = this;
@@ -69,6 +98,13 @@ export default {
       _this.$store.commit('setZoomMap',13)
       _this.initMap(google);
     });
+
+    var acepts = document.getElementsByClassName('acceptButton')
+    acepts.forEach( btn => {
+      btn.addListener('click', event => {
+        alert(event)
+      })
+    })
   }
 };
 </script>
