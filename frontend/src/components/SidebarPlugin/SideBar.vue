@@ -39,7 +39,7 @@ export default {
   props: {
     backgroundImage: {
       type: String,
-      default: require("@/assets/img/sidebar-2.jpg")
+      default: require("@/assets/img/fondo_transparente.jpg")
     },
     imgLogo: {
       type: String,
@@ -47,9 +47,9 @@ export default {
     },
     activeColor: {
       type: String,
-      default: "green",
+      default: "red",
       validator: value => {
-        let acceptedValues = ["", "purple", "blue", "green", "orange", "red"];
+        let acceptedValues = ["", "purple", "blue", "green", "orange", "red", "grey"];
         return acceptedValues.indexOf(value) !== -1;
       }
     },

@@ -18,7 +18,7 @@ const router = new VueRouter({
     if(!pageProtected && !user ){ //si no es una pagina protegida y no esta logueado
         next()
     }
-    else if(pageProtected && !user ){ //si es una pagina protegida y no esta logueado, lo envia a la pagina de login 
+    else if(pageProtected && user ){ //si es una pagina protegida y no esta logueado, lo envia a la pagina de login 
         next('/login')
     }
     else if(!pageProtected && user){ //si no es una pagina protegida y esta logueado (evita que entre a la pagina login)
