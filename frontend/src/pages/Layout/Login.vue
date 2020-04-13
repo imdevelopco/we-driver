@@ -1,5 +1,5 @@
 <template>
-  <div class="divlogin">
+  <div  class="divlogin">
     <div class="container">
       <div class="contenido">
         <figure id="logotipo">
@@ -46,8 +46,6 @@
 </template>
 
 <script>
-import axios from 'axios';
-import Cookies from 'js-cookie'
 
 export default {
     props: {
@@ -73,14 +71,20 @@ export default {
   methods: {
     /* Validacion del usuario en la BD*/
     findUser(){
-      let datos = {
+   /*    let datos = {
         username: this.form.email,
         password: this.form.password
       };
       let url = 'http://localhost:8000/api/login';
-  
-      axios.post(url,datos)
-        .then(response => ( console.log(response)))  
+    */ 
+   this.$store.dispatch('retrieveToken',{
+        username: this.form.email,
+        password: this.form.password
+      }).then(response => {
+        this.$router.push('/');
+      }).catch(error => {
+        console.log(error);
+      })   
     },
     sendForm() {
       if (this.validaType()) {
@@ -98,6 +102,7 @@ export default {
     }
   },
   computed: {
+    
     validaEmail() {
       var exp = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
       if (exp.test(this.form.email)) {

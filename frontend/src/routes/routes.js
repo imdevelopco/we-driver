@@ -18,8 +18,7 @@ const routes = [
     name:'Home',
     component: Welcome,
     meta:{
-      welcomePage: true,
-      userLoged: false
+      requiresVisitor: true
     }
   },
   {
@@ -27,7 +26,7 @@ const routes = [
     component: Login,
     name:"Login",
     meta:{
-      userLoged : false
+      requiresVisitor : true
     }
   },
   {
@@ -35,13 +34,13 @@ const routes = [
     name: "Registro",
     component : Registro,
     meta:{
-      userLoged : false
+      requiresVisitor : true
     }
   },
   {
     path: "/app",
     component: DashboardLayout,
-    redirect: "maps",
+    name: "App",
     meta:{
       userLoged : true //userLoged debe ser true para poder acceder a caulquiera de sus hijos
     },
@@ -50,7 +49,7 @@ const routes = [
         path: "maps",
         name: "Maps",
         meta: {
-          hideFooter: true
+          //hideFooter: true
         },
         component: Maps
       },
@@ -59,7 +58,7 @@ const routes = [
         name: "Dashboard",
         component: Dashboard,
         meta:{
-          admin : true 
+          //admin : true 
         }
       },
       {
@@ -67,7 +66,7 @@ const routes = [
         name: "Usuarios",
         component: Usuarios,
         meta:{
-          admin : true 
+          //admin : true 
         }
       },
       {
@@ -80,7 +79,7 @@ const routes = [
         name: "Administración",
         component: TableList,
         meta:{
-          admin : true, 
+          //admin : true, 
         }
       },
       {
