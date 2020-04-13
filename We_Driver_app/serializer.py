@@ -1,4 +1,4 @@
-from .models import camara,estacion,usuario
+from .models import camara,estacion
 from rest_framework import serializers
 
 class camaraSerializer(serializers.ModelSerializer):
@@ -9,9 +9,4 @@ class camaraSerializer(serializers.ModelSerializer):
 class estacionSerializer(serializers.ModelSerializer):
     class Meta:
         model = estacion
-        fields = '__all__'
-
-class usuarioSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = usuario
         fields = '__all__'

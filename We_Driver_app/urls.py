@@ -1,8 +1,7 @@
-from rest_framework import routers
-from .viewsets import camaraViewSets,estacionViewSets,usuarioViewSets
+from django.urls import path
+from .views import camaraList,estacionList
 
-router = routers.SimpleRouter()
-router.register('camara',camaraViewSets)
-router.register('estacion',estacionViewSets)
-router.register('usuario',usuarioViewSets)
-urlpatterns = router.urls
+urlpatterns = [
+    path('camara/',camaraList.as_view(), name = 'camara_list'),
+    path('estacion/',estacionList.as_view(), name = 'estacion_list'),
+]

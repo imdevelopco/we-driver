@@ -9,7 +9,6 @@ const router = new VueRouter({
   });
   
   router.beforeEach((to, from, next) => {
-
     let user = {state:false,admin:false} //usuario logueado
     let pageProtected = to.matched.some(record => record.meta.userLoged),
         welcomePage = to.matched.some( record => record.meta.welcomePage),
@@ -23,6 +22,10 @@ const router = new VueRouter({
             name:'Login'
         })
     }
+    /* else if(from.path == '/login'){
+        user.state = true;
+        next();
+    } */
     else if(!pageProtected && user.state){ //si no es una pagina protegida y esta logueado (evita que entre a la pagina login)
         if(welcomePage){ //si es el home, si se le permite visitarla
             next()

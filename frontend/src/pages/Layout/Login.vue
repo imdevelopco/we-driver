@@ -1,12 +1,12 @@
 <template>
-  <div class="divlogin">    
+  <div class="divlogin">
     <div class="container">
       <div class="contenido">
         <figure id="logotipo">
-          <img class="img" :src="LoginLogo" width="200">
+          <img class="img" :src="LoginLogo" width="200" />
         </figure>
         <h2>{{title}}</h2>
-        <form >
+        <form @submit.prevent>
           <input
             type="email"
             :class="{ error: validaEmail }"
@@ -20,8 +20,7 @@
             placeholder="password"
             v-model="form.password"
           />
-          <button v-on:click="sendForm">{{title}}</button>
-          <button v-on:click="sendForm">hola</button>
+          <button v-on:click="findUser">{{title}}</button>
           <button v-if="form.type == 0">Sign in with Google</button>
         </form>
 
@@ -30,7 +29,11 @@
           @click="form.type = 1"
           v-if="form.type == 0"
         >Forgot your password?</a>
-        <router-link to="../registro" style="font-size: 18px; color: black;" v-if="form.type == 0">Sign up</router-link>
+        <router-link
+          to="../registro"
+          style="font-size: 18px; color: black;"
+          v-if="form.type == 0"
+        >Sign up</router-link>
         <a
           href="javascript:void(0)"
           @click="form.type = 0"
@@ -43,6 +46,9 @@
 </template>
 
 <script>
+import axios from 'axios';
+import Cookies from 'js-cookie'
+
 export default {
     props: {
         LoginLogo: {
@@ -69,6 +75,17 @@ export default {
     };
   },
   methods: {
+    /* Validacion del usuario en la BD*/
+    findUser(){
+      let datos = {
+        username: this.form.email,
+        password: this.form.password
+      };
+      let url = 'http://localhost:8000/api/login';
+  
+      axios.post(url,datos)
+        .then(response => ( console.log(response)))  
+    },
     sendForm() {
       if (this.validaType()) {
         console.log(this.form);
@@ -111,8 +128,8 @@ export default {
 </script>
 
 <style scoped>
-
-html,body {
+html,
+body {
   padding: 0px;
   margin: 0px;
   width: 100%;
@@ -122,7 +139,7 @@ html,body {
 }
 
 .divlogin {
-  background: url('../../assets/img/fondo_transparente.jpg');
+  background: url("../../assets/img/fondo_transparente.jpg");
   background-color: rgba(0, 0, 0, 0.5);
   background-size: cover;
   background-position: center center;

@@ -6,14 +6,8 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
     state:{
-        user:{name:'Camilo', admin:true},
-        users:[
-            {id:1, name: 'Camilo Arias', barrio: 'Terron', city : 'Cali', location:'Oeste' },
-            {id:2, name: 'Pedro Nel', barrio: 'Terron', city : 'Cali', location:'Oeste' },
-            {id:3, name: 'Martha', barrio: 'Terron', city : 'Cali', location:'Oeste' },
-            {id:4, name: 'Carlos', barrio: 'Mariano Ramos', city : 'Cali', location:'Oriente' },
-            {id:5, name: 'Sebas', barrio: 'Melendez', city : 'Cali', location:'Sur' },
-        ],
+       //Datos de usuario
+        user:{estado:false, admin:false},
         notifications:[
             "Estación de gasolina aprovada",
             "Actualización precio gasolina",
