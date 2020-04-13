@@ -21,7 +21,7 @@
       </sidebar-link>
 
       <sidebar-link to="/app/crear">
-        <md-icon>input</md-icon>
+        <md-icon>add_a_photo</md-icon>
         <p>Agregar</p>
       </sidebar-link>
 
@@ -31,7 +31,7 @@
       </sidebar-link>
 
       <sidebar-link to="/app/typography">
-        <md-icon>library_books</md-icon>
+        <md-icon>logout</md-icon>
         <p>Cerrar sesión</p>
       </sidebar-link>
     

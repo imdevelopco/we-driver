@@ -52,7 +52,7 @@ const routes = [
     children: [
       {
         path: "maps",
-        name: "Maps",
+        name: "Mapa",
         meta: {
           hideFooter: true
         },
@@ -76,7 +76,7 @@ const routes = [
       },
       {
         path: "crear",
-        name: "Crear Fotomulta y cámara",
+        name: "Crear Fotomulta - Estación",
         component: UserProfile
       },
       {
