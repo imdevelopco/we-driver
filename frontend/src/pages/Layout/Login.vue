@@ -1,13 +1,15 @@
 <template>
-  <div class="divlogin">    
+  <div  class="divlogin">
     <div class="container">
       <div class="contenido">
         <figure id="logotipo">
-          <img class="img" :src="LoginLogo" width="200">
+          <img class="img" :src="LoginLogo" width="200" />
         </figure>
+
         <h2 v-if="form.type == 0">Iniciar sesión</h2>
         <p v-if="form.type == 1">Escriba el correo asociado a su cuenta para recuperar su contraseña.</p>
         <form @submit.prevent="sendForm">
+
           <input
             type="email"
             :class="{ error: validaEmail }"
@@ -21,16 +23,20 @@
             placeholder="Contraseña"
             v-model="form.password"
           />
+
           <button>Aceptar</button>
           <button v-if="form.type == 0">Iniciar sesión con Google</button>
+
         </form>
 
         <a
           href="javascript:void(0)"
           @click="form.type = 1"
           v-if="form.type == 0"
+
         >Olvidó su contraseña?</a>
         <router-link to="../registro" style="font-size: 18px; color: black;" v-if="form.type == 0">Registrarse</router-link>
+
         <a
           href="javascript:void(0)"
           @click="form.type = 0"
@@ -43,6 +49,7 @@
 </template>
 
 <script>
+
 export default {
     props: {
         LoginLogo: {
@@ -65,6 +72,23 @@ export default {
     };
   },
   methods: {
+    /* Validacion del usuario en la BD*/
+    findUser(){
+   /*    let datos = {
+        username: this.form.email,
+        password: this.form.password
+      };
+      let url = 'http://localhost:8000/api/login';
+    */ 
+   this.$store.dispatch('retrieveToken',{
+        username: this.form.email,
+        password: this.form.password
+      }).then(response => {
+        this.$router.push('/');
+      }).catch(error => {
+        console.log(error);
+      })   
+    },
     sendForm() {
       if (this.validaType()) {
         console.log(this.form);
@@ -81,6 +105,7 @@ export default {
     }
   },
   computed: {
+    
     validaEmail() {
       var exp = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
       if (exp.test(this.form.email)) {
@@ -107,8 +132,8 @@ export default {
 </script>
 
 <style scoped>
-
-html,body {
+html,
+body {
   padding: 0px;
   margin: 0px;
   width: 100%;
@@ -117,7 +142,7 @@ html,body {
 }
 
 .divlogin {
-  background: url('../../assets/img/fondo_transparente.jpg');
+  background: url("../../assets/img/fondo_transparente.jpg");
   background-color: rgba(0, 0, 0, 0.5);
   background-size: cover;
   background-position: center center;

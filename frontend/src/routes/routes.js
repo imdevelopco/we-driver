@@ -10,20 +10,15 @@ import Typography from "@/pages/Typography.vue";
 import Icons from "@/pages/Icons.vue";
 import Maps from "@/pages/Maps.vue";
 import Notifications from "@/pages/Notifications.vue";
-import UpgradeToPRO from "@/pages/UpgradeToPRO.vue";
+import Usuarios from "@/pages/Users.vue";
 
 const routes = [
-  {
-    path: "*",
-    redirect: "/login",
-    name:"All"
-  },
   {
     path: "/",
     name:'Home',
     component: Welcome,
     meta:{
-      welcomePage: true
+      requiresVisitor: true
     }
   },
   {
@@ -31,7 +26,7 @@ const routes = [
     component: Login,
     name:"Login",
     meta:{
-      userLoged : false
+      requiresVisitor : true
     }
   },
   {
@@ -39,13 +34,13 @@ const routes = [
     name: "Registro",
     component : Registro,
     meta:{
-      userLoged : false
+      requiresVisitor : true
     }
   },
   {
     path: "/app",
     component: DashboardLayout,
-    redirect: "maps",
+    name: "App",
     meta:{
       userLoged : true //userLoged debe ser true para poder acceder a caulquiera de sus hijos
     },
@@ -54,24 +49,38 @@ const routes = [
         path: "maps",
         name: "Maps",
         meta: {
-          hideFooter: true
+          //hideFooter: true
         },
         component: Maps
       },
       {
         path: "dashboard",
         name: "Dashboard",
-        component: Dashboard
+        component: Dashboard,
+        meta:{
+          //admin : true 
+        }
       },
       {
-        path: "user",
-        name: "User Profile",
+        path: "usuarios",
+        name: "Usuarios",
+        component: Usuarios,
+        meta:{
+          //admin : true 
+        }
+      },
+      {
+        path: "crear",
+        name: "Crear Fotomulta y cámara",
         component: UserProfile
       },
       {
-        path: "table",
-        name: "Table List",
-        component: TableList
+        path: "admin",
+        name: "Administración",
+        component: TableList,
+        meta:{
+          //admin : true, 
+        }
       },
       {
         path: "typography",
@@ -87,11 +96,6 @@ const routes = [
         path: "notifications",
         name: "Notifications",
         component: Notifications
-      },
-      {
-        path: "upgrade",
-        name: "Upgrade to PRO",
-        component: UpgradeToPRO
       }
     ]
   }
