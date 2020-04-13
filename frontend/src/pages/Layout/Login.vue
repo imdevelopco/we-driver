@@ -53,11 +53,7 @@ export default {
     props: {
         LoginLogo: {
         type: String,
-        default: require("@/assets/img/logo.jpg")
-        },
-        FondoTrasparente: {
-        type: String,
-        default: require("@/assets/img/fondo_transparente.jpg")
+        default: require("@/assets/img/weDrive.png")
         }
     },
 
@@ -134,8 +130,7 @@ body {
   margin: 0px;
   width: 100%;
   height: 100vh;
-  font-family: "RobotoMono-Bold";
-  color: #333333;
+  /*color: #333333;*/
 }
 
 .divlogin {
@@ -161,8 +156,8 @@ body {
   background: rgba(255, 255, 255, 1);
   padding: 20px;
   display: inline-block;
-  font-family: "RobotoMono-Bold";
   margin-left: auto;
+  font-weight: bold;
 }
 
 .divlogin .container .contenido h2 {
@@ -170,7 +165,7 @@ body {
   margin-bottom: 20px;
   color: red;
   font-size: 2em;
-  font-family: "RobotoMono-Bold";
+  font-weight: bold;
 }
 
 .divlogin .container .contenido input {
@@ -180,7 +175,6 @@ body {
   border: 2px solid #acacac;
   padding: 10px;
   width: 70%;
-  font-family: "RobotoMono-Bold";
 }
 
 .divlogin .container .contenido input.error {
@@ -197,14 +191,12 @@ body {
   color: #ffffff;
   font-size: 18px;
   border-radius: 5px;
-  font-family: "RobotoMono-Bold";
 }
 
 .divlogin .container .contenido a {
   margin: 10px;
   font-size: 12px;
   color: #333333;
-  font-family: "RobotoMono-Bold";
   text-decoration: none;
   display: block;
 }
