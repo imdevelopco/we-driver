@@ -9,9 +9,14 @@
         <form @submit.prevent="sendForm">
           <input 
             type="text" 
-            placeholder="Your name"
-            v-model="form.name"
-        />
+            placeholder="First name"
+            v-model="form.firstName"
+          />
+          <input 
+            type="text" 
+            placeholder="Last name"
+            v-model="form.lastName"
+          />
           <input
             type="email"
             :class="{ error: validaEmail }"
@@ -21,17 +26,17 @@
           <input
             type="password"
             :class="{ error: validaPassword }"
-            placeholder="password"
+            placeholder="Password"
             v-model="form.password"
           />
           <input
             type="password"
             :class="{ error: verificaPaswordIguales }"
-            placeholder="confirm password"
+            placeholder="Confirm password"
             v-model="form.password2"
           />
           <button>Sign up</button>
-          <p>By sign up you agree to our <br> Terms & Conditions</p> 
+          <p style="font-size: 12px; color: #333;">By sign up you agree to our <br> <span>Terms & Conditions</span></p> 
         </form>
 
         <router-link to="../login" style="font-size: 18px; color: black;">Cancel</router-link>
@@ -45,14 +50,15 @@ export default {
     props: {
         LoginLogo: {
         type: String,
-        default: require("@/assets/img/logo.jpg")
+        default: require("@/assets/img/weDrive.png")
         }
     },
 
   data: function() {
     return {
       form: {
-        name:"",
+        firstName: "",
+        lastName: "",
         email: "",
         password: "",
         password2: ""
@@ -130,6 +136,7 @@ export default {
   padding: 20px;
   display: inline-block;
   margin-left: auto;
+  font-weight: bold;
 }
 
 .divlogin .container .contenido h2 {
@@ -137,6 +144,7 @@ export default {
   margin-bottom: 20px;
   color: red;
   font-size: 2em;
+  font-weight: bold;
 }
 
 .divlogin .container .contenido input {
@@ -174,11 +182,6 @@ export default {
 
 #logotipo {
   margin: 0px;
-}
-
-.divlogin .container .contenido router-link {
-    color: red;
-    font-size: 32px;
 }
 
 </style>
