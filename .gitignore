@@ -1,7 +1,9 @@
+node_modules
+
+frontend/node_modules
+
+frontend/src/apiKey.js
 node_modules/
 package-lock.json
 /docs
 /dist
-node_modules
-frontend/src/apiKey.js
-frontend/node_modules
