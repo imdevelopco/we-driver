@@ -5,16 +5,16 @@
         <figure id="logotipo">
           <img class="img" :src="LoginLogo" width="200">
         </figure>
-        <h2>Sign Up</h2>
+        <h2>Registrarse</h2>
         <form @submit.prevent="sendForm">
           <input 
             type="text" 
-            placeholder="First name"
+            placeholder="Nombre"
             v-model="form.firstName"
           />
           <input 
             type="text" 
-            placeholder="Last name"
+            placeholder="Apellido"
             v-model="form.lastName"
           />
           <input
@@ -26,20 +26,20 @@
           <input
             type="password"
             :class="{ error: validaPassword }"
-            placeholder="Password"
+            placeholder="Contraseña"
             v-model="form.password"
           />
           <input
             type="password"
             :class="{ error: verificaPaswordIguales }"
-            placeholder="Confirm password"
+            placeholder="Confirmar contraseña"
             v-model="form.password2"
           />
-          <button>Sign up</button>
-          <p style="font-size: 12px; color: #333;">By sign up you agree to our <br> <span>Terms & Conditions</span></p> 
+          <button>Aceptar</button>
+          <p style="font-size: 12px; color: #333;">Al registrarse usted acepta nuestros <br> <span>Terminos & Condiciones</span></p> 
         </form>
 
-        <router-link to="../login" style="font-size: 18px; color: black;">Cancel</router-link>
+        <router-link to="../login" style="font-size: 18px; color: black;">Cancelar</router-link>
       </div>
     </div>
   </div>
@@ -166,7 +166,6 @@ export default {
 .divlogin .container .contenido button {
   height: 50px;
   margin: 10px;
-  padding: 10px;
   border: 0px;
   width: 80%;
   background: red;

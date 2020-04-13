@@ -5,8 +5,11 @@
         <figure id="logotipo">
           <img class="img" :src="LoginLogo" width="200" />
         </figure>
-        <h2>{{title}}</h2>
-        <form @submit.prevent>
+
+        <h2 v-if="form.type == 0">Iniciar sesión</h2>
+        <p v-if="form.type == 1">Escriba el correo asociado a su cuenta para recuperar su contraseña.</p>
+        <form @submit.prevent="sendForm">
+
           <input
             type="email"
             :class="{ error: validaEmail }"
@@ -17,29 +20,29 @@
             type="password"
             v-if="form.type != 1"
             :class="{ error: validaPassword }"
-            placeholder="password"
+            placeholder="Contraseña"
             v-model="form.password"
           />
-          <button v-on:click="findUser">{{title}}</button>
-          <button v-if="form.type == 0">Sign in with Google</button>
+
+          <button>Aceptar</button>
+          <button v-if="form.type == 0">Iniciar sesión con Google</button>
+
         </form>
 
         <a
           href="javascript:void(0)"
           @click="form.type = 1"
           v-if="form.type == 0"
-        >Forgot your password?</a>
-        <router-link
-          to="../registro"
-          style="font-size: 18px; color: black;"
-          v-if="form.type == 0"
-        >Sign up</router-link>
+
+        >Olvidó su contraseña?</a>
+        <router-link to="../registro" style="font-size: 18px; color: black;" v-if="form.type == 0">Registrarse</router-link>
+
         <a
           href="javascript:void(0)"
           @click="form.type = 0"
           v-if="form.type == 1"
           style="font-size: 18px; color: black;"
-        >Cancel</a>
+        >Cancelar</a>
       </div>
     </div>
   </div>
@@ -121,8 +124,8 @@ export default {
     },
     title() {
       return this.form.type == 0
-        ? "Sign in"
-        : "Reset password";
+        ? "Iniciar sesión"
+        : "Reinicio de contraseña";
     }
   }
 };
@@ -188,8 +191,7 @@ body {
 
 .divlogin .container .contenido button {
   height: 50px;
-  margin: 10px;
-  padding: 10px;
+  margin: 10px;  
   border: 0px;
   width: 80%;
   background: red;
