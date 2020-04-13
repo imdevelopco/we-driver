@@ -9,9 +9,14 @@
         <form @submit.prevent="sendForm">
           <input 
             type="text" 
-            placeholder="Your name"
-            v-model="form.name"
-        />
+            placeholder="First name"
+            v-model="form.firstName"
+          />
+          <input 
+            type="text" 
+            placeholder="Last name"
+            v-model="form.lastName"
+          />
           <input
             type="email"
             :class="{ error: validaEmail }"
@@ -21,13 +26,13 @@
           <input
             type="password"
             :class="{ error: validaPassword }"
-            placeholder="password"
+            placeholder="Password"
             v-model="form.password"
           />
           <input
             type="password"
             :class="{ error: verificaPaswordIguales }"
-            placeholder="confirm password"
+            placeholder="Confirm password"
             v-model="form.password2"
           />
           <button>Sign up</button>
@@ -52,7 +57,8 @@ export default {
   data: function() {
     return {
       form: {
-        name:"",
+        firstName: "",
+        lastName: "",
         email: "",
         password: "",
         password2: ""
