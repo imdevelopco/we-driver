@@ -1,5 +1,5 @@
 <template>
-  <div class="divlogin">
+  <div  class="divlogin">
     <div class="container">
       <div class="contenido">
         <figure id="logotipo">
@@ -46,18 +46,12 @@
 </template>
 
 <script>
-import axios from 'axios';
-import Cookies from 'js-cookie'
 
 export default {
     props: {
         LoginLogo: {
         type: String,
-        default: require("@/assets/img/logo.jpg")
-        },
-        FondoTrasparente: {
-        type: String,
-        default: require("@/assets/img/fondo_transparente.jpg")
+        default: require("@/assets/img/weDrive.png")
         }
     },
 
@@ -77,14 +71,20 @@ export default {
   methods: {
     /* Validacion del usuario en la BD*/
     findUser(){
-      let datos = {
+   /*    let datos = {
         username: this.form.email,
         password: this.form.password
       };
       let url = 'http://localhost:8000/api/login';
-  
-      axios.post(url,datos)
-        .then(response => ( console.log(response)))  
+    */ 
+   this.$store.dispatch('retrieveToken',{
+        username: this.form.email,
+        password: this.form.password
+      }).then(response => {
+        this.$router.push('/');
+      }).catch(error => {
+        console.log(error);
+      })   
     },
     sendForm() {
       if (this.validaType()) {
@@ -102,6 +102,7 @@ export default {
     }
   },
   computed: {
+    
     validaEmail() {
       var exp = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
       if (exp.test(this.form.email)) {
@@ -134,8 +135,7 @@ body {
   margin: 0px;
   width: 100%;
   height: 100vh;
-  font-family: "RobotoMono-Bold";
-  color: #333333;
+  /*color: #333333;*/
 }
 
 .divlogin {
@@ -161,8 +161,8 @@ body {
   background: rgba(255, 255, 255, 1);
   padding: 20px;
   display: inline-block;
-  font-family: "RobotoMono-Bold";
   margin-left: auto;
+  font-weight: bold;
 }
 
 .divlogin .container .contenido h2 {
@@ -170,7 +170,7 @@ body {
   margin-bottom: 20px;
   color: red;
   font-size: 2em;
-  font-family: "RobotoMono-Bold";
+  font-weight: bold;
 }
 
 .divlogin .container .contenido input {
@@ -180,7 +180,6 @@ body {
   border: 2px solid #acacac;
   padding: 10px;
   width: 70%;
-  font-family: "RobotoMono-Bold";
 }
 
 .divlogin .container .contenido input.error {
@@ -197,14 +196,12 @@ body {
   color: #ffffff;
   font-size: 18px;
   border-radius: 5px;
-  font-family: "RobotoMono-Bold";
 }
 
 .divlogin .container .contenido a {
   margin: 10px;
   font-size: 12px;
   color: #333333;
-  font-family: "RobotoMono-Bold";
   text-decoration: none;
   display: block;
 }

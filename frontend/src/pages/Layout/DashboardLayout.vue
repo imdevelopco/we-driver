@@ -10,12 +10,12 @@
         <p>Mapa</p>
       </sidebar-link>
 
-      <sidebar-link v-if="user.admin" to="/app/dashboard">
+      <sidebar-link  to="/app/dashboard">
         <md-icon>dashboard</md-icon>
         <p>Dashboard</p>
       </sidebar-link>
 
-      <sidebar-link v-if="user.admin" to="/app/usuarios">
+      <sidebar-link to="/app/usuarios">
         <md-icon>group</md-icon>
         <p>Usuarios</p>
       </sidebar-link>
@@ -25,7 +25,7 @@
         <p>Agregar</p>
       </sidebar-link>
 
-      <sidebar-link v-if="user.admin" to="/app/admin">
+      <sidebar-link  to="/app/admin">
         <md-icon>settings</md-icon>
         <p>Administración</p>
       </sidebar-link>
@@ -70,9 +70,9 @@ export default {
     MobileMenu
   },
   computed:{
-    user(){
+    /* user(){
       return this.$store.state.user;
-    }
+    } */
   }
 };
 </script>

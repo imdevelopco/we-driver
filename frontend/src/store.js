@@ -1,13 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import GoogleMapsLoader from "google-maps";
+import axios from 'axios'
 
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
     state:{
-       //Datos de usuario
-        user:{estado:false, admin:false},
+       //Token de acceso
+        token : null || localStorage.getItem('token'),
         notifications:[
             "Estación de gasolina aprovada",
             "Actualización precio gasolina",
@@ -170,6 +171,9 @@ export const store = new Vuex.Store({
     getters:{
         totalNotifications: state =>{
             return state.notifications.length
+        },
+        loggedIn(state){
+          return state.token != null;
         }
     },
     mutations:{
@@ -183,6 +187,33 @@ export const store = new Vuex.Store({
         //Maps
         setCenterMap(state, center){
           state.googleMapSetting.center = center;
+        },
+        // Login
+        retrieveToken(state,token){
+          state.token = token;
         }
+    },
+    actions:{
+      retrieveToken(context, credentials){
+        return new Promise(function(resolve,reject) {
+            axios.post('http://localhost:8000/api/login',{
+            username: credentials.username, 
+            password: credentials.password
+          })
+          .then(response => {
+            const token = response.data.token
+            localStorage.setItem('token',token)
+            resolve(response)
+          }).catch(err => {
+            console.log(err),
+            reject(err)
+          })
+        })      
+      },
+      destroyToken(context){
+        if(context.getters.loggedIn){
+
+        }
+      }
     }
 })

@@ -1,5 +1,6 @@
 import VueRouter from "vue-router";
 import routes from "./routes/routes";
+import { store } from "./store";
 
 // coonfiguracion del router
 const router = new VueRouter({
@@ -9,43 +10,29 @@ const router = new VueRouter({
   });
   
   router.beforeEach((to, from, next) => {
-    let user = {state:false,admin:false} //usuario logueado
-    let pageProtected = to.matched.some(record => record.meta.userLoged),
-        welcomePage = to.matched.some( record => record.meta.welcomePage),
-        adminPage = to.matched.some( record => record.meta.admin);
-    
-    if(!pageProtected && !user.state){ //si no es una pagina protegida y no esta logueado
-        next()
-    }
-    else if(pageProtected && !user.state ){ //si es una pagina protegida y no esta logueado, lo envia a la pagina de login 
-        next({
-            name:'Login'
-        })
-    }
-    /* else if(from.path == '/login'){
-        user.state = true;
-        next();
-    } */
-    else if(!pageProtected && user.state){ //si no es una pagina protegida y esta logueado (evita que entre a la pagina login)
-        if(welcomePage){ //si es el home, si se le permite visitarla
-            next()
-        }else{
-            console.log(router.options.routes[2]);
+    let requiresAuth = to.matched.some(record => record.meta.userLoged),
+        //welcomePage = to.matched.some( record => record.meta.welcomePage),
+        requiresVisitor = to.matched.some(record =>record.meta.requiresVisitor)
+        //adminPage = to.matched.some( record => record.meta.admin);
+    if(requiresAuth){
+        if(!store.getters.loggedIn){
             next({
-                name:'Login'
-            })   
+                name: 'Login'
+            });
+        }else{
+            next();
         }
-    }
-    else if(pageProtected && user.state){ //si es una pagina protegida y esta logueado
-        if(adminPage && user.admin == false){ //si es una pagina de adinitracion y el usuario no es admin
-            next('/app/maps')   
+    }else if(requiresVisitor){
+        if(store.getters.loggedIn){
+            next({
+                  name: 'App',
+                  params: 'maps'
+            });
+        }else{
+            next();
         }
-        else if(adminPage && user.admin){ //si es una pagina de adinitracion y el usuario es admin
-            next()   
-        }
-        else{
-            next()
-        }
+    }else{
+        next();
     }
   })
 
