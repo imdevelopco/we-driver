@@ -11,8 +11,11 @@ import Notifications from "./components/NotificationPlugin";
 
 // MaterialDashboard plugin
 import MaterialDashboard from "./material-dashboard";
-
+//Chartist
 import Chartist from "chartist";
+
+//state
+import { store } from './store'
 
 
 
@@ -24,10 +27,12 @@ Vue.use(GlobalComponents);
 Vue.use(GlobalDirectives);
 Vue.use(Notifications);
 
+
 /* eslint-disable no-new */
 new Vue({
   el: "#app",
   render: h => h(App),
+  store,
   router,
   data: {
     Chartist: Chartist

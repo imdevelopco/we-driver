@@ -2,7 +2,8 @@
     <div>
         <h1>We Drive </h1>
         <img class="img" :src="weDriveLogo" />
-    </diV>
+        
+    </div>
 </template>
 
 <script>

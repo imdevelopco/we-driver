@@ -1,5 +1,5 @@
 <template>
-    <div class="divlogin">
+    <div v-if="!loggedIn" class="divlogin">
     <div class="container">
       <div class="contenido">
         <figure id="logotipo">
@@ -86,6 +86,9 @@ export default {
     }
   },
   computed: {
+    loggedIn(){
+      return this.$store.getters.loggedIn;
+    },
     validaEmail() {
       var exp = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
       if (exp.test(this.form.email)) {

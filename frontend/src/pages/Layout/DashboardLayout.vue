@@ -10,23 +10,28 @@
         <p>Mapa</p>
       </sidebar-link>
 
-      <sidebar-link to="/app/dashboard">
+      <sidebar-link  to="/app/dashboard">
         <md-icon>dashboard</md-icon>
         <p>Dashboard</p>
       </sidebar-link>
 
-      <sidebar-link to="/app/user">
-        <md-icon>add_a_photo</md-icon>
+      <sidebar-link to="/app/usuarios">
+        <md-icon>group</md-icon>
+        <p>Usuarios</p>
+      </sidebar-link>
+
+      <sidebar-link to="/app/crear">
+        <md-icon>input</md-icon>
         <p>Agregar</p>
       </sidebar-link>
 
-      <sidebar-link to="/app/table">
+      <sidebar-link  to="/app/admin">
         <md-icon>settings</md-icon>
-        <p>Configuración</p>
+        <p>Administración</p>
       </sidebar-link>
 
-      <sidebar-link to="/app/typography">
-        <md-icon>logout</md-icon>
+      <sidebar-link to="/login">
+        <md-icon>library_books</md-icon>
         <p>Cerrar sesión</p>
       </sidebar-link>
     
@@ -53,11 +58,21 @@ import DashboardContent from "./Content.vue";
 import MobileMenu from "@/pages/Layout/MobileMenu.vue";
 
 export default {
+  data(){
+    return{
+     
+    }
+  },
   components: {
     TopNavbar,
     DashboardContent,
     ContentFooter,
     MobileMenu
+  },
+  computed:{
+    /* user(){
+      return this.$store.state.user;
+    } */
   }
 };
 </script>
