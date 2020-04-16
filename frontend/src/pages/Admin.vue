@@ -6,36 +6,11 @@
         <div id="map"></div>
       </div>
 
-      <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-50">
-        <md-card>
-          <md-card-header data-background-color="yellow">
-            <h4 class="title">Camaras por aprobación</h4>
-            <p class="category">Registro de camaras en espera por aprobación</p>
-          </md-card-header>
-          <md-card-content>
-            <CheckTable tableHeaderColor="green"></CheckTable>
-          </md-card-content>
-        </md-card>
-      </div>
-
-      <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-50">
-        <md-card>
-          <md-card-header data-background-color="blue">
-            <h4 class="title">Estaciones por aprobación</h4>
-            <p class="category">Registro de estaciones de combustible en espera por aprobación</p>
-          </md-card-header>
-          <md-card-content>
-            <CheckTable tableHeaderColor="red"></CheckTable>
-          </md-card-content>
-        </md-card>
-
-      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { CheckTable } from "@/components";
 import { mapState } from 'vuex';
 
 export default {
@@ -43,9 +18,6 @@ export default {
     return{
       act: 'cambar'
     }
-  },
-  components: {
-    CheckTable,
   },
   computed:{
       ...mapState({
@@ -58,7 +30,15 @@ export default {
       var mapOptions = this.$store.state.googleMapSetting,
           map = new google.maps.Map(document.getElementById("map"), mapOptions),
           _this = this;
-         console.info(_this)
+
+      google.aceptButt = id =>{
+        alert("Tomalo: "+id)
+      }
+
+      google.declineMark = id =>{
+        alert("Eliminalo: "+id)
+      }
+
       this.$store.state.checkSource.cameras.forEach(cam => {
         var marker = new google.maps.Marker({
           position: new google.maps.LatLng( cam.lat, cam.lng),
@@ -76,8 +56,13 @@ export default {
                         '<li><b>Velocidad:</b> '+cam.velocidad+'</li>'+
                         '<li><b>Comentario:</b> '+cam.comentario+'</li>'+
                         '<li><img src="'+picture+'" /></li>'+
-                        '<li><a class="acceptButton" data-id="'+cam.id+'">Aceptar</a></li>'+
                      ' </ul>'+
+                     '<div class="contButtons">'+
+                       '<button onclick="google.aceptButt('+cam.id+')" class="buttonAceptar">'+
+                            'Aceptar'+
+                       '</button>'+
+                       '<button onclick="google.declineMark('+cam.id+')" class="buttonCancelar">Cancelar</button>'+
+                     '</div>'+
                    '</div>'
         });
 
@@ -86,9 +71,6 @@ export default {
         });
 
       });
-    },
-    sayHi(){
-      alert("Hole Perro!")
     }
   },
    mounted() {
@@ -108,3 +90,10 @@ export default {
   }
 };
 </script>
+
+<style>
+  .contButtons{
+    display: flex;
+    flex-flow: row wrap;
+  }
+</style>
