@@ -167,36 +167,33 @@ body {
 .divlogin .container .contenido {
   width: 100%;
   max-width: 300px;
-  background: rgba(110, 110, 110, .5);
+  background: rgba(255, 255, 255, .9); 
   padding: 0 20px 20px 20px;
   display: inline-block;
   margin-left: auto;
   font-weight: bold;
-  border-radius: 5px;
+  border-radius: 20px;
 }
 
 .divlogin .container .contenido h2 {
-  margin-top: 0px;
-  margin-bottom: 20px;
+  margin: 5px;
   color: black;
   font-size: 2em;
   font-weight: bold;
 }
 
 .divlogin .container .contenido input {
-  height: 30px;
-  margin: 0px;
-  margin-bottom: 20px;
-  border: 2px solid rgba(255, 255, 255, 0.0);
+  height: 38px;
+  margin: 8px 0px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, .4);
   padding: 10px;
-  width: 70%;
-  background:rgba(255, 255, 255, 0.6);
+  width: 80%;
 }
 
 .divlogin .container .contenido input:hover {
 
   background: rgba(255, 255, 255, 1);
-
 }
 
 .divlogin .container .contenido input.error {
@@ -204,13 +201,13 @@ body {
 }
 
 .divlogin .container .contenido button {
-  height: 50px;
-  margin: 10px;  
+  height: 40px;
+  margin: 8px 0px;  
   border: 0px;
   width: 80%;
-  background: rgb(85, 85, 85);
+  background: rgb(85, 85, 85, .8);
   color: #ffffff;
-  font-size: 18px;
+  font-size: 15px;
   border-radius: 5px;
 }
 
@@ -222,7 +219,7 @@ body {
 
 .divlogin .container .contenido a {
   margin: 10px;
-  font-size: 12px;
+  font-size: 13px;
   color: #333333;
   text-decoration: none;
   display: block;
@@ -233,7 +230,7 @@ body {
 
 .divlogin .container .contenido .link {
   color: black;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .divlogin .container .contenido .link:hover {
