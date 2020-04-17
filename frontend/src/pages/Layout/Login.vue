@@ -80,12 +80,7 @@ export default {
   methods: {
     /* Validacion del usuario en la BD*/
     findUser(){
-   /*    let datos = {
-        username: this.form.email,
-        password: this.form.password
-      };
-      let url = 'http://localhost:8000/api/login';
-    */ 
+  
    this.$store.dispatch('retrieveToken',{
         username: this.form.email,
         password: this.form.password
