@@ -1,7 +1,9 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
 import GoogleMapsLoader from "google-maps";
-import axios from 'axios'
+import axios from 'axios';
+import {Loader} from "google-maps";
+import apiKey from './apiKey';
 
 Vue.use(Vuex);
 
@@ -101,7 +103,6 @@ export const store = new Vuex.Store({
         },
 
         //Settings Google maps
-        versionMaps: {version: '3.40'},
         googleMapSetting:{
           zoom: 15,
           center: {},
@@ -166,6 +167,25 @@ export const store = new Vuex.Store({
               stylers: [{ visibility: "simplified" }]
             }
           ]
+        },
+        loader: new Loader(apiKey.apiKey, {version: '3.40'}),
+
+        //formulario crear
+        velMax:0,
+        picture:null,
+        comment:"",
+
+        //recursos por verificar (aprobar o desaprobar camaras y estaciones)
+        checkSource:{
+          cameras:[
+            {id:1,lat:3.456253613827328, lng:-76.57999110577393, velocidad: '60 kph', foto:'descarga.jpg', comentario:"Hola que haces, eso es n comentario"},
+            {id:2,lat:3.4344491850294427, lng:-76.53003764508057, velocidad: '60 kph', foto:'descarga.jpg', comentario:"Hola que haces, eso es n comentario"},
+            {id:3,lat:3.429137225048734, lng:-76.51892257092285, velocidad: '60 kph', foto:'descarga.jpg', comentario:"Hola que haces, eso es n comentario"},
+            {id:4,lat:3.4247248487550803, lng:-76.51154113171387, velocidad: '60 kph', foto:'descarga.jpg', comentario:"Hola que haces, eso es n comentario"},
+            {id:5,lat:3.426738265704383, lng:-76.53806281445313, velocidad: '60 kph', foto:'descarga.jpg', comentario:"Hola que haces, eso es n comentario"},
+            {id:6,lat:3.419669868398415, lng:-76.53111052868653, velocidad: '60 kph', foto:'descarga.jpg', comentario:"Hola que haces, eso es n comentario"},
+          ],
+          station:[]
         }
     },
     getters:{
@@ -191,6 +211,9 @@ export const store = new Vuex.Store({
         // Login
         retrieveToken(state,token){
           state.token = token;
+        },
+        setZoomMap(state, zoom){
+          state.googleMapSetting.zoom = zoom;
         }
     },
     actions:{
@@ -214,6 +237,6 @@ export const store = new Vuex.Store({
         if(context.getters.loggedIn){
 
         }
-      }
+      } 
     }
 })
