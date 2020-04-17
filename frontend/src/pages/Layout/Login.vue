@@ -9,7 +9,7 @@
         <h2 v-if="form.type == 0">Iniciar sesión</h2>
         <p v-if="form.type == 1" style="font-size: 16px; color: #333;">
           Escriba el correo asociado a su cuenta para recuperar su contraseña.</p>
-        <form @submit.prevent="sendForm">
+        <form @submit.prevent="login">
 
           <input
             type="email"
@@ -79,7 +79,7 @@ export default {
   },
   methods: {
     /* Validacion del usuario en la BD*/
-    findUser(){
+    login(){
   
    this.$store.dispatch('retrieveToken',{
         username: this.form.email,
