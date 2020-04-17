@@ -5,16 +5,16 @@
         <figure id="logotipo">
           <img class="img" :src="LoginLogo" width="200">
         </figure>
-        <h2>Sign Up</h2>
+        <h2>Registrarse</h2>
         <form @submit.prevent="sendForm">
           <input 
             type="text" 
-            placeholder="First name"
+            placeholder="Nombre"
             v-model="form.firstName"
           />
           <input 
             type="text" 
-            placeholder="Last name"
+            placeholder="Apellido"
             v-model="form.lastName"
           />
           <input
@@ -26,20 +26,22 @@
           <input
             type="password"
             :class="{ error: validaPassword }"
-            placeholder="Password"
+            placeholder="Contraseña"
             v-model="form.password"
           />
           <input
             type="password"
             :class="{ error: verificaPaswordIguales }"
-            placeholder="Confirm password"
+            placeholder="Confirmar contraseña"
             v-model="form.password2"
           />
-          <button>Sign up</button>
-          <p style="font-size: 12px; color: #333;">By sign up you agree to our <br> <span>Terms & Conditions</span></p> 
+          <button>Aceptar</button>
+          <p style="font-size: 12px; color: #333;">
+            Acepto <span>Terminos & Condiciones</span>
+          </p> 
         </form>
 
-        <router-link to="../login" style="font-size: 18px; color: black;">Cancel</router-link>
+        <router-link to="../login" class="link">Cancelar</router-link>
       </div>
     </div>
   </div>
@@ -135,28 +137,34 @@ export default {
 .divlogin .container .contenido {
   width: 100%;
   max-width: 300px;
-  background: rgba(255, 255, 255, 1);
-  padding: 20px;
+  max-height: 600px;
+  background: rgba(255, 255, 255, .9);
+  padding: 0 20px 20px 20px;
   display: inline-block;
   margin-left: auto;
   font-weight: bold;
+  border-radius: 20px;
 }
 
 .divlogin .container .contenido h2 {
-  margin-top: 0px;
-  margin-bottom: 20px;
-  color: red;
+  margin: 5px;
+  color: black;
   font-size: 2em;
   font-weight: bold;
 }
 
 .divlogin .container .contenido input {
-  height: 30px;
-  margin: 0px;
-  margin-bottom: 20px;
-  border: 2px solid #acacac;
+  height: 35px;
+  margin: 8px 0px;
+  border: 1px solid rgba(0, 0, 0, .5);
+  border-radius: 5px;
   padding: 10px;
   width: 70%;
+  background:rgba(255, 255, 255, 0.6);
+}
+
+.divlogin .container .contenido input:hover {
+   background:rgba(255, 255, 255, 1);
 }
 
 .divlogin .container .contenido input.error {
@@ -164,23 +172,36 @@ export default {
 }
 
 .divlogin .container .contenido button {
-  height: 50px;
-  margin: 10px;
-  padding: 10px;
+  height: 40px;
+  margin: 10px 0px;
   border: 0px;
-  width: 80%;
-  background: red;
+  width: 75%;
+  background: rgb(85, 85, 85, .8);
   color: #ffffff;
-  font-size: 18px;
+  font-size: 15px;
   border-radius: 5px;
 }
 
-.divlogin .container .contenido a {
-  margin: 10px;
-  font-size: 12px;
+.divlogin .container .contenido button:hover {
+  background: red;
+}
+
+.divlogin .container .contenido p {
+  margin: 10px 0px;
+  font-size: 13px;
   color: #333333;
   text-decoration: none;
   display: block;
+}
+
+.divlogin .container .contenido .link {
+  color: black;
+  font-size: 18px;
+}
+
+.divlogin .container .contenido .link:hover {
+  color: black;
+  font-size: 20px;
 }
 
 #logotipo {
