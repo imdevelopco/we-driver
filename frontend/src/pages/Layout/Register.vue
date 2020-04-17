@@ -37,8 +37,8 @@
           />
           <button>Aceptar</button>
           <p style="font-size: 12px; color: #333;">
-            Al registrarse usted acepta nuestros <br> 
-            <span>Terminos & Condiciones</span></p> 
+            Acepto <span>Terminos & Condiciones</span>
+          </p> 
         </form>
 
         <router-link to="../login" class="link">Cancelar</router-link>
@@ -137,27 +137,27 @@ export default {
 .divlogin .container .contenido {
   width: 100%;
   max-width: 300px;
-  background: rgba(110, 110, 110, .5);
+  max-height: 600px;
+  background: rgba(255, 255, 255, .9);
   padding: 0 20px 20px 20px;
   display: inline-block;
   margin-left: auto;
   font-weight: bold;
-  border-radius: 5px;
+  border-radius: 20px;
 }
 
 .divlogin .container .contenido h2 {
-  margin-top: 0px;
-  margin-bottom: 20px;
+  margin: 5px;
   color: black;
   font-size: 2em;
   font-weight: bold;
 }
 
 .divlogin .container .contenido input {
-  height: 30px;
-  margin: 0px;
-  margin-bottom: 20px;
-  border: 2px solid rgba(255, 255, 255, 0);
+  height: 35px;
+  margin: 8px 0px;
+  border: 1px solid rgba(0, 0, 0, .5);
+  border-radius: 5px;
   padding: 10px;
   width: 70%;
   background:rgba(255, 255, 255, 0.6);
@@ -172,13 +172,13 @@ export default {
 }
 
 .divlogin .container .contenido button {
-  height: 50px;
-  margin: 10px;
+  height: 40px;
+  margin: 10px 0px;
   border: 0px;
-  width: 80%;
-  background: rgb(85, 85, 85);
+  width: 75%;
+  background: rgb(85, 85, 85, .8);
   color: #ffffff;
-  font-size: 18px;
+  font-size: 15px;
   border-radius: 5px;
 }
 
@@ -186,9 +186,9 @@ export default {
   background: red;
 }
 
-.divlogin .container .contenido a {
-  margin: 10px;
-  font-size: 12px;
+.divlogin .container .contenido p {
+  margin: 10px 0px;
+  font-size: 13px;
   color: #333333;
   text-decoration: none;
   display: block;
