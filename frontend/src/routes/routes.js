@@ -2,6 +2,7 @@ import Welcome from '@/pages/Layout/Welcome';
 import Login from '@/pages/Layout/Login';
 import Registro from '@/pages/Layout/Register'
 import DashboardLayout from "@/pages/Layout/DashboardLayout.vue";
+import Error from "@/pages/Layout/Error.vue"
 
 import Dashboard from "@/pages/Dashboard.vue";
 import UserProfile from "@/pages/UserProfile.vue";
@@ -16,7 +17,7 @@ const routes = [
   {
     path: "/",
     name:'Home',
-    component: Welcome,
+    component: Login,
     meta:{
       requiresVisitor: true
     }
@@ -98,6 +99,11 @@ const routes = [
         component: Notifications
       }
     ]
+  },
+  {
+    path: "*",
+    name: "Error",
+    component: Error
   }
 ];
 
