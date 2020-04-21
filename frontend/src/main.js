@@ -17,8 +17,6 @@ import Chartist from "chartist";
 //state
 import { store } from './store'
 
-
-
 Vue.prototype.$Chartist = Chartist;
 
 Vue.use(VueRouter);
