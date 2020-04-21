@@ -1,6 +1,11 @@
 <template>  
   <div class="content">
+<<<<<<< HEAD
     <div class="md-layout">
+=======
+    <bounce-loader :loading="isLoading" :color="'#FF0000'" :size="100" />
+    <div class="md-layout" v-if="!isLoading">
+>>>>>>> ad9d6baaeee4347489d340c28adcc3ba0cd85e78
       
       <div  class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-50">
         <chart-card
