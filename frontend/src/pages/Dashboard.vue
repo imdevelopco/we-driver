@@ -1,6 +1,8 @@
-<template>
+<template>  
   <div class="content">
-    <div class="md-layout">
+    <bounce-loader :loading="isLoading" :color="'#FF0000'" :size="100" />
+    <div class="md-layout" v-if="!isLoading">
+      
       <div  class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-50">
         <chart-card
           :chart-data="usersRegisterdata.data"
@@ -157,6 +159,7 @@ export default {
   },
   data() {
     return {
+      isLoading : true,
     };
   },
   mounted(){

@@ -3,6 +3,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import App from "./App";
 import router from './router';
+import { VueSpinners } from '@saeris/vue-spinners'
 
 // Plugins
 import GlobalComponents from "./globalComponents";
@@ -18,7 +19,7 @@ import Chartist from "chartist";
 import { store } from './store'
 
 
-
+Vue.use(VueSpinners)
 Vue.prototype.$Chartist = Chartist;
 
 Vue.use(VueRouter);
