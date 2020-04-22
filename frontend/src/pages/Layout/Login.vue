@@ -26,20 +26,15 @@
           />
 
           <button>Aceptar</button>
-          <button v-if="form.type == 0">Iniciar sesión con Google</button>
-          <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
 
         </form>
-
-          </form>
-          <button v-if="form.type == 0" >Iniciar sesión con Google</button>
-          <g-signin-button
+          <!-- Botón de ingreso con cuenta de Google -->
+          <g-signin-button class="btnGoogle"    
             :params="googleSignInParams"
             @success="onSignInSuccess"
             @error="onSignInError">
             Ingresa con Google
-          </g-signin-button>
-
+          </g-signin-button>    
 
         <a
           href="javascript:void(0)"
@@ -188,7 +183,6 @@ body {
   background: rgba(255, 255, 255, .9); 
   padding: 0 20px 20px 20px;
   display: inline-block;
-  margin-left: auto;
   font-weight: bold;
   border-radius: 20px;
 }
@@ -210,7 +204,6 @@ body {
 }
 
 .divlogin .container .contenido input:hover {
-
   background: rgba(255, 255, 255, 1);
 }
 
@@ -229,10 +222,27 @@ body {
   border-radius: 5px;
 }
 
+.divlogin .container .contenido .btnGoogle{
+  height: 40px;
+  margin: 8px 0px 0px 25px;
+  padding-top: 8px;
+  width: 80%;
+  background: rgb(85, 85, 85, .8);
+  color: #ffffff;
+  font-weight: normal;
+  font-family: Arial;
+  font-size: 15px;
+  border-radius: 5px;
+}
+
 .divlogin .container .contenido button:hover {
-
   background: red;
+  cursor: pointer;
+}
 
+.divlogin .container .contenido .btnGoogle:hover {
+  background: red;
+  cursor: pointer;
 }
 
 .divlogin .container .contenido a {
