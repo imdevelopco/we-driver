@@ -31,7 +31,7 @@
 
         </form>
 
-          </form>
+          
           <button v-if="form.type == 0" >Iniciar sesión con Google</button>
           <g-signin-button
             :params="googleSignInParams"
