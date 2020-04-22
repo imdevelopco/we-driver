@@ -4,6 +4,7 @@ import Registro from '@/pages/Layout/Register'
 import DashboardLayout from "@/pages/Layout/DashboardLayout.vue";
 import Error from "@/pages/Layout/Error.vue"
 
+
 import Dashboard from "@/pages/Dashboard.vue";
 import UserProfile from "@/pages/UserProfile.vue";
 import Admin from "@/pages/Admin.vue";

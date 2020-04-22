@@ -3,6 +3,7 @@ from rest_framework import serializers
 from django.contrib.auth import authenticate
 from knox.models import AuthToken
 
+
 #Usuarios
 class UserSerializer(serializers.ModelSerializer):
     class Meta: 
@@ -46,7 +47,4 @@ class LoginSerializer(serializers.Serializer):
         user = authenticate(**data)
         if user is not None and user.is_active: 
            return user
-        else: serializers.ValidationError("Incorrectos")
-        
-
-    
+        raise serializers.ValidationError("Datos incorrectos")
