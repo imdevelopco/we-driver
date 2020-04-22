@@ -1,42 +1,88 @@
+import Welcome from '@/pages/Layout/Welcome';
+import Login from '@/pages/Layout/Login';
+import Registro from '@/pages/Layout/Register'
 import DashboardLayout from "@/pages/Layout/DashboardLayout.vue";
+import Error from "@/pages/Layout/Error.vue"
+
 
 import Dashboard from "@/pages/Dashboard.vue";
 import UserProfile from "@/pages/UserProfile.vue";
-import TableList from "@/pages/TableList.vue";
+import Admin from "@/pages/Admin.vue";
 import Typography from "@/pages/Typography.vue";
 import Icons from "@/pages/Icons.vue";
 import Maps from "@/pages/Maps.vue";
 import Notifications from "@/pages/Notifications.vue";
-import UpgradeToPRO from "@/pages/UpgradeToPRO.vue";
+import Usuarios from "@/pages/Users.vue";
 
 const routes = [
   {
     path: "/",
+    name:'Home',
+    component: Login,
+    meta:{
+      requiresVisitor: true
+    }
+  },
+  {
+    path: "/login",
+    component: Login,
+    name:"Login",
+    meta:{
+      requiresVisitor : true
+    }
+  },
+  {
+    path: "/registro",
+    name: "Registro",
+    component : Registro,
+    meta:{
+      requiresVisitor : true
+    }
+  },
+  {
+    path: "/app",
     component: DashboardLayout,
-    redirect: "/maps",
+    name: "App",
+    meta:{
+      userLoged : true //userLoged debe ser true para poder acceder a caulquiera de sus hijos
+    },
     children: [
       {
         path: "maps",
         name: "Maps",
         meta: {
-          hideFooter: true
+          //hideFooter: true
         },
         component: Maps
       },
       {
         path: "dashboard",
         name: "Dashboard",
-        component: Dashboard
+        component: Dashboard,
+        meta:{
+          //admin : true 
+        }
       },
       {
-        path: "user",
-        name: "User Profile",
+        path: "usuarios",
+        name: "Usuarios",
+        component: Usuarios,
+        meta:{
+          //admin : true 
+        }
+      },
+      {
+        path: "crear",
+        name: "Crear Fotomulta y cámara",
         component: UserProfile
       },
       {
-        path: "table",
-        name: "Table List",
-        component: TableList
+        path: "admin",
+        name: "Administración",
+        component: Admin,
+        meta:{
+          //admin : true, 
+        }
       },
       {
         path: "typography",
@@ -52,13 +98,13 @@ const routes = [
         path: "notifications",
         name: "Notifications",
         component: Notifications
-      },
-      {
-        path: "upgrade",
-        name: "Upgrade to PRO",
-        component: UpgradeToPRO
       }
     ]
+  },
+  {
+    path: "*",
+    name: "Error",
+    component: Error
   }
 ];
 
