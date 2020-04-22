@@ -2,29 +2,21 @@
   <ul class="nav nav-mobile-menu">
     <li>
       <md-field>
-        <label>Search</label>
+        <label>Buscar</label>
         <md-input v-model="search" type="text"></md-input>
       </md-field>
-    </li>
-    <li>
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-        <i class="material-icons">dashboard</i>
-        <p>Dashboard</p></a
-      >
     </li>
     <li>
       <drop-down>
         <a slot="title" class="dropdown-toggle" data-toggle="dropdown">
           <i class="material-icons">notifications</i>
-          <span class="notification">5</span>
+          <span class="notification"  v-if="totalNotifications > 0">{{ totalNotifications }}</span>
           <p>Notifications</p>
         </a>
         <ul class="dropdown-menu dropdown-menu-right">
-          <li><a href="#">Mike John responded to your email</a></li>
-          <li><a href="#">You have 5 new tasks</a></li>
-          <li><a href="#">You're now friend with Andrew</a></li>
-          <li><a href="#">Another Notification</a></li>
-          <li><a href="#">Another One</a></li>
+          <li v-for="notification in notifications" :key="notification">
+            <a href="#">{{ notification}}</a>
+          </li>
         </ul>
       </drop-down>
     </li>
@@ -42,17 +34,16 @@ export default {
     return {
       search: null,
       selectedEmployee: null,
-      employees: [
-        "Jim Halpert",
-        "Dwight Schrute",
-        "Michael Scott",
-        "Pam Beesly",
-        "Angela Martin",
-        "Kelly Kapoor",
-        "Ryan Howard",
-        "Kevin Malone"
-      ]
+      employees: [ ]
     };
+  },
+  computed:{
+    totalNotifications(){
+      return this.$store.getters.totalNotifications
+    },
+    notifications(){
+      return this.$store.state.notifications
+    }
   }
 };
 </script>

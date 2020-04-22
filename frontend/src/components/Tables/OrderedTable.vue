@@ -1,14 +1,31 @@
 <template>
   <div>
-    <md-table v-model="users" :table-header-color="tableHeaderColor">
+    <md-table v-model="users" :table-header-color="tableHeaderColor" md-sort="id" md-sort-order="asc">
       <md-table-row slot="md-table-row" slot-scope="{ item }">
-        <md-table-cell md-label="ID">{{ item.id }}</md-table-cell>
-        <md-table-cell md-label="Name">{{ item.name }}</md-table-cell>
-        <md-table-cell md-label="Salary">{{ item.salary }}</md-table-cell>
-        <md-table-cell md-label="Country">{{ item.country }}</md-table-cell>
-        <md-table-cell md-label="City">{{ item.city }}</md-table-cell>
+        <md-table-cell md-label="ID" md-sort-by="id">{{ item.id }}</md-table-cell>
+        <md-table-cell md-label="Item" md-sort-by="name">{{ item.name }}</md-table-cell>
+        <md-table-cell md-label="Barrio" md-sort-by="barrio">{{ item.barrio }}</md-table-cell>
+        <md-table-cell md-label="Ciudad" md-sort-by="ciudad">{{ item.city }}</md-table-cell>
+        <md-table-cell md-label="Ubicación" md-sort-by="ubicacion">{{ item.location }}</md-table-cell>
+        <md-table-cell md-label="Acciones">
+          <md-button class="md-just-icon md-simple md-primary">
+            <md-icon>edit</md-icon>                     
+            <md-tooltip md-direction="top">Actualizar</md-tooltip>
+          </md-button>
+          <md-button class="md-just-icon md-simple md-danger" v-on:click="confirmDelete(item)">
+            <md-icon>close</md-icon>
+            <md-tooltip md-direction="top">Eliminar</md-tooltip>
+          </md-button>
+        </md-table-cell>
       </md-table-row>
     </md-table>
+
+    <md-dialog-confirm
+      :md-active.sync="openComfirnDelete"
+      md-content="Realmente deseas eliminar a <strong v-bind:user'userSelectedToDelete.name'> </strong>"
+      md-confirm-text="Eliminar"
+      md-cancel-text="Cancelar"
+      @md-confirm="onConfirmDelete" />
   </div>
 </template>
 
@@ -19,42 +36,28 @@ export default {
     tableHeaderColor: {
       type: String,
       default: ""
+    },
+    usersProps:{
+      Type:Object
     }
   },
   data() {
     return {
       selected: [],
-      users: [
-        {
-          id: 1,
-          name: "Dakota Rice",
-          salary: "$36,738",
-          country: "Niger",
-          city: "Oud-Turnhout"
-        },
-        {
-          id: 2,
-          name: "Minerva Hooper",
-          salary: "$23,738",
-          country: "Curaçao",
-          city: "Sinaai-Waas"
-        },
-        {
-          id: 3,
-          name: "Sage Rodriguez",
-          salary: "$56,142",
-          country: "Netherlands",
-          city: "Overland Park"
-        },
-        {
-          id: 4,
-          name: "Philip Chaney",
-          salary: "$38,735",
-          country: "Korea, South",
-          city: "Gloucester"
-        }
-      ]
+      users: this.usersProps,
+      openComfirnDelete: false,
+      userSelectedToDelete:{}
     };
+  },
+  methods:{
+    confirmDelete(user){
+      this.openComfirnDelete = true 
+      this.userSelectedToDelete = user
+    },
+    onConfirmDelete(){
+      console.log("Eliminado: ",this.userSelectedToDelete.name)
+      alert("eliminado: ",this.userSelectedToDelete.name)
+    }
   }
 };
 </script>
