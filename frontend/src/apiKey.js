@@ -1,1 +1,0 @@
-export default {apiKey : "AIzaSyADCQ0Bdny3n4PcNC7amhQ_RofZZz0exqM"}
