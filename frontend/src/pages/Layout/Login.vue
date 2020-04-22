@@ -26,6 +26,11 @@
           />
 
           <button>Aceptar</button>
+          <button v-if="form.type == 0">Iniciar sesión con Google</button>
+          <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
+
+        </form>
+
           </form>
           <button v-if="form.type == 0" >Iniciar sesión con Google</button>
           <g-signin-button
@@ -34,6 +39,7 @@
             @error="onSignInError">
             Ingresa con Google
           </g-signin-button>
+
 
         <a
           href="javascript:void(0)"
