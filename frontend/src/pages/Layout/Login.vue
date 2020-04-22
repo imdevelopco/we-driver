@@ -26,9 +26,14 @@
           />
 
           <button>Aceptar</button>
-          <button v-if="form.type == 0">Iniciar sesión con Google</button>
-
-        </form>
+          </form>
+          <button v-if="form.type == 0" >Iniciar sesión con Google</button>
+          <g-signin-button
+            :params="googleSignInParams"
+            @success="onSignInSuccess"
+            @error="onSignInError">
+            Ingresa con Google
+          </g-signin-button>
 
         <a
           href="javascript:void(0)"
@@ -55,6 +60,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 
 export default {
     props: {
@@ -73,22 +79,33 @@ export default {
       },
       objetoEstilo: {
         color: 'red'
-      }
-
+      },
+      googleSignInParams: this.$store.getters.getGoogleSignInParams
     };
   },
   methods: {
+    onSignInSuccess (googleUser) {
+      // `googleUser` is the GoogleUser object that represents the just-signed-in user.
+      // See https://developers.google.com/identity/sign-in/web/reference#users
+      const profile = googleUser.getBasicProfile() // etc etc
+      console.log(profile);
+      
+    },
+    onSignInError (error) {
+      // `error` contains any error occurred.
+      console.log('OH NOES', error)
+    },
     /* Validacion del usuario en la BD*/
     login(){
-  
-   this.$store.dispatch('retrieveToken',{
-        username: this.form.email,
-        password: this.form.password
-      }).then(response => {
-        this.$router.push('/');
-      }).catch(error => {
-        console.log(error);
-      })   
+          this.$store.dispatch('retrieveToken',{
+                username: this.form.email,
+                password: this.form.password
+                
+              }).then(response => {
+                this.$router.push('/')
+              }).catch(error => {
+                console.log(error);
+              })             
     },
     sendForm() {
       if (this.validaType()) {
@@ -245,5 +262,15 @@ body {
 
 #logotipo {
   margin: 0px;
+}
+
+.g-signin-button {
+  /* This is where you control how the button looks. Be creative! */
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 3px;
+  background-color: #3c82f7;
+  color: #fff;
+  box-shadow: 0 3px 0 #0f69ff;
 }
 </style>

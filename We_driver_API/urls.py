@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.authtoken import views
 from accounts import urls
+from allauth import urls
 
 
 urlpatterns = [
@@ -24,4 +25,5 @@ urlpatterns = [
     path('api/v1.0/', include(('We_Driver_app.urls','We_Driver_app'))),
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include('accounts.urls')),
+    path('accounts/', include('allauth.urls')),
 ]

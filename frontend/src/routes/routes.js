@@ -2,7 +2,6 @@ import Welcome from '@/pages/Layout/Welcome';
 import Login from '@/pages/Layout/Login';
 import Registro from '@/pages/Layout/Register'
 import DashboardLayout from "@/pages/Layout/DashboardLayout.vue";
-
 import Dashboard from "@/pages/Dashboard.vue";
 import UserProfile from "@/pages/UserProfile.vue";
 import Admin from "@/pages/Admin.vue";

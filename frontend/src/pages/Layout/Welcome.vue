@@ -13,8 +13,14 @@ export default{
         type: String,
         default: require("@/assets/img/weDrive.png")
         }
-    }
-}
+    },
+    watch : {
+            $router(to,from){
+                console.log("to",to);
+                console.log("from", from);
+            }
+        }
+};
 </script>
 
 <style></style>

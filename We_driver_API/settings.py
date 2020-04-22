@@ -38,13 +38,23 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
-    'knox',
-    #apps
+    # Camaras y estaciones
     'We_Driver_app',
+    # Manejo de cuentas de usuarios
     'accounts',
+    'knox',
+    # Autenticacion con google
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    
+    
 ]
 
 MIDDLEWARE = [
@@ -61,12 +71,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'We_driver_API.urls'
-
-#Authentication backends
-AUTHENTICATION_BACKENDS = (
-        'django.contrib.auth.backends.ModelBackend',
-    )
-    
+   
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -152,6 +157,19 @@ REST_FRAMEWORK = {
 }
 
 CORS_ORIGIN_ALLOW_ALL= True
+
 CORS_ORIGIN_WHITE_LIST = (
     'localhost:8080'
+)
+
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = (
+    
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+    
 )
