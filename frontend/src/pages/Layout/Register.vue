@@ -179,6 +179,7 @@ export default {
   background: rgb(85, 85, 85, .8);
   color: #ffffff;
   font-size: 15px;
+  font-weight: inherit;
   border-radius: 5px;
 }
 
@@ -195,14 +196,17 @@ export default {
 }
 
 .divlogin .container .contenido .link {
+  margin: 0px;
   color: black;
   font-size: 18px;
+  text-decoration: none;
+  display: block;
 }
 
 .divlogin .container .contenido .link:hover {
   color: black;
   font-size: 20px;
-}
+} 
 
 #logotipo {
   margin: 0px;

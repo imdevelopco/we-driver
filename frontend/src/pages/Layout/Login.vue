@@ -26,12 +26,12 @@
           />
 
           <button>Aceptar</button>
-          <button v-if="form.type == 0">Iniciar sesión con Google</button>
+          <!-- <button v-if="form.type == 0">Iniciar sesión con Google</button> -->
           <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
 
         </form>
 
-          <button v-if="form.type == 0" >Iniciar sesión con Google</button>
+          <!-- <button v-if="form.type == 0" >Iniciar sesión con Google</button> -->
           <g-signin-button
             :params="googleSignInParams"
             @success="onSignInSuccess"
@@ -44,11 +44,12 @@
           href="javascript:void(0)"
           @click="form.type = 1"
           v-if="form.type == 0"
+          class="olvidoLink"
 
         >Olvidó su contraseña?</a>
 
         <router-link to="../registro" 
-        class="link" 
+        class="registroLink" 
         v-if="form.type == 0">
         Registrarse
         </router-link>
@@ -225,6 +226,7 @@ body {
   background: rgb(85, 85, 85, .8);
   color: #ffffff;
   font-size: 15px;
+  font-weight: inherit;
   border-radius: 5px;
 }
 
@@ -234,23 +236,45 @@ body {
 
 }
 
-.divlogin .container .contenido a {
+.g-signin-button{
+  display: inline-block;
+  height: 40px;
+  margin: 8px 0px;
+  line-height: 40px;
+  border: 0px;
+  width: 80%;
+  background: rgb(85, 85, 85, .8);
+  color: #ffffff;
+  font-size: 15px;
+  border-radius: 5px;  
+}
+
+.g-signin-button:hover {
+
+  background: red;
+
+}
+
+.divlogin .container .contenido .olvidoLink {
   margin: 10px;
   font-size: 13px;
   color: #333333;
   text-decoration: none;
   display: block;
 }
-.divlogin .container .contenido a:hover{
+.divlogin .container .contenido .olvidoLink:hover{
   font-size: 14px;
 }
 
-.divlogin .container .contenido .link {
+.divlogin .container .contenido .registroLink {
   color: black;
   font-size: 16px;
+  margin: 0px;
+  text-decoration: none;
+  display: block;
 }
 
-.divlogin .container .contenido .link:hover {
+.divlogin .container .contenido .registroLink:hover {
   color: yellow;
   font-size: 20px;
 }
@@ -258,6 +282,9 @@ body {
 .divlogin .container .contenido .cancelLink {
   color: black;
   font-size: 18px;
+  margin: 10px 0 0;
+  text-decoration: none;
+  display: block;
 }
 
 .divlogin .container .contenido .cancelLink:hover {
@@ -269,13 +296,5 @@ body {
   margin: 0px;
 }
 
-.g-signin-button {
-  /* This is where you control how the button looks. Be creative! */
-  display: inline-block;
-  padding: 4px 8px;
-  border-radius: 3px;
-  background-color: #3c82f7;
-  color: #fff;
-  box-shadow: 0 3px 0 #0f69ff;
-}
+
 </style>
