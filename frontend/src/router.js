@@ -24,10 +24,7 @@ const router = new VueRouter({
         }
     }else if(requiresVisitor){
         if(store.getters.loggedIn){
-            next({
-                  name: 'App',
-                  params: 'maps'
-            });
+            next('/app/maps');
         }else{
             next();
         }

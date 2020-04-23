@@ -5,12 +5,12 @@ import StatsCard from "./Cards/StatsCard.vue";
 
 // Tables
 import OrderedTable from "./Tables/OrderedTable.vue";
-import SimpleTable from "./Tables/SimpleTable.vue";
+import CheckTable from "./Tables/CheckTable.vue";
 
 export {
   ChartCard,
   NavTabsCard,
   StatsCard,
   OrderedTable,
-  SimpleTable
+  CheckTable
 };

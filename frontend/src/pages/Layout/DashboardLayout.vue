@@ -32,7 +32,7 @@
 
       <sidebar-link to="/login">
         <md-icon>library_books</md-icon>
-        <p>Cerrar sesión</p>
+        <p @click="logout">Cerrar sesión</p>
       </sidebar-link>
     
     </side-bar>
@@ -69,10 +69,12 @@ export default {
     ContentFooter,
     MobileMenu
   },
-  computed:{
-    /* user(){
-      return this.$store.state.user;
-    } */
+  methods:{
+    logout(){
+      this.$store.dispatch('destroyToken')
+      .then(response => 
+      this.$router.push('/'))
+    }
   }
 };
 </script>

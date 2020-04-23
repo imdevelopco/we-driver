@@ -1,7 +1,9 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
 import GoogleMapsLoader from "google-maps";
-import axios from 'axios'
+import axios from 'axios';
+import {Loader} from "google-maps";
+import apiKey from './apiKey';
 
 Vue.use(Vuex);
 
@@ -14,6 +16,10 @@ export const store = new Vuex.Store({
             "Actualización precio gasolina",
             "Foto multa cerca"
         ],
+        //ClientID de la API
+        googleSignInParams: {
+          client_id: '651720234663-eufvea4ejf7g733h7us44f6naaomkp7q.apps.googleusercontent.com'
+        },
         //dashboard data
         totalUsers: 623230,
         totalCameras: 45,
@@ -101,7 +107,6 @@ export const store = new Vuex.Store({
         },
 
         //Settings Google maps
-        versionMaps: {version: '3.40'},
         googleMapSetting:{
           zoom: 15,
           center: {},
@@ -166,14 +171,36 @@ export const store = new Vuex.Store({
               stylers: [{ visibility: "simplified" }]
             }
           ]
+        },
+        loader: new Loader(apiKey.apiKey, {version: '3.40'}),
+
+        //formulario crear
+        velMax:0,
+        picture:null,
+        comment:"",
+
+        //recursos por verificar (aprobar o desaprobar camaras y estaciones)
+        checkSource:{
+          cameras:[
+            {id:1,lat:3.456253613827328, lng:-76.57999110577393, velocidad: '60 kph', foto:'descarga.jpg', comentario:"Hola que haces, eso es n comentario"},
+            {id:2,lat:3.4344491850294427, lng:-76.53003764508057, velocidad: '60 kph', foto:'descarga.jpg', comentario:"Hola que haces, eso es n comentario"},
+            {id:3,lat:3.429137225048734, lng:-76.51892257092285, velocidad: '60 kph', foto:'descarga.jpg', comentario:"Hola que haces, eso es n comentario"},
+            {id:4,lat:3.4247248487550803, lng:-76.51154113171387, velocidad: '60 kph', foto:'descarga.jpg', comentario:"Hola que haces, eso es n comentario"},
+            {id:5,lat:3.426738265704383, lng:-76.53806281445313, velocidad: '60 kph', foto:'descarga.jpg', comentario:"Hola que haces, eso es n comentario"},
+            {id:6,lat:3.419669868398415, lng:-76.53111052868653, velocidad: '60 kph', foto:'descarga.jpg', comentario:"Hola que haces, eso es n comentario"},
+          ],
+          station:[]
         }
     },
     getters:{
-        totalNotifications: state =>{
+        totalNotifications (state) {
             return state.notifications.length
         },
         loggedIn(state){
           return state.token != null;
+        },
+        getGoogleSignInParams(state){
+          return state.googleSignInParams;
         }
     },
     mutations:{
@@ -191,10 +218,17 @@ export const store = new Vuex.Store({
         // Login
         retrieveToken(state,token){
           state.token = token;
+        },
+        setZoomMap(state, zoom){
+          state.googleMapSetting.zoom = zoom;
+        },
+        //logout
+        destroyToken(state){
+          state.token = null;
         }
     },
     actions:{
-      retrieveToken(context, credentials){
+        retrieveToken(context, credentials){
         return new Promise(function(resolve,reject) {
             axios.post('http://localhost:8000/api/login',{
             username: credentials.username, 
@@ -204,16 +238,36 @@ export const store = new Vuex.Store({
             const token = response.data.token
             localStorage.setItem('token',token)
             resolve(response)
-          }).catch(err => {
-            console.log(err),
-            reject(err)
+          }).catch(error => {
+            if (error.response.status == 400) {
+              alert("Che wacho, credenciales incorrectas");
+              console.log(error.response);
+             } else if(error.response){
+              alert("Problemas internos")
+             }
+             reject(error)
           })
         })      
       },
       destroyToken(context){
         if(context.getters.loggedIn){
+          return new Promise(function(resolve,reject) {
+            axios.get('http://localhost:8000/api/logout',{
+          })
+          .then(response => {
+            localStorage.removeItem('token')
+            context.commit('destroToken')
+            resolve(response)
+          }).catch(err => {
+            localStorage.removeItem('token')
+            context.commit('destroyToken')
+            console.log(err),
+            reject(err)
+          })
+        })      
+  
 
         }
-      }
+      } 
     }
 })

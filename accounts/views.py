@@ -2,9 +2,7 @@
 from rest_framework import status, generics
 from rest_framework.response import Response
 from knox.models import AuthToken
-
 from django.contrib.auth.models import User
-
 from .serializer import RegisterSerializer, UserSerializer, LoginSerializer
 
 #Listar usuarios
@@ -40,5 +38,4 @@ class LoginUser(generics.GenericAPIView):
              "user": UserSerializer(user).data, 
              "token": token[1]
             }, status= status.HTTP_201_CREATED)
-        
-        
+

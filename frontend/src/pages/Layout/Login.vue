@@ -9,7 +9,7 @@
         <h2 v-if="form.type == 0">Iniciar sesión</h2>
         <p v-if="form.type == 1" style="font-size: 16px; color: #333;">
           Escriba el correo asociado a su cuenta para recuperar su contraseña.</p>
-        <form @submit.prevent="sendForm">
+        <form @submit.prevent="login">
 
           <input
             type="email"
@@ -26,19 +26,30 @@
           />
 
           <button>Aceptar</button>
-          <button v-if="form.type == 0">Iniciar sesión con Google</button>
+          <!-- <button v-if="form.type == 0">Iniciar sesión con Google</button> -->
+          <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
 
         </form>
+
+          <!-- <button v-if="form.type == 0" >Iniciar sesión con Google</button> -->
+          <g-signin-button
+            :params="googleSignInParams"
+            @success="onSignInSuccess"
+            @error="onSignInError">
+            Ingresa con Google
+          </g-signin-button>
+
 
         <a
           href="javascript:void(0)"
           @click="form.type = 1"
           v-if="form.type == 0"
+          class="olvidoLink"
 
         >Olvidó su contraseña?</a>
 
         <router-link to="../registro" 
-        class="link" 
+        class="registroLink" 
         v-if="form.type == 0">
         Registrarse
         </router-link>
@@ -55,6 +66,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 
 export default {
     props: {
@@ -73,27 +85,33 @@ export default {
       },
       objetoEstilo: {
         color: 'red'
-      }
-
+      },
+      googleSignInParams: this.$store.getters.getGoogleSignInParams
     };
   },
   methods: {
+    onSignInSuccess (googleUser) {
+      // `googleUser` is the GoogleUser object that represents the just-signed-in user.
+      // See https://developers.google.com/identity/sign-in/web/reference#users
+      const profile = googleUser.getBasicProfile() // etc etc
+      console.log(profile);
+      
+    },
+    onSignInError (error) {
+      // `error` contains any error occurred.
+      console.log('OH NOES', error)
+    },
     /* Validacion del usuario en la BD*/
-    findUser(){
-   /*    let datos = {
-        username: this.form.email,
-        password: this.form.password
-      };
-      let url = 'http://localhost:8000/api/login';
-    */ 
-   this.$store.dispatch('retrieveToken',{
-        username: this.form.email,
-        password: this.form.password
-      }).then(response => {
-        this.$router.push('/');
-      }).catch(error => {
-        console.log(error);
-      })   
+    login(){
+          this.$store.dispatch('retrieveToken',{
+                username: this.form.email,
+                password: this.form.password
+                
+              }).then(response => {
+                this.$router.push('/')
+              }).catch(error => {
+                console.log(error);
+              })             
     },
     sendForm() {
       if (this.validaType()) {
@@ -208,6 +226,7 @@ body {
   background: rgb(85, 85, 85, .8);
   color: #ffffff;
   font-size: 15px;
+  font-weight: inherit;
   border-radius: 5px;
 }
 
@@ -217,23 +236,45 @@ body {
 
 }
 
-.divlogin .container .contenido a {
+.g-signin-button{
+  display: inline-block;
+  height: 40px;
+  margin: 8px 0px;
+  line-height: 40px;
+  border: 0px;
+  width: 80%;
+  background: rgb(85, 85, 85, .8);
+  color: #ffffff;
+  font-size: 15px;
+  border-radius: 5px;  
+}
+
+.g-signin-button:hover {
+
+  background: red;
+
+}
+
+.divlogin .container .contenido .olvidoLink {
   margin: 10px;
   font-size: 13px;
   color: #333333;
   text-decoration: none;
   display: block;
 }
-.divlogin .container .contenido a:hover{
+.divlogin .container .contenido .olvidoLink:hover{
   font-size: 14px;
 }
 
-.divlogin .container .contenido .link {
+.divlogin .container .contenido .registroLink {
   color: black;
   font-size: 16px;
+  margin: 0px;
+  text-decoration: none;
+  display: block;
 }
 
-.divlogin .container .contenido .link:hover {
+.divlogin .container .contenido .registroLink:hover {
   color: yellow;
   font-size: 20px;
 }
@@ -241,6 +282,9 @@ body {
 .divlogin .container .contenido .cancelLink {
   color: black;
   font-size: 18px;
+  margin: 10px 0 0;
+  text-decoration: none;
+  display: block;
 }
 
 .divlogin .container .contenido .cancelLink:hover {
@@ -251,4 +295,6 @@ body {
 #logotipo {
   margin: 0px;
 }
+
+
 </style>

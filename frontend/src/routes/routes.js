@@ -2,10 +2,12 @@ import Welcome from '@/pages/Layout/Welcome';
 import Login from '@/pages/Layout/Login';
 import Registro from '@/pages/Layout/Register'
 import DashboardLayout from "@/pages/Layout/DashboardLayout.vue";
+import Error from "@/pages/Layout/Error.vue"
+
 
 import Dashboard from "@/pages/Dashboard.vue";
 import UserProfile from "@/pages/UserProfile.vue";
-import TableList from "@/pages/TableList.vue";
+import Admin from "@/pages/Admin.vue";
 import Typography from "@/pages/Typography.vue";
 import Icons from "@/pages/Icons.vue";
 import Maps from "@/pages/Maps.vue";
@@ -16,7 +18,7 @@ const routes = [
   {
     path: "/",
     name:'Home',
-    component: Welcome,
+    component: Login,
     meta:{
       requiresVisitor: true
     }
@@ -77,7 +79,7 @@ const routes = [
       {
         path: "admin",
         name: "Administración",
-        component: TableList,
+        component: Admin,
         meta:{
           //admin : true, 
         }
@@ -98,6 +100,11 @@ const routes = [
         component: Notifications
       }
     ]
+  },
+  {
+    path: "*",
+    name: "Error",
+    component: Error
   }
 ];
 

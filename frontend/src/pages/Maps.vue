@@ -3,9 +3,7 @@
 </template>
 
 <script>
-import {Loader} from "google-maps";
 import { mapState } from 'vuex';
-import apiKey from '../apiKey';
 
 export default {
   computed:{
@@ -20,7 +18,7 @@ export default {
          
       var marker = new google.maps.Marker({
         position: this.myLatlng,
-        title: "Crear Cámara, Fotomulta"
+        title: "posicion camaras",
       });
 
       // Poner el marcador en el mapa, setMap();
@@ -29,9 +27,7 @@ export default {
   },
   mounted() {
     var _this = this;
-    const loader = new Loader(apiKey.apiKey, this.$store.state.versionMaps);
-
-    loader.load().then( google => {
+    this.$store.state.loader.load().then( google => {
         navigator.geolocation.getCurrentPosition(position => {
             var startLocation = {
                 lat: position.coords.latitude, 

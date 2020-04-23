@@ -1,6 +1,6 @@
-<template>
+<template>  
   <div class="content">
-    <div class="md-layout">
+    <div class="md-layout">      
       <div  class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-50">
         <chart-card
           :chart-data="usersRegisterdata.data"
@@ -157,6 +157,7 @@ export default {
   },
   data() {
     return {
+      
     };
   },
   mounted(){
