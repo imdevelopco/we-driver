@@ -11,6 +11,8 @@ export const store = new Vuex.Store({
     state:{
        //Token de acceso
         token : null || localStorage.getItem('token'),
+        routeAPI : "http://localhost:8000/",
+        registerUser : 'api/registerUser',
         notifications:[
             "Estación de gasolina aprovada",
             "Actualización precio gasolina",
@@ -193,6 +195,9 @@ export const store = new Vuex.Store({
         }
     },
     getters:{
+        getRouteAPI(state){
+            return state.routeAPI;
+        },
         totalNotifications (state) {
             return state.notifications.length
         },
@@ -240,7 +245,7 @@ export const store = new Vuex.Store({
             resolve(response)
           }).catch(error => {
             if (error.response.status == 400) {
-              alert("Che wacho, credenciales incorrectas");
+              alert("Credenciales incorrectas, intenta de nuevo");
               console.log(error.response);
              } else if(error.response){
               alert("Problemas internos")
@@ -251,23 +256,8 @@ export const store = new Vuex.Store({
       },
       destroyToken(context){
         if(context.getters.loggedIn){
-          /* return new Promise(function(resolve,reject) {
-            axios.get('http://localhost:8000/api/login',{
-              
-          })
-          .then(response => {
-            localStorage.removeItem('token')
-            context.commit('destroToken')
-            resolve(response)
-          }).catch(err => {
-            localStorage.removeItem('token')
-            context.commit('destroyToken')
-            console.log(err),
-            reject(err)
-          }) 
-        })  */
-        localStorage.removeItem('token')
-        context.commit('destroyToken')
+          localStorage.removeItem('token')
+          context.commit('destroyToken')
                 
         }
       } 
