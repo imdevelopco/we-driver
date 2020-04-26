@@ -108,7 +108,7 @@ export default {
                 password: this.form.password
                 
               }).then(response => {
-                this.$router.push('/')
+                this.$router.go('/app')
               }).catch(error => {
                 console.log(error);
               })             

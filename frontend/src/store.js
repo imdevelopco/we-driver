@@ -251,8 +251,9 @@ export const store = new Vuex.Store({
       },
       destroyToken(context){
         if(context.getters.loggedIn){
-          return new Promise(function(resolve,reject) {
-            axios.get('http://localhost:8000/api/logout',{
+          /* return new Promise(function(resolve,reject) {
+            axios.get('http://localhost:8000/api/login',{
+              
           })
           .then(response => {
             localStorage.removeItem('token')
@@ -263,10 +264,11 @@ export const store = new Vuex.Store({
             context.commit('destroyToken')
             console.log(err),
             reject(err)
-          })
-        })      
-  
-
+          }) 
+        })  */
+        localStorage.removeItem('token')
+        context.commit('destroyToken')
+                
         }
       } 
     }
