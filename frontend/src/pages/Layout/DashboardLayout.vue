@@ -30,9 +30,9 @@
         <p>Administración</p>
       </sidebar-link>
 
-      <sidebar-link to="/login" @click="logout">
-        <md-icon>library_books</md-icon>
-        <p>Cerrar sesión</p>
+      <sidebar-link to="/login" >
+        <md-icon >library_books</md-icon>
+        <p @click="logout">Cerrar sesión</p>
       </sidebar-link>
     
     </side-bar>
