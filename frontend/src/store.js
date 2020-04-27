@@ -1,5 +1,7 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
+import GoogleMapsLoader from "google-maps";
+import axios from 'axios';
 import {Loader} from "google-maps";
 import apiKey from './apiKey';
 
@@ -7,19 +9,17 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
     state:{
-        user:{name:'Camilo', admin:true},
-        users:[
-            {id:1, name: 'Camilo Arias', barrio: 'Terron', city : 'Cali', location:'Oeste' },
-            {id:2, name: 'Pedro Nel', barrio: 'Terron', city : 'Cali', location:'Oeste' },
-            {id:3, name: 'Martha', barrio: 'Terron', city : 'Cali', location:'Oeste' },
-            {id:4, name: 'Carlos', barrio: 'Mariano Ramos', city : 'Cali', location:'Oriente' },
-            {id:5, name: 'Sebas', barrio: 'Melendez', city : 'Cali', location:'Sur' },
-        ],
+       //Token de acceso
+        token : null || localStorage.getItem('token'),
         notifications:[
             "Estación de gasolina aprovada",
             "Actualización precio gasolina",
             "Foto multa cerca"
         ],
+        //ClientID de la API
+        googleSignInParams: {
+          client_id: '651720234663-eufvea4ejf7g733h7us44f6naaomkp7q.apps.googleusercontent.com'
+        },
         //dashboard data
         totalUsers: 623230,
         totalCameras: 45,
@@ -193,8 +193,14 @@ export const store = new Vuex.Store({
         }
     },
     getters:{
-        totalNotifications: state =>{
+        totalNotifications (state) {
             return state.notifications.length
+        },
+        loggedIn(state){
+          return state.token != null;
+        },
+        getGoogleSignInParams(state){
+          return state.googleSignInParams;
         }
     },
     mutations:{
@@ -209,11 +215,59 @@ export const store = new Vuex.Store({
         setCenterMap(state, center){
           state.googleMapSetting.center = center;
         },
+        // Login
+        retrieveToken(state,token){
+          state.token = token;
+        },
         setZoomMap(state, zoom){
           state.googleMapSetting.zoom = zoom;
+        },
+        //logout
+        destroyToken(state){
+          state.token = null;
         }
+    },
+    actions:{
+        retrieveToken(context, credentials){
+        return new Promise(function(resolve,reject) {
+            axios.post('http://localhost:8000/api/login',{
+            username: credentials.username, 
+            password: credentials.password
+          })
+          .then(response => {
+            const token = response.data.token
+            localStorage.setItem('token',token)
+            resolve(response)
+          }).catch(error => {
+            if (error.response.status == 400) {
+              alert("Che wacho, credenciales incorrectas");
+              console.log(error.response);
+             } else if(error.response){
+              alert("Problemas internos")
+             }
+             reject(error)
+          })
+        })      
+      },
+      destroyToken(context){
+        if(context.getters.loggedIn){
+          return new Promise(function(resolve,reject) {
+            axios.get('http://localhost:8000/api/logout',{
+          })
+          .then(response => {
+            localStorage.removeItem('token')
+            context.commit('destroToken')
+            resolve(response)
+          }).catch(err => {
+            localStorage.removeItem('token')
+            context.commit('destroyToken')
+            console.log(err),
+            reject(err)
+          })
+        })      
+  
 
-        //datos formularo crear
-        
+        }
+      } 
     }
 })

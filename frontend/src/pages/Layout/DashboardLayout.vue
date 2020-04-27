@@ -10,12 +10,12 @@
         <p>Mapa</p>
       </sidebar-link>
 
-      <sidebar-link v-if="user.admin" to="/app/dashboard">
+      <sidebar-link  to="/app/dashboard">
         <md-icon>dashboard</md-icon>
         <p>Dashboard</p>
       </sidebar-link>
 
-      <sidebar-link v-if="user.admin" to="/app/usuarios">
+      <sidebar-link to="/app/usuarios">
         <md-icon>group</md-icon>
         <p>Usuarios</p>
       </sidebar-link>
@@ -25,13 +25,13 @@
         <p>Agregar</p>
       </sidebar-link>
 
-      <sidebar-link v-if="user.admin" to="/app/admin">
+      <sidebar-link  to="/app/admin">
         <md-icon>settings</md-icon>
         <p>Administración</p>
       </sidebar-link>
 
-      <sidebar-link to="/app/typography">
-        <md-icon>logout</md-icon>
+      <sidebar-link to="/login" @click="logout">
+        <md-icon>library_books</md-icon>
         <p>Cerrar sesión</p>
       </sidebar-link>
     
@@ -69,9 +69,11 @@ export default {
     ContentFooter,
     MobileMenu
   },
-  computed:{
-    user(){
-      return this.$store.state.user;
+  methods:{
+    logout(){
+      this.$store.dispatch('destroyToken')
+      .then(response => 
+      this.$router.push('/'))
     }
   }
 };

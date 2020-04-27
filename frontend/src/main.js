@@ -19,6 +19,9 @@ import { store } from './store'
 
 
 
+// Login Google
+import GSignInButton from 'vue-google-signin-button'
+
 Vue.prototype.$Chartist = Chartist;
 
 Vue.use(VueRouter);
@@ -26,6 +29,8 @@ Vue.use(MaterialDashboard);
 Vue.use(GlobalComponents);
 Vue.use(GlobalDirectives);
 Vue.use(Notifications);
+Vue.use(GSignInButton)
+
 
 /* eslint-disable no-new */
 new Vue({

@@ -25,8 +25,9 @@ SECRET_KEY = 'mm_+a5*%7@$+tu^jq*^6x&(0zp(s@@9#(yl6$8!w%soe@ehn28'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = [
+    'localhost',
+]
 
 # Application definition
 
@@ -37,11 +38,27 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'We_Driver_app',
+    'django.contrib.sites',
+    
     'rest_framework',
+    'rest_framework.authtoken',
+    'corsheaders',
+    # Camaras y estaciones
+    'We_Driver_app',
+    # Manejo de cuentas de usuarios
+    'accounts',
+    'knox',
+    # Autenticacion con google
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    
+    
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -49,10 +66,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'We_driver_API.urls'
-
+   
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -69,6 +88,7 @@ TEMPLATES = [
     },
 ]
 
+#AUTH_USER_MODEL = "We_Driver_app.Account"
 WSGI_APPLICATION = 'We_driver_API.wsgi.application'
 
 
@@ -76,17 +96,12 @@ WSGI_APPLICATION = 'We_driver_API.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-   # 'default': {
-   #    'ENGINE': 'django.db.backends.sqlite3',
-   #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-   # }
-
-    'default': {
+       'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'iuzkzlzp',
-        'USER': 'iuzkzlzp',
-        'PASSWORD': 'bVPwNLrNUVJjK-6o5yK5bpwgEWh_JW3E',
-        'HOST': 'salt.db.elephantsql.com',
+        'NAME': 'jehrjcxj',
+        'USER': 'jehrjcxj',
+        'PASSWORD': 'ebpWNKDYYUIwLICaaXKop0iTXyaipP89',
+        'HOST': 'drona.db.elephantsql.com',
         'PORT': '',
     }
 }
@@ -129,3 +144,32 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.AllowAny',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'knox.auth.TokenAuthentication',
+    )
+}
+
+CORS_ORIGIN_ALLOW_ALL= True
+
+CORS_ORIGIN_WHITE_LIST = (
+    'localhost:8080'
+)
+
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = (
+    
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+    
+)

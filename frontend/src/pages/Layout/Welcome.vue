@@ -2,7 +2,8 @@
     <div>
         <h1>We Drive </h1>
         <img class="img" :src="weDriveLogo" />
-    </diV>
+        
+    </div>
 </template>
 
 <script>
@@ -12,8 +13,14 @@ export default{
         type: String,
         default: require("@/assets/img/weDrive.png")
         }
-    }
-}
+    },
+    watch : {
+            $router(to,from){
+                console.log("to",to);
+                console.log("from", from);
+            }
+        }
+};
 </script>
 
 <style></style>
