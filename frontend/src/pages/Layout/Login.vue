@@ -5,7 +5,9 @@
         <figure id="logotipo">
           <img class="img" :src="LoginLogo" width="200">
         </figure>
-        <h2>{{title}}</h2>
+        <h2 v-if="form.type == 0">Iniciar sesión</h2>
+        <p v-if="form.type == 1" style="font-size: 16px; color: #333;">
+          Escriba el correo asociado a su cuenta para recuperar su contraseña.</p>
         <form @submit.prevent="sendForm">
           <input
             type="email"
@@ -17,25 +19,30 @@
             type="password"
             v-if="form.type != 1"
             :class="{ error: validaPassword }"
-            placeholder="password"
+            placeholder="Contraseña"
             v-model="form.password"
           />
-          <button>{{title}}</button>
-          <button v-if="form.type == 0">Sign in with Google</button>
+          <button>Aceptar</button>
+          <button v-if="form.type == 0">Iniciar sesión con Google</button>
         </form>
 
         <a
           href="javascript:void(0)"
           @click="form.type = 1"
           v-if="form.type == 0"
-        >Forgot your password?</a>
-        <router-link to="../registro" style="font-size: 18px; color: black;" v-if="form.type == 0">Sign up</router-link>
-        <a
+        >Olvidó su contraseña?</a>
+
+        <router-link to="../registro" 
+        class="link" 
+        v-if="form.type == 0">
+        Registrarse
+        </router-link>
+        
+        <a class="cancelLink"
           href="javascript:void(0)"
           @click="form.type = 0"
           v-if="form.type == 1"
-          style="font-size: 18px; color: black;"
-        >Cancel</a>
+        >Cancelar</a>
       </div>
     </div>
   </div>
@@ -46,11 +53,7 @@ export default {
     props: {
         LoginLogo: {
         type: String,
-        default: require("@/assets/img/logo.jpg")
-        },
-        FondoTrasparente: {
-        type: String,
-        default: require("@/assets/img/fondo_transparente.jpg")
+        default: require("@/assets/img/weDrive.png")
         }
     },
 
@@ -102,8 +105,8 @@ export default {
     },
     title() {
       return this.form.type == 0
-        ? "Sign in"
-        : "Reset password";
+        ? "Iniciar sesión"
+        : "Reinicio de contraseña";
     }
   }
 };
@@ -116,8 +119,7 @@ html,body {
   margin: 0px;
   width: 100%;
   height: 100vh;
-  font-family: "RobotoMono-Bold";
-  color: #333333;
+  /*color: #333333;*/
 }
 
 .divlogin {
@@ -140,29 +142,36 @@ html,body {
 .divlogin .container .contenido {
   width: 100%;
   max-width: 300px;
-  background: rgba(255, 255, 255, 1);
-  padding: 20px;
+  background: rgba(110, 110, 110, .5);
+  padding: 0 20px 20px 20px;
   display: inline-block;
-  font-family: "RobotoMono-Bold";
   margin-left: auto;
+  font-weight: bold;
+  border-radius: 5px;
 }
 
 .divlogin .container .contenido h2 {
   margin-top: 0px;
   margin-bottom: 20px;
-  color: red;
+  color: black;
   font-size: 2em;
-  font-family: "RobotoMono-Bold";
+  font-weight: bold;
 }
 
 .divlogin .container .contenido input {
   height: 30px;
   margin: 0px;
   margin-bottom: 20px;
-  border: 2px solid #acacac;
+  border: 2px solid rgba(255, 255, 255, 0.0);
   padding: 10px;
   width: 70%;
-  font-family: "RobotoMono-Bold";
+  background:rgba(255, 255, 255, 0.6);
+}
+
+.divlogin .container .contenido input:hover {
+
+  background: rgba(255, 255, 255, 1);
+
 }
 
 .divlogin .container .contenido input.error {
@@ -171,24 +180,50 @@ html,body {
 
 .divlogin .container .contenido button {
   height: 50px;
-  margin: 10px;
-  padding: 10px;
+  margin: 10px;  
   border: 0px;
   width: 80%;
-  background: red;
+  background: rgb(85, 85, 85);
   color: #ffffff;
   font-size: 18px;
   border-radius: 5px;
-  font-family: "RobotoMono-Bold";
+}
+
+.divlogin .container .contenido button:hover {
+
+  background: red;
+
 }
 
 .divlogin .container .contenido a {
   margin: 10px;
   font-size: 12px;
   color: #333333;
-  font-family: "RobotoMono-Bold";
   text-decoration: none;
   display: block;
+}
+.divlogin .container .contenido a:hover{
+  font-size: 14px;
+}
+
+.divlogin .container .contenido .link {
+  color: black;
+  font-size: 18px;
+}
+
+.divlogin .container .contenido .link:hover {
+  color: yellow;
+  font-size: 20px;
+}
+
+.divlogin .container .contenido .cancelLink {
+  color: black;
+  font-size: 18px;
+}
+
+.divlogin .container .contenido .cancelLink:hover {
+  color: yellow;
+  font-size: 20px;
 }
 
 #logotipo {

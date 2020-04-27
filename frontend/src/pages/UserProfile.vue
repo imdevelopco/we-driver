@@ -2,7 +2,7 @@
   <div class="content">
     <div class="md-layout">
       <div class="md-layout-item md-medium-size-100 ">
-        <CreateForm data-background-color="green"> </CreateForm>
+        <CreateForm data-background-color="red"> </CreateForm>
       </div>
     </div>
   </div>
