@@ -53,6 +53,9 @@
 </template>
 
 <script>
+
+import axios from 'axios';
+
 export default {
     props: {
         LoginLogo: {
@@ -75,7 +78,27 @@ export default {
   methods: {
     sendForm() {
       if (this.validaType()) {
-        console.log(this.form);
+        axios.post(this.$store.getters.getRouteAPI + this.$store.getters.registerUser,{
+          first_name :  this.form.firstName,
+	        last_name:    this.form.lastName,
+	        username :    this.form.email,
+	        email :       this.form.email,
+	        password :    this.form.password2
+        })
+        .then(response => {
+          console.log(response);
+          alert("Registro Exitoso");
+          this.$router.push("/login");
+          
+        })
+        .catch(error => {
+          if (error.response.status == 400) {
+              alert(error.response.data);
+              console.log(error.response);
+             } else if(error.response){
+              alert("Problemas internos")
+             }
+        })
       }
     },
     validaType() {

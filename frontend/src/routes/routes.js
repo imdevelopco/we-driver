@@ -15,14 +15,7 @@ import Notifications from "@/pages/Notifications.vue";
 import Usuarios from "@/pages/Users.vue";
 
 const routes = [
-  {
-    path: "/",
-    name:'Home',
-    component: Login,
-    meta:{
-      requiresVisitor: true
-    }
-  },
+  
   {
     path: "/login",
     component: Login,

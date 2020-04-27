@@ -73,7 +73,7 @@ export default {
     logout(){
       this.$store.dispatch('destroyToken')
       .then(response => 
-      this.$router.push('/'))
+      this.$router.go('/login'))
     }
   }
 };
