@@ -23,7 +23,7 @@ class RegisterUser(generics.GenericAPIView):
             print(token[1])
             return Response({"user": UserSerializer(user).data}, status= status.HTTP_201_CREATED )
         else: 
-            return Response("FALLA")
+            return Response("Este usuario ya existe en We Drive",status= status.HTTP_400_BAD_REQUEST)
         
 #Login usuarios        
 class LoginUser(generics.GenericAPIView):

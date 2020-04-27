@@ -37,8 +37,13 @@
           />
           <button>Aceptar</button>
           <p style="font-size: 12px; color: #333;">
+<<<<<<< HEAD
+            Al registrarse usted acepta nuestros <br> 
+            <span>Terminos & Condiciones</span></p> 
+=======
             Acepto <span>Terminos & Condiciones</span>
           </p> 
+>>>>>>> master
         </form>
 
         <router-link to="../login" class="link">Cancelar</router-link>
@@ -48,6 +53,9 @@
 </template>
 
 <script>
+
+import axios from 'axios';
+
 export default {
     props: {
         LoginLogo: {
@@ -70,7 +78,27 @@ export default {
   methods: {
     sendForm() {
       if (this.validaType()) {
-        console.log(this.form);
+        axios.post(this.$store.getters.getRouteAPI + this.$store.getters.registerUser,{
+          first_name :  this.form.firstName,
+	        last_name:    this.form.lastName,
+	        username :    this.form.email,
+	        email :       this.form.email,
+	        password :    this.form.password2
+        })
+        .then(response => {
+          console.log(response);
+          alert("Registro Exitoso");
+          this.$router.push("/login");
+          
+        })
+        .catch(error => {
+          if (error.response.status == 400) {
+              alert(error.response.data);
+              console.log(error.response);
+             } else if(error.response){
+              alert("Problemas internos")
+             }
+        })
       }
     },
     validaType() {
@@ -128,12 +156,10 @@ export default {
   align-content: center;
   align-items: center;
 }
-
 .divlogin .container {
   text-align: center;
   margin: auto;
 }
-
 .divlogin .container .contenido {
   width: 100%;
   max-width: 300px;
@@ -145,14 +171,12 @@ export default {
   font-weight: bold;
   border-radius: 20px;
 }
-
 .divlogin .container .contenido h2 {
   margin: 5px;
   color: black;
   font-size: 2em;
   font-weight: bold;
 }
-
 .divlogin .container .contenido input {
   height: 35px;
   margin: 8px 0px;
@@ -162,15 +186,12 @@ export default {
   width: 70%;
   background:rgba(255, 255, 255, 0.6);
 }
-
 .divlogin .container .contenido input:hover {
    background:rgba(255, 255, 255, 1);
 }
-
 .divlogin .container .contenido input.error {
   border-bottom: 3px solid red;
 }
-
 .divlogin .container .contenido button {
   height: 40px;
   margin: 10px 0px;
@@ -179,13 +200,12 @@ export default {
   background: rgb(85, 85, 85, .8);
   color: #ffffff;
   font-size: 15px;
+  font-weight: inherit;
   border-radius: 5px;
 }
-
 .divlogin .container .contenido button:hover {
   background: red;
 }
-
 .divlogin .container .contenido p {
   margin: 10px 0px;
   font-size: 13px;
@@ -193,17 +213,17 @@ export default {
   text-decoration: none;
   display: block;
 }
-
 .divlogin .container .contenido .link {
+  margin: 0px;
   color: black;
   font-size: 18px;
+  text-decoration: none;
+  display: block;
 }
-
 .divlogin .container .contenido .link:hover {
   color: black;
   font-size: 20px;
-}
-
+} 
 #logotipo {
   margin: 0px;
 }

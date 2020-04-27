@@ -15,14 +15,7 @@ import Notifications from "@/pages/Notifications.vue";
 import Usuarios from "@/pages/Users.vue";
 
 const routes = [
-  {
-    path: "/",
-    name:'Home',
-    component: Login,
-    meta:{
-      requiresVisitor: true
-    }
-  },
+  
   {
     path: "/login",
     component: Login,
@@ -49,7 +42,7 @@ const routes = [
     children: [
       {
         path: "maps",
-        name: "Maps",
+        name: "Mapa",
         meta: {
           //hideFooter: true
         },
@@ -73,7 +66,7 @@ const routes = [
       },
       {
         path: "crear",
-        name: "Crear Fotomulta y cámara",
+        name: "Crear Fotomulta - Estación",
         component: UserProfile
       },
       {
