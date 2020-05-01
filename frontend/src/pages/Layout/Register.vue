@@ -37,13 +37,8 @@
           />
           <button>Aceptar</button>
           <p style="font-size: 12px; color: #333;">
-<<<<<<< HEAD
-            Al registrarse usted acepta nuestros <br> 
-            <span>Terminos & Condiciones</span></p> 
-=======
             Acepto <span>Terminos & Condiciones</span>
           </p> 
->>>>>>> master
         </form>
 
         <router-link to="../login" class="link">Cancelar</router-link>

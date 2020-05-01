@@ -108,6 +108,15 @@ export const store = new Vuex.Store({
             ]
         },
 
+        //users
+        users:[
+          {id:1, name: 'Camilo Arias', barrio: 'Terron', city : 'Cali', location:'Oeste' },
+          {id:2, name: 'Pedro Nel', barrio: 'Terron', city : 'Cali', location:'Oeste' },
+          {id:3, name: 'Martha', barrio: 'Terron', city : 'Cali', location:'Oeste' },
+          {id:4, name: 'Carlos', barrio: 'Mariano Ramos', city : 'Cali', location:'Oriente' },
+          {id:5, name: 'Sebas', barrio: 'Melendez', city : 'Cali', location:'Sur' },
+        ],
+
         //Settings Google maps
         googleMapSetting:{
           zoom: 15,

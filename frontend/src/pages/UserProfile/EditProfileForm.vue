@@ -2,8 +2,8 @@
   <form>
     <md-card>
       <md-card-header :data-background-color="dataBackgroundColor">
-        <h4 class="title">Edit Profile</h4>
-        <p class="category">Complete your profile</p>
+        <h4 class="title">Editar perfil</h4>
+        <p class="category">Completa el perfil</p>
       </md-card-header>
 
       <md-card-content>
