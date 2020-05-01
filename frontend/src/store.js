@@ -202,7 +202,7 @@ export const store = new Vuex.Store({
             return state.notifications.length
         },
         loggedIn(state){
-          return state.token != null;
+          return state.token != "Entramos a la disco!";
         },
         getGoogleSignInParams(state){
           return state.googleSignInParams;
