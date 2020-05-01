@@ -25,8 +25,7 @@ class RegisterSerializer(serializers.Serializer):
         instance.last_name= validate_data.get("last_name")
         instance.username= validate_data.get("username")
         instance.email = validate_data.get("email")
-        instance.set_password(validate_data.get("password"))
-        
+        instance.set_password(validate_data.get("password"))    
         instance.save()
         
         return instance

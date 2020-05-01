@@ -26,13 +26,12 @@
           />
 
           <button>Aceptar</button>
-          <button v-if="form.type == 0">Iniciar sesión con Google</button>
+          <!-- <button v-if="form.type == 0">Iniciar sesión con Google</button> -->
           <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
 
         </form>
 
-          
-          <button v-if="form.type == 0" >Iniciar sesión con Google</button>
+          <!-- <button v-if="form.type == 0" >Iniciar sesión con Google</button> -->
           <g-signin-button
             :params="googleSignInParams"
             @success="onSignInSuccess"
@@ -45,11 +44,12 @@
           href="javascript:void(0)"
           @click="form.type = 1"
           v-if="form.type == 0"
+          class="olvidoLink"
 
         >Olvidó su contraseña?</a>
 
         <router-link to="../registro" 
-        class="link" 
+        class="registroLink" 
         v-if="form.type == 0">
         Registrarse
         </router-link>
@@ -67,7 +67,6 @@
 
 <script>
 import axios from 'axios';
-
 export default {
     props: {
         LoginLogo: {
@@ -75,7 +74,6 @@ export default {
         default: require("@/assets/img/weDrive.png")
         }
     },
-
   data: function() {
     return {
       form: {
@@ -108,7 +106,7 @@ export default {
                 password: this.form.password
                 
               }).then(response => {
-                this.$router.push('/')
+                this.$router.go('/app')
               }).catch(error => {
                 console.log(error);
               })             
@@ -164,7 +162,6 @@ body {
   height: 100vh;
   /*color: #333333;*/
 }
-
 .divlogin {
   background: url("../../assets/img/fondo_transparente.jpg");
   background-color: rgba(0, 0, 0, 0.5);
@@ -176,12 +173,10 @@ body {
   align-content: center;
   align-items: center;
 }
-
 .divlogin .container {
   text-align: center;
   margin: auto;
 }
-
 .divlogin .container .contenido {
   width: 100%;
   max-width: 300px;
@@ -192,14 +187,12 @@ body {
   font-weight: bold;
   border-radius: 20px;
 }
-
 .divlogin .container .contenido h2 {
   margin: 5px;
   color: black;
   font-size: 2em;
   font-weight: bold;
 }
-
 .divlogin .container .contenido input {
   height: 38px;
   margin: 8px 0px;
@@ -208,16 +201,12 @@ body {
   padding: 10px;
   width: 80%;
 }
-
 .divlogin .container .contenido input:hover {
-
   background: rgba(255, 255, 255, 1);
 }
-
 .divlogin .container .contenido input.error {
   border-bottom: 3px solid red;
 }
-
 .divlogin .container .contenido button {
   height: 40px;
   margin: 8px 0px;  
@@ -226,57 +215,60 @@ body {
   background: rgb(85, 85, 85, .8);
   color: #ffffff;
   font-size: 15px;
+  font-weight: inherit;
   border-radius: 5px;
 }
-
 .divlogin .container .contenido button:hover {
-
   background: red;
-
 }
-
-.divlogin .container .contenido a {
+.g-signin-button{
+  display: inline-block;
+  height: 40px;
+  margin: 8px 0px;
+  line-height: 40px;
+  border: 0px;
+  width: 80%;
+  background: rgb(85, 85, 85, .8);
+  color: #ffffff;
+  font-size: 15px;
+  border-radius: 5px;  
+}
+.g-signin-button:hover {
+  background: red;
+}
+.divlogin .container .contenido .olvidoLink {
   margin: 10px;
   font-size: 13px;
   color: #333333;
   text-decoration: none;
   display: block;
 }
-.divlogin .container .contenido a:hover{
+.divlogin .container .contenido .olvidoLink:hover{
   font-size: 14px;
 }
-
-.divlogin .container .contenido .link {
+.divlogin .container .contenido .registroLink {
   color: black;
   font-size: 16px;
+  margin: 0px;
+  text-decoration: none;
+  display: block;
 }
-
-.divlogin .container .contenido .link:hover {
+.divlogin .container .contenido .registroLink:hover {
   color: yellow;
   font-size: 20px;
 }
-
 .divlogin .container .contenido .cancelLink {
   color: black;
   font-size: 18px;
+  margin: 10px 0 0;
+  text-decoration: none;
+  display: block;
 }
-
 .divlogin .container .contenido .cancelLink:hover {
   color: yellow;
   font-size: 20px;
 }
-
 #logotipo {
   margin: 0px;
-}
-
-.g-signin-button {
-  /* This is where you control how the button looks. Be creative! */
-  display: inline-block;
-  padding: 4px 8px;
-  border-radius: 3px;
-  background-color: #3c82f7;
-  color: #fff;
-  box-shadow: 0 3px 0 #0f69ff;
 }
 </style>

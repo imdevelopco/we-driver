@@ -11,13 +11,8 @@ export const store = new Vuex.Store({
     state:{
        //Token de acceso
         token : null || localStorage.getItem('token'),
-        users:[
-          {id:1, name: 'Camilo Arias', barrio: 'Terron', city : 'Cali', location:'Oeste' },
-          {id:2, name: 'Pedro Nel', barrio: 'Terron', city : 'Cali', location:'Oeste' },
-          {id:3, name: 'Martha', barrio: 'Terron', city : 'Cali', location:'Oeste' },
-          {id:4, name: 'Carlos', barrio: 'Mariano Ramos', city : 'Cali', location:'Oriente' },
-          {id:5, name: 'Sebas', barrio: 'Melendez', city : 'Cali', location:'Sur' },
-        ],
+        routeAPI : "http://localhost:8000/",
+        registerUser : 'api/registerUser',
         notifications:[
             "Estación de gasolina aprovada",
             "Actualización precio gasolina",
@@ -200,6 +195,9 @@ export const store = new Vuex.Store({
         }
     },
     getters:{
+        getRouteAPI(state){
+            return state.routeAPI;
+        },
         totalNotifications (state) {
             return state.notifications.length
         },
@@ -247,7 +245,7 @@ export const store = new Vuex.Store({
             resolve(response)
           }).catch(error => {
             if (error.response.status == 400) {
-              alert("Che wacho, credenciales incorrectas");
+              alert("Credenciales incorrectas, intenta de nuevo");
               console.log(error.response);
              } else if(error.response){
               alert("Problemas internos")
@@ -258,22 +256,9 @@ export const store = new Vuex.Store({
       },
       destroyToken(context){
         if(context.getters.loggedIn){
-          return new Promise(function(resolve,reject) {
-            axios.get('http://localhost:8000/api/logout',{
-          })
-          .then(response => {
-            localStorage.removeItem('token')
-            context.commit('destroToken')
-            resolve(response)
-          }).catch(err => {
-            localStorage.removeItem('token')
-            context.commit('destroyToken')
-            console.log(err),
-            reject(err)
-          })
-        })      
-  
-
+          localStorage.removeItem('token')
+          context.commit('destroyToken')
+                
         }
       } 
     }
