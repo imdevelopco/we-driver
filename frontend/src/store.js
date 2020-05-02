@@ -184,6 +184,7 @@ export const store = new Vuex.Store({
         //recursos por verificar (aprobar o desaprobar camaras y estaciones)
         checkSource:{
           cameras:[
+            /* axios.get("http://localhost:8000/api/v1.0/camara/1/").then((response ) => console.log(response)).catch((error) => console.log(error)), */
             {id:1,lat:3.456253613827328, lng:-76.57999110577393, velocidad: '60 kph', foto:'descarga.jpg', comentario:"Hola que haces, eso es n comentario"},
             {id:2,lat:3.4344491850294427, lng:-76.53003764508057, velocidad: '60 kph', foto:'descarga.jpg', comentario:"Hola que haces, eso es n comentario"},
             {id:3,lat:3.429137225048734, lng:-76.51892257092285, velocidad: '60 kph', foto:'descarga.jpg', comentario:"Hola que haces, eso es n comentario"},
