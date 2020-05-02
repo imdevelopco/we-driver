@@ -198,11 +198,14 @@ export const store = new Vuex.Store({
         getRouteAPI(state){
             return state.routeAPI;
         },
+        getRegisterUser(state){
+            return state.registerUser;
+        },
         totalNotifications (state) {
             return state.notifications.length
         },
         loggedIn(state){
-          return state.token != "Entramos a la disco!";
+          return state.token != null;
         },
         getGoogleSignInParams(state){
           return state.googleSignInParams;

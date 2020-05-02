@@ -8,4 +8,10 @@ Una comunidad que trabaje en equipo y se cuide entre ellos mismos colaborando po
 Y no sólo las cámaras si no, las estaciones de servicio.
 Ven y haz parte de este comunidad desde su inicio en la primera línea de código.
 
-[We_Driver.]
+## Requisistos para correr Wedrive
+- Python (version 3.8 o superior)
+- Node JS
+
+
+
+
