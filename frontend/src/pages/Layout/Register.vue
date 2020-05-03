@@ -24,7 +24,7 @@
             placeholder="Email"
             v-model="form.email"
           />
-          <p id="mensajePass1"></p>
+          <p id="mensajePass1">{{ cambiarMensaje() }}</p>
           <input
             type="password"
             :class="{ error: validaPassword }"
@@ -70,10 +70,20 @@ export default {
         email: "",
         password: "",
         password2: ""
-      }
+      },
+      mensaje: ""
     };
   },
   methods: {
+    cambiarMensaje(){
+      if (this.validaPassword) {
+        this.mensaje = "La contraseña debe tener almenos una mayúscula, una minúscula y un número.";
+        return this.mensaje;
+      }else {
+        this.mensaje = ""
+        return this.mensaje;
+      }
+    },
     sendForm() {
       if (this.validaType()) {
         axios.post(this.$store.getters.getRouteAPI + this.$store.getters.registerUser,{
@@ -118,22 +128,21 @@ export default {
     validaEmail() {
       var exp = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
       if (exp.test(this.form.email)) {
-        document.getElementById("mensajeEmail").innerHTML = "";
+        //document.getElementById("mensajeEmail").innerHTML = "";
         return false;
       } else {
-        document.getElementById("mensajeEmail").innerHTML = "El formato de correo ingresado no es un formato valido.";
+       // document.getElementById("mensajeEmail").innerHTML = "El formato de correo ingresado no es un formato valido.";
         return true;        
       }
     },
     validaPassword() {
       var exp = /^(?=.*\d)(?=.*[a-záéíóúüñ]).*[A-ZÁÉÍÓÚÜÑ]/;
       if (exp.test(this.form.password)) {
-        document.getElementById("mensajePass1").innerHTML = "";
+        //document.getElementById("mensajePass1").innerHTML = "";
         return false;
       } else {
-        document.getElementById("mensajePass1").innerHTML = "La contraseña debe contener como mínimo una mayúscula, una minúscula y un numero.";
-        return true;
-        
+       // document.getElementById("mensajePass1").innerHTML = "La contraseña debe contener como mínimo una mayúscula, una minúscula y un numero.";
+        return true;               
       }
     },
     verificaPaswordIguales() {
@@ -143,6 +152,10 @@ export default {
         return true;
       }
     },
+    mostrarMensaje(){
+      //cambiarMensaje();
+      return this.mensaje;
+    }
   }
 }
 </script>
@@ -244,6 +257,13 @@ export default {
 }
 
 #mensajeEmail {
+  padding: 0px;
+  margin: 0px;
+  color:red;
+  font-weight: lighter;
+}
+
+#mensajePass1 {
   padding: 0px;
   margin: 0px;
   color:red;
