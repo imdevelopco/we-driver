@@ -17,18 +17,21 @@
             placeholder="Apellido"
             v-model="form.lastName"
           />
+          <p id="mensajeEmail"></p>
           <input
             type="email"
             :class="{ error: validaEmail }"
             placeholder="Email"
             v-model="form.email"
           />
+          <p id="mensajePass1"></p>
           <input
             type="password"
             :class="{ error: validaPassword }"
             placeholder="Contraseña"
             v-model="form.password"
           />
+          <p id="mensajePass2"></p>
           <input
             type="password"
             :class="{ error: verificaPaswordIguales }"
@@ -104,7 +107,7 @@ export default {
       ) {
         return true;
       } else {
-        return false;
+        return false;        
       }
     }
   },
@@ -115,17 +118,22 @@ export default {
     validaEmail() {
       var exp = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
       if (exp.test(this.form.email)) {
+        document.getElementById("mensajeEmail").innerHTML = "";
         return false;
       } else {
-        return true;
+        document.getElementById("mensajeEmail").innerHTML = "El formato de correo ingresado no es un formato valido.";
+        return true;        
       }
     },
     validaPassword() {
       var exp = /^(?=.*\d)(?=.*[a-záéíóúüñ]).*[A-ZÁÉÍÓÚÜÑ]/;
       if (exp.test(this.form.password)) {
+        document.getElementById("mensajePass1").innerHTML = "";
         return false;
       } else {
+        document.getElementById("mensajePass1").innerHTML = "La contraseña debe contener como mínimo una mayúscula, una minúscula y un numero.";
         return true;
+        
       }
     },
     verificaPaswordIguales() {
@@ -233,6 +241,13 @@ export default {
 
 #logotipo {
   margin: 0px;
+}
+
+#mensajeEmail {
+  padding: 0px;
+  margin: 0px;
+  color:red;
+  font-weight: lighter;
 }
 
 </style>
