@@ -14,7 +14,10 @@ djangorestframework==3.11.0
 filelock==3.0.12
 idna==2.9
 oauthlib==3.1.0
+<<<<<<< HEAD
 Pillow==7.1.2
+=======
+>>>>>>> actualice rama master de mi repositorio con la rama master del repositorio original
 psycopg2==2.8.4
 pycparser==2.20
 python3-openid==3.1.0
