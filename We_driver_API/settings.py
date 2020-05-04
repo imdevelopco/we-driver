@@ -175,4 +175,4 @@ AUTHENTICATION_BACKENDS = (
 )
 
 MEDIA_URL =  '/pictures/'
-MEDIA_ROOT = os.path.join(BASE_DIR, "pictures")
+MEDIA_ROOT = os.path.join(BASE_DIR, "")

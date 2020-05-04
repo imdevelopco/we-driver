@@ -8,7 +8,7 @@ from knox.models import AuthToken
 class UserSerializer(serializers.ModelSerializer):
     class Meta: 
         model= User
-        fields = ('id', 'username', 'first_name', 'last_name', 'email')
+        fields = ('id', 'username', 'first_name', 'last_name', 'email','is_staff','is_active')
 
 #Registro de usuarios
 class RegisterSerializer(serializers.Serializer): 
@@ -18,6 +18,8 @@ class RegisterSerializer(serializers.Serializer):
     username = serializers.CharField()
     email = serializers.EmailField()
     password = serializers.CharField() 
+    is_staff = serializers.BooleanField()
+    is_active = serializers.BooleanField()
     
     def create (self, validate_data): 
         instance = User()
@@ -25,6 +27,8 @@ class RegisterSerializer(serializers.Serializer):
         instance.last_name= validate_data.get("last_name")
         instance.username= validate_data.get("username")
         instance.email = validate_data.get("email")
+        instance.is_staff = False
+        instance.is_active = True
         instance.set_password(validate_data.get("password"))    
         instance.save()
         

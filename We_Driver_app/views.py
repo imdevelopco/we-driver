@@ -12,7 +12,4 @@ class camaraViewset(viewsets.ModelViewSet):
 class estacionViewset(viewsets.ModelViewSet):
     queryset = estacion.objects.all()
     serializer_class = estacionSerializer
-"""
-    @action(detail=True,method=['put'])    
-    def estacion(self,request,pk=None)
-"""
+    

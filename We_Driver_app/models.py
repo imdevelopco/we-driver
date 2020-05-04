@@ -9,6 +9,7 @@ class camara(models.Model):
     fecha_registro = models.DateField(auto_now=True)
     picture = models.ImageField(upload_to='pictures',max_length=255,blank=True, null=True)
     comentario = models.CharField(max_length=200)
+    item_aprobado = models.BooleanField(null=False,blank=False)
 
 class estacion(models.Model):
     id = models.AutoField(primary_key=True)
@@ -21,5 +22,5 @@ class estacion(models.Model):
     precio_metro_cubico_gas = models.IntegerField(default=0,blank=True, null=True)
     picture = models.ImageField(upload_to='pictures',max_length=255,blank=True, null=True)
     comentario = models.CharField(max_length=200)
-
+    item_aprobado = models.BooleanField(null=False,blank=False)
 
