@@ -184,12 +184,13 @@ export const store = new Vuex.Store({
         //recursos por verificar (aprobar o desaprobar camaras y estaciones)
         checkSource:{
           cameras:[
-            {id:1,lat:3.456253613827328, lng:-76.57999110577393, velocidad: '60 kph', foto:'descarga.jpg', comentario:"Hola que haces, eso es n comentario"},
+            axios.get("http://localhost:8000/api/v1.0/camara/1/").then((response)=> {return response.data}).catch((error) => console.log(error))
+            /*{id:1,lat:3.456253613827328, lng:-76.57999110577393, velocidad: '60 kph', foto:'descarga.jpg', comentario:"Hola que haces, eso es n comentario"},
             {id:2,lat:3.4344491850294427, lng:-76.53003764508057, velocidad: '60 kph', foto:'descarga.jpg', comentario:"Hola que haces, eso es n comentario"},
             {id:3,lat:3.429137225048734, lng:-76.51892257092285, velocidad: '60 kph', foto:'descarga.jpg', comentario:"Hola que haces, eso es n comentario"},
             {id:4,lat:3.4247248487550803, lng:-76.51154113171387, velocidad: '60 kph', foto:'descarga.jpg', comentario:"Hola que haces, eso es n comentario"},
             {id:5,lat:3.426738265704383, lng:-76.53806281445313, velocidad: '60 kph', foto:'descarga.jpg', comentario:"Hola que haces, eso es n comentario"},
-            {id:6,lat:3.419669868398415, lng:-76.53111052868653, velocidad: '60 kph', foto:'descarga.jpg', comentario:"Hola que haces, eso es n comentario"},
+            {id:6,lat:3.419669868398415, lng:-76.53111052868653, velocidad: '60 kph', foto:'descarga.jpg', comentario:"Hola que haces, eso es n comentario"},*/
           ],
           station:[]
         }
@@ -197,6 +198,9 @@ export const store = new Vuex.Store({
     getters:{
         getRouteAPI(state){
             return state.routeAPI;
+        },
+        getRegisterUser(state){
+            return state.registerUser;
         },
         totalNotifications (state) {
             return state.notifications.length
