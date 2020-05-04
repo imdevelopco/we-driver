@@ -20,11 +20,13 @@ import {OrderedTable} from "@/components";
 export default {
     computed:{
         users(){
-            return this.$store.state.users
+            return this.$store.getters.getUsuarios;
         }
     },
     components:{
         OrderedTable
+    },
+    methods: {
     }
 }
 </script>
