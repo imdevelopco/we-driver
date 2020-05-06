@@ -13,6 +13,7 @@ import Icons from "@/pages/Icons.vue";
 import Maps from "@/pages/Maps.vue";
 import Notifications from "@/pages/Notifications.vue";
 import Usuarios from "@/pages/Users.vue";
+import UserEdit from "@/pages/userEdit.vue";
 
 const routes = [
   
@@ -63,6 +64,11 @@ const routes = [
         meta:{
           //admin : true 
         }
+      },
+      { 
+        path: '/user/:userId', 
+        name: 'user',
+        component: UserEdit 
       },
       {
         path: "crear",

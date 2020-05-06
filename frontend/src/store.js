@@ -110,6 +110,35 @@ export const store = new Vuex.Store({
             ]
         },
 
+        //users
+        users:[
+          {id:1, name: 'Camilo', lastname: 'Arias', mail:"fakemail@deep.com", city : 'Cali', location:'Oeste','picture':'camilo.jpg' },
+          {id:2, name: 'Pedro', lastname: 'Nel', mail:"fakemail@deep.com", city : 'Cali', location:'Oeste','picture':'marc.jpg'  },
+          {id:3, name: 'Martha', lastname: 'Lamos', mail:"fakemail@deep.com", city : 'Cali', location:'Oeste','picture':'marc.jpg' },
+          {id:4, name: 'Carlos', lastname: 'Mariano Ramos', mail:"fakemail@deep.com", city : 'Cali', location:'Oriente','picture':'marc.jpg' },
+          {id:5, name: 'Sebas', lastname: 'Vaugh', mail:"fakemail@deep.com", city : 'Cali', location:'Sur','picture':'marc.jpg' },
+        ],
+
+        //camaras y estaciones aceptadas
+        acceptedmarkers:{
+          cameras:[
+            {id:1,lat:3.456253613827328, lng:-76.57999110577393, velocidad: '60 kph', foto:'descarga.jpg', comentario:"Hola que haces, eso es n comentario"},
+            {id:2,lat:3.4344491850294427, lng:-76.53003764508057, velocidad: '60 kph', foto:'descarga.jpg', comentario:"Hola que haces, eso es n comentario"},
+            {id:3,lat:3.429137225048734, lng:-76.51892257092285, velocidad: '60 kph', foto:'descarga.jpg', comentario:"Hola que haces, eso es n comentario"},
+            {id:4,lat:3.4247248487550803, lng:-76.51154113171387, velocidad: '60 kph', foto:'descarga.jpg', comentario:"Hola que haces, eso es n comentario"},
+            {id:5,lat:3.426738265704383, lng:-76.53806281445313, velocidad: '60 kph', foto:'descarga.jpg', comentario:"Hola que haces, eso es n comentario"},
+            {id:6,lat:3.419669868398415, lng:-76.53111052868653, velocidad: '60 kph', foto:'descarga.jpg', comentario:"Hola que haces, eso es n comentario"},
+          ],
+          stations:[
+            {id:1,lat:3.438399999999999, lng:-76.52929397888184, nombre:"Primax", combustibles:{Corriente:8500,extra:9900,diesel:8500}, foto:'primax.jpg', comentario:"en esta estación el precio cambia frecuentemente"},
+            {id:2,lat:3.4331309003252115, lng:-76.52525993652344,nombre:"mobil",  combustibles:{Corriente:8500,extra:9900,diesel:8500}, foto:'mobil.jpeg', comentario:"Sobre toda la carretera, llegando a la esquina"},
+            {id:3,lat:3.441013119936122, lng:-76.53483005828858, nombre:"terpel", combustibles:{Corriente:8500,extra:9900,diesel:8500, gas:3500}, foto:'terpel.jpg', comentario:"Hola que haces, eso es n comentario"},
+            {id:4,lat:3.42075054368663, lng:-76.53555961914063, nombre:"texaco", combustibles:{Corriente:8500,extra:9900,diesel:8500}, foto:'texaco.jpg', comentario:"Hola que haces, eso es n comentario"},
+            {id:5,lat:3.405028545521386, lng:-76.53534504241944, nombre:"mobil", combustibles:{Corriente:8500,extra:9900,diesel:8500, gas:3500}, foto:'primax.jpg', comentario:"Hola que haces, eso es n comentario"},
+            {id:6,lat:3.4105119964361563, lng:-76.54474350280762,nombre:"texaco",  combustibles:{Corriente:8500,extra:9900,diesel:8500}, foto:'mobil.jpeg', comentario:"Hola que haces, eso es n comentario"},
+          ]
+        },
+
         //Settings Google maps
         googleMapSetting:{
           zoom: 15,

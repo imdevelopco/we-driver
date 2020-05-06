@@ -8,10 +8,10 @@
         <md-table-cell md-label="Estado" md-sort-by="estado">{{ item.is_active }}</md-table-cell>
         <md-table-cell md-label="Administrador" md-sort-by="administrador">{{ item.is_staff }}</md-table-cell>
         <md-table-cell md-label="Acciones">
-          <md-button class="md-just-icon md-simple md-primary">
+          <router-link :to="{ name: 'user', params: { userId: item.id }}" class="md-just-icon md-simple md-primary">
             <md-icon>edit</md-icon>                     
             <md-tooltip md-direction="top">Actualizar</md-tooltip>
-          </md-button>
+          </router-link>
           <md-button class="md-just-icon md-simple md-danger" v-on:click="confirmDelete(item)">
             <md-icon>close</md-icon>
             <md-tooltip md-direction="top">Eliminar</md-tooltip>
