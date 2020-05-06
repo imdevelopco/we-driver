@@ -73,7 +73,7 @@ export default {
   methods: {
     sendForm() {
       if (this.validaType()) {
-        axios.post(this.$store.getters.getRouteAPI + this.$store.getters.registerUser,{
+        axios.post(this.$store.getters.getRouteAPI + this.$store.getters.getRegisterUser,{
           first_name :  this.form.firstName,
 	        last_name:    this.form.lastName,
 	        username :    this.form.email,

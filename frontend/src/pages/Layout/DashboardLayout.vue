@@ -17,7 +17,7 @@
 
       <sidebar-link to="/app/usuarios">
         <md-icon>group</md-icon>
-        <p>Usuarios</p>
+        <p @click="setUsers">Usuarios</p>
       </sidebar-link>
 
       <sidebar-link to="/app/crear">
@@ -74,6 +74,12 @@ export default {
       this.$store.dispatch('destroyToken')
       .then(response => 
       this.$router.go('/login'))
+    },
+    setUsers(){
+      this.$store.dispatch('setUsuarios')
+      .then((response) => {
+          console.log(this.$store.getters.getUsuarios);
+      })
     }
   }
 };

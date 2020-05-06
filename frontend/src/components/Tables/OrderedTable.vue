@@ -2,11 +2,11 @@
   <div>
     <md-table v-model="users" :table-header-color="tableHeaderColor" md-sort="id" md-sort-order="asc">
       <md-table-row slot="md-table-row" slot-scope="{ item }">
-        <md-table-cell md-label="ID" md-sort-by="id">{{ item.id }}</md-table-cell>
-        <md-table-cell md-label="Item" md-sort-by="name">{{ item.name }}</md-table-cell>
-        <md-table-cell md-label="apellido" md-sort-by="apellido">{{ item.lastname }}</md-table-cell>
-        <md-table-cell md-label="Mail" md-sort-by="Mail">{{ item.mail }}</md-table-cell>
-        <md-table-cell md-label="Ubicación" md-sort-by="ubicacion">{{ item.location }}</md-table-cell>
+        <md-table-cell md-label="Email" md-sort-by="id">{{ item.email }}</md-table-cell>
+        <md-table-cell md-label="Nombre" md-sort-by="nombre">{{ item.first_name }}</md-table-cell>
+        <md-table-cell md-label="Apellidos" md-sort-by="apellido">{{ item.last_name }}</md-table-cell>
+        <md-table-cell md-label="Estado" md-sort-by="estado">{{ item.is_active }}</md-table-cell>
+        <md-table-cell md-label="Administrador" md-sort-by="administrador">{{ item.is_staff }}</md-table-cell>
         <md-table-cell md-label="Acciones">
           <router-link :to="{ name: 'user', params: { userId: item.id }}" class="md-just-icon md-simple md-primary">
             <md-icon>edit</md-icon>                     

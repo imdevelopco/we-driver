@@ -4,3 +4,7 @@ frontend/src/apiKey.js
 .vscode
 env
 dev
+We_Driver_app/__pycache__
+We_driver_API/__pycache__
+accounts/__pycache__
+
