@@ -23,7 +23,7 @@ export const store = new Vuex.Store({
           client_id: '651720234663-eufvea4ejf7g733h7us44f6naaomkp7q.apps.googleusercontent.com'
         },
         // usuarios de wedrive
-        usuarios: {},
+        usuarios: [],
         //dashboard data
         totalUsers: 623230,
         totalCameras: 45,
@@ -278,6 +278,7 @@ export const store = new Vuex.Store({
           let usuarios = await axios.get("http://localhost:8000/api/listUser")
           context.commit('setUsuarios',usuarios.data)
         },
+        
         retrieveToken(context, credentials){
         return new Promise(function(resolve,reject) {
             axios.post('http://localhost:8000/api/login',{

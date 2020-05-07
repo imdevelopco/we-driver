@@ -17,7 +17,7 @@
 
       <sidebar-link to="/app/usuarios">
         <md-icon>group</md-icon>
-        <p @click="setUsers">Usuarios</p>
+        <p>Usuarios</p>
       </sidebar-link>
 
       <sidebar-link to="/app/crear">
