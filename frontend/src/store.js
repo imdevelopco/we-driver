@@ -281,7 +281,7 @@ export const store = new Vuex.Store({
         },
         
         retrieveToken(context, credentials){
-        return new Promise(function(resolve,reject) {
+          return new Promise(function(resolve,reject) {
             axios.post('http://localhost:8000/api/login',{
             username: credentials.username, 
             password: credentials.password
@@ -300,13 +300,14 @@ export const store = new Vuex.Store({
              reject(error)
           })
         })      
-      },
-      destroyToken(context){
-        if(context.getters.loggedIn){
-          localStorage.removeItem('token')
-          context.commit('destroyToken')
-                
-        }
-      } 
+        },
+
+        destroyToken(context){
+          if(context.getters.loggedIn){
+            localStorage.removeItem('token')
+            context.commit('destroyToken') 
+          }
+        } 
+        
     }
 })

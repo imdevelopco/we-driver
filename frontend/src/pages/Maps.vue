@@ -78,7 +78,7 @@ export default {
         });
 
         markerStation.addListener('click', function() {
-          infowindow.open(map, markerCam);
+          infowindow.open(map, markerStation);
         });
 
         stations.push(markerStation)
