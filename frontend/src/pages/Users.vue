@@ -7,7 +7,7 @@
                     <p class="category"></p>
                 </md-card-header>
                 <md-card-content>
-                    <ordered-table table-header-color="red" v-bind:usersProps="users"></ordered-table>
+                    <ordered-table table-header-color="red" :usersProps="users"></ordered-table>
                 </md-card-content>
             </md-card>
         </div>
@@ -30,15 +30,8 @@ export default {
     methods: {
     },
     mounted(){
-        console.log("DEBUG! state.usuarios.length", this.$store.state.usuarios.length)
-        console.log("DEBUG! getters.getUsuarios", this.$store.getters.getUsuarios.length)
        if(this.$store.state.usuarios.length == 0){
-        console.log("DEBUG pedir datos usuarios")
            this.$store.dispatch('setUsuarios')
-            .then((response) => {
-                console.log("DEBUG this.$store.getters.getUsuarios", this.$store.getters.getUsuarios);
-                console.log("DEBUG this.$store.state.usuarios", this.$store.state.usuarios);
-            })
        }
     }
 }

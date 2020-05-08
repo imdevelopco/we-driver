@@ -248,6 +248,7 @@ export const store = new Vuex.Store({
     },
     mutations:{
         setUsuarios(state,usuarios){
+          console.log('OK lets to change de users state')
           state.usuarios = usuarios;
         },
         //Graficos
