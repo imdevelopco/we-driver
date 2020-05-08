@@ -30,22 +30,20 @@ export default {
       var cameras = [],
           stations = [];
       
-      this.$store.state.acceptedmarkers.cameras.forEach(cam => {
+      this.$store.getters.getCamerasAproved.forEach(cam => {
         var markerCam = new google.maps.Marker({
           position: new google.maps.LatLng( cam.lat, cam.lng),
           title: "foto multa",
           map:map
         });
 
-        let picture = require("@/assets/img/cameras/"+cam.foto+"");
-
         var infowindow = new google.maps.InfoWindow({
           content: '<div>'+
                       '<ul>'+
                         '<li><b>ID:</b> '+cam.id+'</li>'+
-                        '<li><b>Velocidad:</b> '+cam.velocidad+'</li>'+
+                        '<li><b>Velocidad:</b> '+cam.velocidad_maxima+'</li>'+
                         '<li><b>Comentario:</b> '+cam.comentario+'</li>'+
-                        '<li><img src="'+picture+'" /></li>'+
+                        '<li><img src="'+cam.picture+'" /></li>'+
                      ' </ul>'+
                    '</div>'
         });
@@ -134,16 +132,29 @@ export default {
   },
   mounted() {
     var _this = this;
-    this.$store.state.loader.load().then( google => {
-        navigator.geolocation.getCurrentPosition(position => {
-            var startLocation = {
-                lat: position.coords.latitude, 
-                long: position.coords.longitude
-            } 
-            _this.$store.commit('setCenterMap',new google.maps.LatLng(startLocation.lat, startLocation.long) )
-            _this.initMap(google);
-        })
-    });
+    function loadGM(){
+      _this.$store.state.loader.load().then( google => {
+          navigator.geolocation.getCurrentPosition(position => {
+              var startLocation = {
+                  lat: position.coords.latitude, 
+                  long: position.coords.longitude
+              } 
+              _this.$store.commit('setCenterMap',new google.maps.LatLng(startLocation.lat, startLocation.long) )
+              _this.initMap(google);
+          })
+      });
+    }
+    console.log("this.$store.state.cameras", this.$store.state.cameras.length)
+    console.log("this.$store.state.checkSource.stations", this.$store.state.checkSource.stations.length)
+
+    if(this.$store.state.cameras.length == 0 & this.$store.state.checkSource.stations.length == 0){
+      this.$store.dispatch('getCameras')
+        .then(cameras => { loadGM() } )
+    }
+    else { 
+      loadGM() 
+    }
+
   }
 };
 </script>
