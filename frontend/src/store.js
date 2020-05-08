@@ -241,15 +241,14 @@ export const store = new Vuex.Store({
           return state.googleSignInParams;
         },
         getCamerasAproved(state){
-          console.log(":::::camaras a filtrar:::::", state.cameras)
-          let cms =  state.cameras.filter(cam =>  cam.item_aprobado );
-          console.log("toma lo tuyo:::::camaras aprovadas", cms)
-          return cms;
+          return state.cameras.filter(cam =>  cam.item_aprobado );
+        },
+        getCamerasNoAproved(state){
+          return state.cameras.filter(cam =>  !cam.item_aprobado );
         },
     },
     mutations:{
         setUsuarios(state,usuarios){
-          console.log('OK lets to change de users state')
           state.usuarios = usuarios;
         },
         //Graficos
@@ -277,18 +276,41 @@ export const store = new Vuex.Store({
         setCameras(state,cameras){
           state.cameras = cameras;
         },
+        addCamera(state, camera){
+          state.cameras.push(camera);
+        },
+        updateCamera(state,newCamera){
+          state.cameras = state.cameras.filter(cam => cam.id !== newCamera.id)
+          state.cameras.push(newCamera.newCamera);
+        },
     },
     actions:{
         async setUsuarios(context){
           let usuarios = await axios.get("http://localhost:8000/api/listUser")
+          console.log("pidiendo camaras...")
           context.commit('setUsuarios',usuarios.data)
         },
        
         async getCameras(context){
-          console.log("DEBUG::: pidiendo las camaras")
           let cameras = await axios.get("http://localhost:8000/api/v1.0/camara")
-          console.log(cameras)
+          console.log("Pidiendo camaras")
           context.commit('setCameras', cameras.data)
+        },
+
+        async saveCamera(context, formData){
+          let response = await axios.post("http://localhost:8000/api/v1.0/camara/",formData)
+          console.log("Guardando camara")
+          context.commit('addCamera', response.data)
+        },
+
+        async updateCamera(context,updateData){
+          console.log("UpdateCamera datos",updateData.id)
+          let response = await axios.put("http://localhost:8000/api/v1.0/camara/"+updateData.id+"/",updateData.data)
+          console.log("Actualizando camara")
+          context.commit('updateCamera', {
+            id:updateData.id, 
+            newCamera:response.data
+          })
         },
         
         retrieveToken(context, credentials){

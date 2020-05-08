@@ -144,10 +144,9 @@ export default {
           })
       });
     }
-    console.log("this.$store.state.cameras", this.$store.state.cameras.length)
-    console.log("this.$store.state.checkSource.stations", this.$store.state.checkSource.stations.length)
 
-    if(this.$store.state.cameras.length == 0 & this.$store.state.checkSource.stations.length == 0){
+    //verificar si almenos hay una camara o estacion, s no hacer la peticion a la api
+    if(this.$store.getters.getCamerasAproved.length == 0){
       this.$store.dispatch('getCameras')
         .then(cameras => { loadGM() } )
     }
