@@ -103,6 +103,11 @@
           </div>
         </div>
       </md-card-content>
+
+      <md-dialog-alert
+      :md-active.sync="success"
+      md-title="¡Creado!" />
+
     </md-card>
   </form>
 </template>
@@ -132,7 +137,8 @@ export default {
       nameGas:[],
       comment:"",
       addFields:0,
-      coordinates:{}
+      coordinates:{},
+      success:false
     };
   },
   computed:{
@@ -191,8 +197,14 @@ export default {
             data.append('lng', this.coordinates.lng);
 
         this.$store.dispatch('saveCamera',data)
+          .then(d => {
+            this.picture = null;
+            this.velMax = null;
+            this.comment = "";
+            this.success = true;
+          })
       }
-    }
+    },
   },
   mounted() {
     var _this = this;
@@ -210,4 +222,10 @@ export default {
   }
 };
 </script>
-<style></style>
+<style>
+  .vue-notification{
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+  }
+</style>

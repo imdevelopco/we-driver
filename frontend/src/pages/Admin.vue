@@ -29,6 +29,8 @@ export default {
     initMap(google) {
       var mapOptions = this.$store.state.googleMapSetting,
           map = new google.maps.Map(document.getElementById("map"), mapOptions),
+          cameras = [],
+          stations = [],
           _this = this;
 
       google.aceptButt = id =>{
@@ -40,13 +42,22 @@ export default {
           id:id,
           data:data
         })
+        .then(data => {
+          console.log("Las camaras", cameras)
+          return cameras.filter( cam => cam.id == id)[0]
+        })
+        .then(mark => {
+          console.log("Las elegida", mark)
+          console.log("Las elegida arcador", mark.marker)
+          mark.marker.setMap(null)
+        })
       }
 
       google.declineMark = id =>{
         alert("Eliminalo: "+id)
       }
 
-      this.$store.getters.getCamerasNoAproved.forEach(cam => {
+      this.$store.getters.getCamerasNoAproved.forEach( cam => {
         var marker = new google.maps.Marker({
           position: new google.maps.LatLng( cam.lat, cam.lng),
           title: "posicion camaras",
@@ -74,6 +85,7 @@ export default {
           infowindow.open(map, marker);
         });
 
+        cameras.push({id:cam.id, marker:marker});
       });
     }
   },
