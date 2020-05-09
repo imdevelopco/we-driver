@@ -121,26 +121,8 @@ export const store = new Vuex.Store({
 
         //camaras (de aca se toman las camaras por aprobar y aprobadas con los geeters)
         cameras:[],
-
-        //camaras y estaciones aceptadas
-        acceptedmarkers:{
-          cameras:[
-            {id:1,lat:3.456253613827328, lng:-76.57999110577393, velocidad: '60 kph', foto:'descarga.jpg', comentario:"Hola que haces, eso es n comentario"},
-            {id:2,lat:3.4344491850294427, lng:-76.53003764508057, velocidad: '60 kph', foto:'descarga.jpg', comentario:"Hola que haces, eso es n comentario"},
-            {id:3,lat:3.429137225048734, lng:-76.51892257092285, velocidad: '60 kph', foto:'descarga.jpg', comentario:"Hola que haces, eso es n comentario"},
-            {id:4,lat:3.4247248487550803, lng:-76.51154113171387, velocidad: '60 kph', foto:'descarga.jpg', comentario:"Hola que haces, eso es n comentario"},
-            {id:5,lat:3.426738265704383, lng:-76.53806281445313, velocidad: '60 kph', foto:'descarga.jpg', comentario:"Hola que haces, eso es n comentario"},
-            {id:6,lat:3.419669868398415, lng:-76.53111052868653, velocidad: '60 kph', foto:'descarga.jpg', comentario:"Hola que haces, eso es n comentario"},
-          ],
-          stations:[
-            {id:1,lat:3.438399999999999, lng:-76.52929397888184, nombre:"Primax", combustibles:{Corriente:8500,extra:9900,diesel:8500}, foto:'primax.jpg', comentario:"en esta estación el precio cambia frecuentemente"},
-            {id:2,lat:3.4331309003252115, lng:-76.52525993652344,nombre:"mobil",  combustibles:{Corriente:8500,extra:9900,diesel:8500}, foto:'mobil.jpeg', comentario:"Sobre toda la carretera, llegando a la esquina"},
-            {id:3,lat:3.441013119936122, lng:-76.53483005828858, nombre:"terpel", combustibles:{Corriente:8500,extra:9900,diesel:8500, gas:3500}, foto:'terpel.jpg', comentario:"Hola que haces, eso es n comentario"},
-            {id:4,lat:3.42075054368663, lng:-76.53555961914063, nombre:"texaco", combustibles:{Corriente:8500,extra:9900,diesel:8500}, foto:'texaco.jpg', comentario:"Hola que haces, eso es n comentario"},
-            {id:5,lat:3.405028545521386, lng:-76.53534504241944, nombre:"mobil", combustibles:{Corriente:8500,extra:9900,diesel:8500, gas:3500}, foto:'primax.jpg', comentario:"Hola que haces, eso es n comentario"},
-            {id:6,lat:3.4105119964361563, lng:-76.54474350280762,nombre:"texaco",  combustibles:{Corriente:8500,extra:9900,diesel:8500}, foto:'mobil.jpeg', comentario:"Hola que haces, eso es n comentario"},
-          ]
-        },
+        //estaciones (de aca se toman las aprobadas y las nuevas por revisar, se usan getters)
+        stations:[],
 
         //Settings Google maps
         googleMapSetting:{
@@ -214,12 +196,6 @@ export const store = new Vuex.Store({
         velMax:0,
         picture:null,
         comment:"",
-
-        //recursos por verificar (aprobar o desaprobar camaras y estaciones)
-        checkSource:{
-          cameras:[],
-          stations:[]
-        }
     },
     getters:{
         getUsuarios(state){
@@ -246,6 +222,9 @@ export const store = new Vuex.Store({
         getCamerasNoAproved(state){
           return state.cameras.filter(cam =>  !cam.item_aprobado );
         },
+        getStationsNoAproved(state){
+          return state.stations.filter(station => !station.item_aprobado)
+        }
     },
     mutations:{
         setUsuarios(state,usuarios){
@@ -283,6 +262,16 @@ export const store = new Vuex.Store({
           state.cameras = state.cameras.filter(cam => cam.id !== newCamera.id)
           state.cameras.push(newCamera.newCamera);
         },
+        setStations(state,newStation){
+          state.stations = newStation;
+        },
+        addStation(state, newStation){
+          state.stations.push(newStation)
+        },
+        updateStation(state,newStation){
+          state.stations = state.stations.filter(station => station.id !== newStation.id)
+          state.cameras.push(newStation.newStation);
+        },
     },
     actions:{
         async setUsuarios(context){
@@ -310,6 +299,28 @@ export const store = new Vuex.Store({
           context.commit('updateCamera', {
             id:updateData.id, 
             newCamera:response.data
+          })
+        },
+
+        async getStations(context){
+          let stations = await axios.get("http://localhost:8000/api/v1.0/estacion/")
+          console.log("Pidiendo estaciones")
+          context.commit('setStations', stations.data)
+        },
+
+        async saveStation(context, formData){
+          let response = await axios.post("http://localhost:8000/api/v1.0/estacion/",formData)
+          console.log("Guardando estacion")
+          context.commit('addStation', response.data)
+        },
+
+        async updateStation(context,updateData){
+          console.log("Updatetation datos",updateData)
+          let response = await axios.put("http://localhost:8000/api/v1.0/estacion/"+updateData.id+"/",updateData.data)
+          console.log("Actualizando estacion")
+          context.commit('updateStation', {
+            id:updateData.id, 
+            newStation:response.data
           })
         },
         

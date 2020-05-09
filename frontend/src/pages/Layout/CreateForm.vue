@@ -37,57 +37,58 @@
             </div>
 
             <div v-if="tipo == 'estacion'">
-                <md-field>
-                    <label>Nombre</label>
-                    <md-input v-model="nameStation" type="text"></md-input>
-                </md-field>
 
                 <md-field>
                     <label>Foto</label>
-                    <md-file v-model="picture" accept="image/*" />
+                    <md-file  @change="getImage" accept="image/*" />
                 </md-field>
 
                 <div class="md-layout">  
                     <div class="md-layout-item md-xsmall-size-50"> 
-                      <md-field>
-                          <label>Combustible</label>
-                          <md-input v-model="nameGas1" type="text"></md-input>
-                      </md-field> 
+                      <b>Gasolina Corriente</b>
                     </div>
                     <div class="md-layout-item md-xsmall-size-50">  
                       <md-field>
                           <label>Precio</label>
-                          <md-input v-model="priceGas1" type="text"></md-input>
+                          <md-input v-model="corrientePrice" type="text"></md-input>
                       </md-field>
                     </div>
                 </div>
 
-                <div class="md-layout md-alignment-bottom-null" v-for="gas in nameGas" v-bind:key="gas.index">  
-                    <div class="md-layout-item md-xsmall-size-45 md-size-45"> 
-                      <md-field>
-                          <label>Combustible</label>
-                          <md-input v-model="gas.name" type="text"></md-input>
-                      </md-field> 
+                <div class="md-layout">  
+                    <div class="md-layout-item md-xsmall-size-50">
+                        <b>Gasolina Extra</b>
                     </div>
-                    <div class="md-layout-item md-xsmall-size-45 md-size-45">  
+                    <div class="md-layout-item md-xsmall-size-50">  
                       <md-field>
                           <label>Precio</label>
-                          <md-input v-model="gas.price" type="text"></md-input>
+                          <md-input v-model="extraPrice" type="text"></md-input>
                       </md-field>
-                    </div>
-
-                    <div class="md-layout-item md-xsmall-size-10 md-size-10"> 
-                        <md-button class="md-just-icon md-simple md-danger" v-on:click="deleteRow(gas.index)">
-                          <md-icon>close</md-icon>
-                          <md-tooltip md-direction="top">Eliminar</md-tooltip>
-                        </md-button>
                     </div>
                 </div>
 
-                <div class="md-layout-item md-size-100 text-right">
-                  <md-button class="md-icon-button md-raised" v-on:click="addRow()">
-                    <md-icon>add</md-icon>
-                  </md-button>
+                <div class="md-layout">  
+                    <div class="md-layout-item md-xsmall-size-50"> 
+                        <b>ACPM</b>
+                    </div>
+                    <div class="md-layout-item md-xsmall-size-50">  
+                      <md-field>
+                          <label>Precio</label>
+                          <md-input v-model="acpmPrice" type="text"></md-input>
+                      </md-field>
+                    </div>
+                </div>
+
+                <div class="md-layout">  
+                    <div class="md-layout-item md-xsmall-size-50">
+                        <b>Gas</b>
+                    </div>
+                    <div class="md-layout-item md-xsmall-size-50">  
+                      <md-field>
+                          <label>Precio</label>
+                          <md-input v-model="gasPrice" type="text"></md-input>
+                      </md-field>
+                    </div>
                 </div>
                 
 
@@ -132,9 +133,10 @@ export default {
       velMax: null,
       picture:null,
       nameStation:"",
-      nameGas1:"",
-      priceGas1:"",
-      nameGas:[],
+      corrientePrice:"",
+      extraPrice:"",
+      acpmPrice:"",
+      gasPrice:"",
       comment:"",
       addFields:0,
       coordinates:{},
@@ -162,7 +164,7 @@ export default {
         console.log("[Debug] moviendo...")
         console.info(evt.latLng.lat() )
         console.info(evt.latLng.lng() )
-          this.coordinates = {lat: evt.latLng.lat(), lng:evt.latLng.lng()}
+        this.coordinates = {lat: evt.latLng.lat(), lng:evt.latLng.lng()}
       });
 
       // Poner el marcador en el mapa, setMap();
@@ -188,19 +190,35 @@ export default {
         this.picture = event.target.files[0];
     },
     save(){
-      if(this.tipo == "camara"){
-        var data = new  FormData(); 
-            data.append('picture', this.picture);
-            data.append('velocidad_maxima', this.velMax); 
-            data.append('comentario', this.comment);
-            data.append('lat', this.coordinates.lat);
-            data.append('lng', this.coordinates.lng);
+      var data = new  FormData(); 
+          data.append('picture', this.picture);
+          data.append('comentario', this.comment);
+          data.append('lat', this.coordinates.lat);
+          data.append('lng', this.coordinates.lng);
 
+      if(this.tipo == "camara"){
+        data.append('velocidad_maxima', this.velMax); 
         this.$store.dispatch('saveCamera',data)
           .then(d => {
             this.picture = null;
             this.velMax = null;
             this.comment = "";
+            this.success = true;
+          })
+      }
+      else{
+        data.append('corrientePrice',this.corrientePrice);
+        data.append('extraPrice',this.extraPrice);
+        data.append('acpmPrice',this.acpmPrice);
+        data.append('gasPrice',this.gasPrice);
+        this.$store.dispatch('saveStation',data)
+        .then(d => {
+            this.picture = null;
+            this.comment = "";
+            this.corrientePrice = null;
+            this.extraPrice = null;
+            this.acpmPrice = null;
+            this.gasPrice = null;
             this.success = true;
           })
       }
@@ -223,9 +241,4 @@ export default {
 };
 </script>
 <style>
-  .vue-notification{
-    position: fixed;
-    bottom: 40px;
-    right: 40px;
-  }
 </style>
