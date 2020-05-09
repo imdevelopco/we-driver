@@ -1,6 +1,6 @@
 <template>
   <div>
-    <md-table v-model="users" :table-header-color="tableHeaderColor" md-sort="id" md-sort-order="asc">
+    <md-table v-model="usersProps" :table-header-color="tableHeaderColor" md-sort="id" md-sort-order="asc">
       <md-table-row slot="md-table-row" slot-scope="{ item }">
         <md-table-cell md-label="Email" md-sort-by="id">{{ item.email }}</md-table-cell>
         <md-table-cell md-label="Nombre" md-sort-by="nombre">{{ item.first_name }}</md-table-cell>

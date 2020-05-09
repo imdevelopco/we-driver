@@ -29,33 +29,48 @@ export default {
     initMap(google) {
       var mapOptions = this.$store.state.googleMapSetting,
           map = new google.maps.Map(document.getElementById("map"), mapOptions),
+          cameras = [],
+          stations = [],
           _this = this;
 
       google.aceptButt = id =>{
-        alert("Tomalo: "+id)
+        var data = new  FormData(); 
+            data.append('item_aprobado', true);
+            data.append('comentario', this.$store.getters.getCamerasNoAproved.find(cam => cam.id == id).comentario);
+        console.log("aceptButt formData",data)
+        this.$store.dispatch('updateCamera',{
+          id:id,
+          data:data
+        })
+        .then(data => {
+          console.log("Las camaras", cameras)
+          return cameras.filter( cam => cam.id == id)[0]
+        })
+        .then(mark => {
+          console.log("Las elegida", mark)
+          console.log("Las elegida arcador", mark.marker)
+          mark.marker.setMap(null)
+        })
       }
 
       google.declineMark = id =>{
         alert("Eliminalo: "+id)
       }
 
-      this.$store.state.checkSource.cameras.forEach(cam => {
+      this.$store.getters.getCamerasNoAproved.forEach( cam => {
         var marker = new google.maps.Marker({
           position: new google.maps.LatLng( cam.lat, cam.lng),
           title: "posicion camaras",
           map:map
         });
 
-        let picture = require("@/assets/img/cameras/"+cam.foto+""),
-            sayHai = _this.sayHi;
-
         var infowindow = new google.maps.InfoWindow({
           content: '<div>'+
                       '<ul>'+
                         '<li><b>ID:</b> '+cam.id+'</li>'+
-                        '<li><b>Velocidad:</b> '+cam.velocidad+'</li>'+
+                        '<li><b>Velocidad:</b> '+cam.velocidad_maxima+'</li>'+
                         '<li><b>Comentario:</b> '+cam.comentario+'</li>'+
-                        '<li><img src="'+picture+'" /></li>'+
+                        '<li><img src="'+cam.picture+'" /></li>'+
                      ' </ul>'+
                      '<div class="contButtons">'+
                        '<button onclick="google.aceptButt('+cam.id+')" class="buttonAceptar">'+
@@ -70,23 +85,28 @@ export default {
           infowindow.open(map, marker);
         });
 
+        cameras.push({id:cam.id, marker:marker});
       });
     }
   },
    mounted() {
     var _this = this;
-    this.$store.state.loader.load().then( google => {
-      _this.$store.commit('setCenterMap',new google.maps.LatLng(3.42158, -76.5225000) )
-      _this.$store.commit('setZoomMap',13)
-      _this.initMap(google);
-    });
+    function loadGMS(){
+      _this.$store.state.loader.load().then( google => {
+        _this.$store.commit('setCenterMap',new google.maps.LatLng(3.42158, -76.5225000) )
+        _this.$store.commit('setZoomMap',13)
+        _this.initMap(google);
+      });
+    }
 
-    var acepts = document.getElementsByClassName('acceptButton')
-    acepts.forEach( btn => {
-      btn.addListener('click', event => {
-        alert(event)
-      })
-    })
+    //verificar si almenos hay una camara o estacion, s no hacer la peticion a la api
+    if(this.$store.getters.getCamerasNoAproved.length == 0){
+      this.$store.dispatch('getCameras')
+        .then(cameras => { loadGMS() } )
+    }
+    else { 
+      loadGMS() 
+    }
   }
 };
 </script>

@@ -27,7 +27,7 @@
 
                 <md-field>
                     <label>Foto</label>
-                    <md-file v-model="picture" accept="image/*" />
+                    <md-file @change="getImage" accept="image/*" />
                 </md-field>
 
                 <md-field maxlength="5">
@@ -99,10 +99,15 @@
           </div>
 
           <div class="md-layout-item md-size-100 text-right">
-            <md-button class="md-raised md-success" v-on:click="showData()">Guardar</md-button>
+            <md-button class="md-raised md-success" v-on:click="save()">Guardar</md-button>
           </div>
         </div>
       </md-card-content>
+
+      <md-dialog-alert
+      :md-active.sync="success"
+      md-title="¡Creado!" />
+
     </md-card>
   </form>
 </template>
@@ -132,7 +137,8 @@ export default {
       nameGas:[],
       comment:"",
       addFields:0,
-      coordinates:{}
+      coordinates:{},
+      success:false
     };
   },
   computed:{
@@ -177,10 +183,28 @@ export default {
       let dell = getIndex(0)
       this.nameGas.splice( dell, 1 );
     },
-    showData(){
-      console.log("[DEBUG] estas son las coordenadas:")
-      console.info( this.coordinates )
-    }
+    getImage(event){
+        //Asignamos la imagen a  nuestra data
+        this.picture = event.target.files[0];
+    },
+    save(){
+      if(this.tipo == "camara"){
+        var data = new  FormData(); 
+            data.append('picture', this.picture);
+            data.append('velocidad_maxima', this.velMax); 
+            data.append('comentario', this.comment);
+            data.append('lat', this.coordinates.lat);
+            data.append('lng', this.coordinates.lng);
+
+        this.$store.dispatch('saveCamera',data)
+          .then(d => {
+            this.picture = null;
+            this.velMax = null;
+            this.comment = "";
+            this.success = true;
+          })
+      }
+    },
   },
   mounted() {
     var _this = this;
@@ -198,4 +222,10 @@ export default {
   }
 };
 </script>
-<style></style>
+<style>
+  .vue-notification{
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+  }
+</style>
