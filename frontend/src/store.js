@@ -286,7 +286,7 @@ export const store = new Vuex.Store({
     },
     actions:{
         async setUsuarios(context){
-          let usuarios = await axios.get("http://localhost:8000/api/listUser")
+          let usuarios = await axios.get("http://localhost:8000/api/listUsers")
           console.log("pidiendo camaras...")
           context.commit('setUsuarios',usuarios.data)
         },

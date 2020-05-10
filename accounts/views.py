@@ -8,10 +8,16 @@ from django.contrib.auth.models import User
 from .serializer import RegisterSerializer, UserSerializer, LoginSerializer
 
 #Listar usuarios
-class ListUser(generics.ListAPIView): 
+class ListUsers(generics.ListAPIView): 
     queryset = User.objects.all()
     serializer_class = UserSerializer  
 
+class ListUser(generics.ListAPIView):
+    serializer_class = UserSerializer
+    def get_queryset(self):
+        pk=self.kwargs['pk']
+        if User.objects.filter(pk=pk).exists():
+            return User.objects.filter(pk=pk)
 #Registrar usuarios
 class RegisterUser(generics.GenericAPIView): 
     
