@@ -222,6 +222,9 @@ export const store = new Vuex.Store({
         getCamerasNoAproved(state){
           return state.cameras.filter(cam =>  !cam.item_aprobado );
         },
+        getStationsAproved(state){
+          return state.stations.filter(station => station.item_aprobado)
+        },
         getStationsNoAproved(state){
           return state.stations.filter(station => !station.item_aprobado)
         }
@@ -275,26 +278,26 @@ export const store = new Vuex.Store({
     },
     actions:{
         async setUsuarios(context){
-          let usuarios = await axios.get("http://localhost:8000/api/listUsers")
-          console.log("pidiendo camaras...")
+          let usuarios = await axios.get("https://we-drive-api.herokuapp.com/api/listUsers")
+          console.log("pidiendo Usuarios...")
           context.commit('setUsuarios',usuarios.data)
         },
        
         async getCameras(context){
-          let cameras = await axios.get("http://localhost:8000/api/v1.0/camara")
+          let cameras = await axios.get("https://we-drive-api.herokuapp.com/api/v1.0/camara")
           console.log("Pidiendo camaras")
           context.commit('setCameras', cameras.data)
         },
 
         async saveCamera(context, formData){
-          let response = await axios.post("http://localhost:8000/api/v1.0/camara/",formData)
+          let response = await axios.post("https://we-drive-api.herokuapp.com/api/v1.0/camara/",formData)
           console.log("Guardando camara")
           context.commit('addCamera', response.data)
         },
 
         async updateCamera(context,updateData){
           console.log("UpdateCamera datos",updateData.id)
-          let response = await axios.put("http://localhost:8000/api/v1.0/camara/"+updateData.id+"/",updateData.data)
+          let response = await axios.put("https://we-drive-api.herokuapp.com/api/v1.0/camara/"+updateData.id+"/",updateData.data)
           console.log("Actualizando camara")
           context.commit('updateCamera', {
             id:updateData.id, 
@@ -303,20 +306,20 @@ export const store = new Vuex.Store({
         },
 
         async getStations(context){
-          let stations = await axios.get("http://localhost:8000/api/v1.0/estacion/")
+          let stations = await axios.get("https://we-drive-api.herokuapp.com/api/v1.0/estacion/")
           console.log("Pidiendo estaciones")
           context.commit('setStations', stations.data)
         },
 
         async saveStation(context, formData){
-          let response = await axios.post("http://localhost:8000/api/v1.0/estacion/",formData)
+          let response = await axios.post("https://we-drive-api.herokuapp.com/api/v1.0/estacion/",formData)
           console.log("Guardando estacion")
           context.commit('addStation', response.data)
         },
 
         async updateStation(context,updateData){
           console.log("Updatetation datos",updateData)
-          let response = await axios.put("http://localhost:8000/api/v1.0/estacion/"+updateData.id+"/",updateData.data)
+          let response = await axios.put("https://we-drive-api.herokuapp.com/api/v1.0/estacion/"+updateData.id+"/",updateData.data)
           console.log("Actualizando estacion")
           context.commit('updateStation', {
             id:updateData.id, 

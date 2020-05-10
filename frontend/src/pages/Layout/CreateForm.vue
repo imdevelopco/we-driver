@@ -109,6 +109,10 @@
       :md-active.sync="success"
       md-title="¡Creado!" />
 
+      <md-dialog-alert
+      :md-active.sync="fail"
+      md-title="Verifica la informaciòn primero" />
+
     </md-card>
   </form>
 </template>
@@ -140,7 +144,8 @@ export default {
       comment:"",
       addFields:0,
       coordinates:{},
-      success:false
+      success:false,
+      fail:false
     };
   },
   computed:{
@@ -205,12 +210,15 @@ export default {
             this.comment = "";
             this.success = true;
           })
+          .catch(err =>{
+            this.fail = true
+          })
       }
       else{
-        data.append('corrientePrice',this.corrientePrice);
-        data.append('extraPrice',this.extraPrice);
-        data.append('acpmPrice',this.acpmPrice);
-        data.append('gasPrice',this.gasPrice);
+        data.append('precio_galon_corriente',this.corrientePrice);
+        data.append('precio_galon_extra',this.extraPrice);
+        data.append('precio_galon_acpm',this.acpmPrice);
+        data.append('precio_metro_cubico_gas',this.gasPrice);
         this.$store.dispatch('saveStation',data)
         .then(d => {
             this.picture = null;
@@ -221,6 +229,9 @@ export default {
             this.gasPrice = null;
             this.success = true;
           })
+        .catch(err =>{
+          this.fail = true
+        })
       }
     },
   },
