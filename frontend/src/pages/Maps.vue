@@ -55,22 +55,24 @@ export default {
         cameras.push(markerCam)
       });
 
-      this.$store.state.acceptedmarkers.stations.forEach(station => {
+      this.$store.getters.getStationsAproved.forEach(station => {
+        console.log('Somting else..')
         var markerStation = new google.maps.Marker({
           position: new google.maps.LatLng( station.lat, station.lng),
           title: station.name,
           map:map
         });
 
-        let picture = require("@/assets/img/estaciones/"+station.foto+"");
-
         var infowindow = new google.maps.InfoWindow({
           content: '<div>'+
                       '<ul>'+
                         '<li><b>ID:</b> '+station.id+'</li>'+
-                        '<li><b>nombre:</b> '+station.nombre+'</li>'+
                         '<li><b>Comentario:</b> '+station.comentario+'</li>'+
-                        '<li><img src="'+picture+'" /></li>'+
+                        '<li><b>Corriente:</b> '+station.precio_galon_corriente+'</li>'+
+                        '<li><b>Extra:</b> '+station.precio_galon_extra+'</li>'+
+                        '<li><b>ACPM:</b> '+station.precio_galon_acpm+'</li>'+
+                        '<li><b>Gas:</b> '+station.precio_metro_cubico_gas+'</li>'+
+                        '<li><img src="'+station.picture+'" /></li>'+
                      ' </ul>'+
                    '</div>'
         });
@@ -146,9 +148,10 @@ export default {
     }
 
     //verificar si almenos hay una camara o estacion, s no hacer la peticion a la api
-    if(this.$store.getters.getCamerasAproved.length == 0){
+    if(this.$store.getters.getCamerasNoAproved.length == 0 || this.$store.getters.getStationsNoAproved.length == 0){
       this.$store.dispatch('getCameras')
-        .then(cameras => { loadGM() } )
+        .then(cameras => this.$store.dispatch('getStations') )
+        .then(stations => { loadGM() })
     }
     else { 
       loadGM() 
