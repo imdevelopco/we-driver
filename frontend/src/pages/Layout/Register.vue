@@ -17,18 +17,21 @@
             placeholder="Apellido"
             v-model="form.lastName"
           />
+          <p id="mensajeEmail"></p>
           <input
             type="email"
             :class="{ error: validaEmail }"
             placeholder="Email"
             v-model="form.email"
           />
+          <p id="mensajePass1">{{ cambiarMensaje() }}</p>
           <input
             type="password"
             :class="{ error: validaPassword }"
             placeholder="Contraseña"
             v-model="form.password"
           />
+          <p id="mensajePass2"></p>
           <input
             type="password"
             :class="{ error: verificaPaswordIguales }"
@@ -67,13 +70,23 @@ export default {
         email: "",
         password: "",
         password2: ""
-      }
+      },
+      mensaje: ""
     };
   },
   methods: {
+    cambiarMensaje(){
+      if (this.validaPassword) {
+        this.mensaje = "La contraseña debe tener almenos una mayúscula, una minúscula y un número.";
+        return this.mensaje;
+      }else {
+        this.mensaje = ""
+        return this.mensaje;
+      }
+    },
     sendForm() {
       if (this.validaType()) {
-        axios.post(this.$store.getters.getRouteAPI + this.$store.getters.getRegisterUser,{
+        axios.post(this.$store.getters.getRouteAPI + this.$store.getters.registerUser,{
           first_name :  this.form.firstName,
 	        last_name:    this.form.lastName,
 	        username :    this.form.email,
@@ -104,7 +117,7 @@ export default {
       ) {
         return true;
       } else {
-        return false;
+        return false;        
       }
     }
   },
@@ -115,17 +128,21 @@ export default {
     validaEmail() {
       var exp = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
       if (exp.test(this.form.email)) {
+        //document.getElementById("mensajeEmail").innerHTML = "";
         return false;
       } else {
-        return true;
+       // document.getElementById("mensajeEmail").innerHTML = "El formato de correo ingresado no es un formato valido.";
+        return true;        
       }
     },
     validaPassword() {
       var exp = /^(?=.*\d)(?=.*[a-záéíóúüñ]).*[A-ZÁÉÍÓÚÜÑ]/;
       if (exp.test(this.form.password)) {
+        //document.getElementById("mensajePass1").innerHTML = "";
         return false;
       } else {
-        return true;
+       // document.getElementById("mensajePass1").innerHTML = "La contraseña debe contener como mínimo una mayúscula, una minúscula y un numero.";
+        return true;               
       }
     },
     verificaPaswordIguales() {
@@ -135,6 +152,10 @@ export default {
         return true;
       }
     },
+    mostrarMensaje(){
+      //cambiarMensaje();
+      return this.mensaje;
+    }
   }
 }
 </script>
@@ -151,10 +172,12 @@ export default {
   align-content: center;
   align-items: center;
 }
+
 .divlogin .container {
   text-align: center;
   margin: auto;
 }
+
 .divlogin .container .contenido {
   width: 100%;
   max-width: 300px;
@@ -166,12 +189,14 @@ export default {
   font-weight: bold;
   border-radius: 20px;
 }
+
 .divlogin .container .contenido h2 {
   margin: 5px;
   color: black;
   font-size: 2em;
   font-weight: bold;
 }
+
 .divlogin .container .contenido input {
   height: 35px;
   margin: 8px 0px;
@@ -181,12 +206,15 @@ export default {
   width: 70%;
   background:rgba(255, 255, 255, 0.6);
 }
+
 .divlogin .container .contenido input:hover {
    background:rgba(255, 255, 255, 1);
 }
+
 .divlogin .container .contenido input.error {
   border-bottom: 3px solid red;
 }
+
 .divlogin .container .contenido button {
   height: 40px;
   margin: 10px 0px;
@@ -198,9 +226,11 @@ export default {
   font-weight: inherit;
   border-radius: 5px;
 }
+
 .divlogin .container .contenido button:hover {
   background: red;
 }
+
 .divlogin .container .contenido p {
   margin: 10px 0px;
   font-size: 13px;
@@ -208,6 +238,7 @@ export default {
   text-decoration: none;
   display: block;
 }
+
 .divlogin .container .contenido .link {
   margin: 0px;
   color: black;
@@ -215,12 +246,28 @@ export default {
   text-decoration: none;
   display: block;
 }
+
 .divlogin .container .contenido .link:hover {
   color: black;
   font-size: 20px;
 } 
+
 #logotipo {
   margin: 0px;
+}
+
+#mensajeEmail {
+  padding: 0px;
+  margin: 0px;
+  color:red;
+  font-weight: lighter;
+}
+
+#mensajePass1 {
+  padding: 0px;
+  margin: 0px;
+  color:red;
+  font-weight: lighter;
 }
 
 </style>

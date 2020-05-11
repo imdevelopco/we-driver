@@ -20,7 +20,7 @@
           :chart-options="camerasChart.options"
           :chart-responsive-options="camerasChart.responsiveOptions"
           :chart-type="'Bar'"
-          data-background-color="orange"
+          data-background-color="red"
         >
           <template slot="content">
             <h4 class="title">Registro de camaras</h4>
@@ -33,7 +33,7 @@
           :chart-data="stationsChart.data"
           :chart-options="stationsChart.options"
           :chart-type="'Line'"
-          data-background-color="red"
+          data-background-color="green"
         >
           <template slot="content">
             <h4 class="title">Registro de estaciones</h4>
@@ -43,7 +43,7 @@
       <div
         class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-25"
       >
-        <stats-card data-background-color="blue">
+        <stats-card data-background-color="green">
           <template slot="header">
             <md-icon>supervised_user_circle</md-icon>
           </template>
@@ -66,7 +66,7 @@
       >
         <stats-card data-background-color="orange">
           <template slot="header">
-            <md-icon>linked_camera</md-icon>
+            <md-icon>camera_alt</md-icon>
           </template>
 
           <template slot="content">
@@ -108,7 +108,7 @@
       <div
         class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-25"
       >
-        <stats-card data-background-color="grey">
+        <stats-card data-background-color="blue">
           <template slot="header">
             <md-icon>drive_eta</md-icon>
           </template>

@@ -15,9 +15,6 @@ filelock==3.0.12
 idna==2.9
 oauthlib==3.1.0
 <<<<<<< HEAD
-Pillow==7.1.2
-=======
-<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 Pillow==7.1.2
@@ -33,7 +30,6 @@ Pillow==7.1.2
 Pillow==7.1.2
 >>>>>>> 089fef43e1e1d65752d869ed98a0c3fe035b769d
 >>>>>>> actualizacion
->>>>>>> 48581b4868005612c9f416e1bba3b1027fb26e05
 psycopg2==2.8.4
 pycparser==2.20
 python3-openid==3.1.0

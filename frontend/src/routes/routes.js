@@ -13,7 +13,6 @@ import Icons from "@/pages/Icons.vue";
 import Maps from "@/pages/Maps.vue";
 import Notifications from "@/pages/Notifications.vue";
 import Usuarios from "@/pages/Users.vue";
-import UserEdit from "@/pages/userEdit.vue";
 
 const routes = [
   
@@ -43,7 +42,7 @@ const routes = [
     children: [
       {
         path: "maps",
-        name: "Mapa",
+        name: "Maps",
         meta: {
           //hideFooter: true
         },
@@ -51,7 +50,7 @@ const routes = [
       },
       {
         path: "dashboard",
-        name: "Reportes",
+        name: "Dashboard",
         component: Dashboard,
         meta:{
           //admin : true 
@@ -65,14 +64,9 @@ const routes = [
           //admin : true 
         }
       },
-      { 
-        path: '/user/:userId', 
-        name: 'user',
-        component: UserEdit 
-      },
       {
         path: "crear",
-        name: "Crear Fotomulta - Estación",
+        name: "Crear Fotomulta y cámara",
         component: UserProfile
       },
       {

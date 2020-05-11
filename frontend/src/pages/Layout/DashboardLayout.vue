@@ -12,7 +12,7 @@
 
       <sidebar-link  to="/app/dashboard">
         <md-icon>dashboard</md-icon>
-        <p>Reportes</p>
+        <p>Dashboard</p>
       </sidebar-link>
 
       <sidebar-link to="/app/usuarios">
@@ -21,7 +21,7 @@
       </sidebar-link>
 
       <sidebar-link to="/app/crear">
-        <md-icon>add_a_photo</md-icon>
+        <md-icon>input</md-icon>
         <p>Agregar</p>
       </sidebar-link>
 
@@ -30,8 +30,8 @@
         <p>Administración</p>
       </sidebar-link>
 
-      <sidebar-link to="/login" >
-        <md-icon >library_books</md-icon>
+      <sidebar-link to="/login">
+        <md-icon>library_books</md-icon>
         <p @click="logout">Cerrar sesión</p>
       </sidebar-link>
     
@@ -74,12 +74,6 @@ export default {
       this.$store.dispatch('destroyToken')
       .then(response => 
       this.$router.go('/login'))
-    },
-    setUsers(){
-      this.$store.dispatch('setUsuarios')
-      .then((response) => {
-          console.log(this.$store.getters.getUsuarios);
-      })
     }
   }
 };
