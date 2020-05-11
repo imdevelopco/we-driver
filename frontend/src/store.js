@@ -198,11 +198,15 @@ export const store = new Vuex.Store({
         comment:"",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> actualizacion
     },
     getters:{
         getUsuarios(state){
             return state.usuarios;
         },
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> actualizacion
@@ -232,6 +236,8 @@ export const store = new Vuex.Store({
             return state.usuarios;
         },
 >>>>>>> 089fef43e1e1d65752d869ed98a0c3fe035b769d
+>>>>>>> actualizacion
+=======
 >>>>>>> actualizacion
         getRouteAPI(state){
             return state.routeAPI;
@@ -381,6 +387,7 @@ export const store = new Vuex.Store({
         })      
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         },
 
         destroyToken(context){
@@ -405,6 +412,8 @@ export const store = new Vuex.Store({
 >>>>>>> actualice rama master de mi repositorio con la rama master del repositorio original
 =======
 =======
+=======
+>>>>>>> actualizacion
         },
 
         destroyToken(context){
@@ -414,7 +423,10 @@ export const store = new Vuex.Store({
           }
         } 
         
+<<<<<<< HEAD
 >>>>>>> 089fef43e1e1d65752d869ed98a0c3fe035b769d
+>>>>>>> actualizacion
+=======
 >>>>>>> actualizacion
     }
 })
