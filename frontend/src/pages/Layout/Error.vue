@@ -2,7 +2,7 @@
     <div class="window">
         <div class="container">
             <h1>Error</h1>
-            <router-link class="p" to="/">Volver a la página de Inicio</router-link>
+            <router-link class="p" to="/login">Volver a la página de Inicio</router-link>
         </div>
     </div>
   
