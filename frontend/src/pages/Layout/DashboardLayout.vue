@@ -74,21 +74,12 @@ export default {
       this.$store.dispatch('destroyToken')
       .then(response => 
       this.$router.go('/login'))
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> actualizacion
     },
     setUsers(){
       this.$store.dispatch('setUsuarios')
       .then((response) => {
           console.log(this.$store.getters.getUsuarios);
       })
-<<<<<<< HEAD
-=======
->>>>>>> 089fef43e1e1d65752d869ed98a0c3fe035b769d
->>>>>>> actualizacion
     }
   }
 };
