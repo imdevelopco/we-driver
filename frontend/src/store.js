@@ -197,12 +197,15 @@ export const store = new Vuex.Store({
         picture:null,
         comment:"",
 <<<<<<< HEAD
+<<<<<<< HEAD
     },
     getters:{
         getUsuarios(state){
             return state.usuarios;
         },
 =======
+=======
+>>>>>>> actualizacion
 
         //recursos por verificar (aprobar o desaprobar camaras y estaciones)
         checkSource:{
@@ -219,7 +222,17 @@ export const store = new Vuex.Store({
         }
     },
     getters:{
+<<<<<<< HEAD
 >>>>>>> actualice rama master de mi repositorio con la rama master del repositorio original
+=======
+=======
+    },
+    getters:{
+        getUsuarios(state){
+            return state.usuarios;
+        },
+>>>>>>> 089fef43e1e1d65752d869ed98a0c3fe035b769d
+>>>>>>> actualizacion
         getRouteAPI(state){
             return state.routeAPI;
         },
@@ -367,6 +380,7 @@ export const store = new Vuex.Store({
           })
         })      
 <<<<<<< HEAD
+<<<<<<< HEAD
         },
 
         destroyToken(context){
@@ -377,6 +391,8 @@ export const store = new Vuex.Store({
         } 
         
 =======
+=======
+>>>>>>> actualizacion
       },
       destroyToken(context){
         if(context.getters.loggedIn){
@@ -385,6 +401,20 @@ export const store = new Vuex.Store({
                 
         }
       } 
+<<<<<<< HEAD
 >>>>>>> actualice rama master de mi repositorio con la rama master del repositorio original
+=======
+=======
+        },
+
+        destroyToken(context){
+          if(context.getters.loggedIn){
+            localStorage.removeItem('token')
+            context.commit('destroyToken') 
+          }
+        } 
+        
+>>>>>>> 089fef43e1e1d65752d869ed98a0c3fe035b769d
+>>>>>>> actualizacion
     }
 })

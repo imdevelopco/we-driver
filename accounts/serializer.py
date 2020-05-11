@@ -28,8 +28,16 @@ class RegisterSerializer(serializers.Serializer):
         instance.last_name= validate_data.get("last_name")
         instance.username= validate_data.get("username")
         instance.email = validate_data.get("email")
+<<<<<<< HEAD
         instance.is_staff = False
         instance.is_active = True
+=======
+<<<<<<< HEAD
+=======
+        instance.is_staff = False
+        instance.is_active = True
+>>>>>>> 089fef43e1e1d65752d869ed98a0c3fe035b769d
+>>>>>>> actualizacion
         instance.set_password(validate_data.get("password"))    
         instance.save()
         
