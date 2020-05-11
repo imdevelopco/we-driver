@@ -43,7 +43,7 @@ export default {
                         '<li><b>ID:</b> '+cam.id+'</li>'+
                         '<li><b>Velocidad:</b> '+cam.velocidad_maxima+'</li>'+
                         '<li><b>Comentario:</b> '+cam.comentario+'</li>'+
-                        '<li><img src="'+cam.picture+'" /></li>'+
+                        '<li><img src="'+cam.picture+'" width="200px" /></li>'+
                      ' </ul>'+
                    '</div>'
         });

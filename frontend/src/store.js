@@ -196,20 +196,9 @@ export const store = new Vuex.Store({
         velMax:0,
         picture:null,
         comment:"",
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> actualizacion
-    },
-    getters:{
-        getUsuarios(state){
-            return state.usuarios;
-        },
-<<<<<<< HEAD
-=======
-=======
->>>>>>> actualizacion
+
+       },
+
 
         //recursos por verificar (aprobar o desaprobar camaras y estaciones)
         checkSource:{
@@ -224,21 +213,13 @@ export const store = new Vuex.Store({
           ],
           station:[]
         }
-    },
-    getters:{
-<<<<<<< HEAD
->>>>>>> actualice rama master de mi repositorio con la rama master del repositorio original
-=======
-=======
-    },
+    //},
+
     getters:{
         getUsuarios(state){
             return state.usuarios;
         },
->>>>>>> 089fef43e1e1d65752d869ed98a0c3fe035b769d
->>>>>>> actualizacion
-=======
->>>>>>> actualizacion
+
         getRouteAPI(state){
             return state.routeAPI;
         },
@@ -385,9 +366,6 @@ export const store = new Vuex.Store({
              reject(error)
           })
         })      
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         },
 
         destroyToken(context){
@@ -395,25 +373,15 @@ export const store = new Vuex.Store({
             localStorage.removeItem('token')
             context.commit('destroyToken') 
           }
-        } 
-        
-=======
-=======
->>>>>>> actualizacion
-      },
+        }, 
+
       destroyToken(context){
         if(context.getters.loggedIn){
           localStorage.removeItem('token')
           context.commit('destroyToken')
                 
         }
-      } 
-<<<<<<< HEAD
->>>>>>> actualice rama master de mi repositorio con la rama master del repositorio original
-=======
-=======
-=======
->>>>>>> actualizacion
+
         },
 
         destroyToken(context){
@@ -421,12 +389,6 @@ export const store = new Vuex.Store({
             localStorage.removeItem('token')
             context.commit('destroyToken') 
           }
-        } 
-        
-<<<<<<< HEAD
->>>>>>> 089fef43e1e1d65752d869ed98a0c3fe035b769d
->>>>>>> actualizacion
-=======
->>>>>>> actualizacion
+        }
     }
 })
