@@ -39,7 +39,6 @@
           <p style="font-size: 12px; color: #333;">
             Acepto <span>Terminos & Condiciones</span>
           </p> 
-
         </form>
 
         <router-link to="../login" class="link">Cancelar</router-link>
