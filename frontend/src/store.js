@@ -11,7 +11,7 @@ export const store = new Vuex.Store({
     state:{
        //Token de acceso
         token : null || localStorage.getItem('token'),
-        routeAPI : "http://localhost:8000/",
+        routeAPI : "http://we-drive-api.herokuapp.com/",
         registerUser : 'api/registerUser',
         notifications:[
             "Estación de gasolina aprovada",
@@ -233,6 +233,10 @@ export const store = new Vuex.Store({
         setUsuarios(state,usuarios){
           state.usuarios = usuarios;
         },
+        //Update user
+        /* setUsuario(state,id){
+          let user  = state.usuarios.find(u => u.id == id)
+        }, */
         //Graficos
         setUserLineSmooth(state, lineSm){
             state.usersRegisterdata.options.lineSmooth = lineSm
@@ -282,6 +286,11 @@ export const store = new Vuex.Store({
           console.log("pidiendo Usuarios...")
           context.commit('setUsuarios',usuarios.data)
         },
+       /*  async setUsuario(context,id){
+          let response = await axios.post("https://we-drive-api.herokuapp.com/api/updateUser/"+ id)
+          console.log("Actualizando usuario ...")
+          context.commit('setUsuarios',usuarios.data)
+        }, */
        
         async getCameras(context){
           let cameras = await axios.get("https://we-drive-api.herokuapp.com/api/v1.0/camara")
@@ -329,7 +338,7 @@ export const store = new Vuex.Store({
         
         retrieveToken(context, credentials){
           return new Promise(function(resolve,reject) {
-            axios.post('http://localhost:8000/api/login',{
+            axios.post('http://we-drive-api.herokuapp.com/api/login',{
             username: credentials.username, 
             password: credentials.password
           })
