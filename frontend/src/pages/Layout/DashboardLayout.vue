@@ -15,7 +15,7 @@
         <p>Reportes</p>
       </sidebar-link>
 
-      <sidebar-link to="/app/usuarios">
+      <sidebar-link to="/app/usuarios" v-if="user.is_superuser">
         <md-icon>group</md-icon>
         <p>Usuarios</p>
       </sidebar-link>
@@ -25,7 +25,7 @@
         <p>Agregar</p>
       </sidebar-link>
 
-      <sidebar-link  to="/app/admin">
+      <sidebar-link  to="/app/admin" v-if="user.is_superuser">
         <md-icon>settings</md-icon>
         <p>Administración</p>
       </sidebar-link>
@@ -62,6 +62,9 @@ export default {
     return{
      
     }
+  },
+  computed:{
+    user(){ return this.$store.state.user}
   },
   components: {
     TopNavbar,
