@@ -6,7 +6,8 @@
         <md-table-cell md-label="Nombre" md-sort-by="nombre">{{ item.first_name }}</md-table-cell>
         <md-table-cell md-label="Apellidos" md-sort-by="apellido">{{ item.last_name }}</md-table-cell>
         <md-table-cell md-label="Estado" md-sort-by="estado">{{ item.is_active }}</md-table-cell>
-        <md-table-cell md-label="Administrador" md-sort-by="administrador">{{ item.is_staff }}</md-table-cell>
+        <md-table-cell md-label="Añadir sin autorización" md-sort-by="añadir">{{ item.is_staff }}</md-table-cell>
+        <md-table-cell md-label="Administrador" md-sort-by="administrador">{{ item.is_superuser }}</md-table-cell>
         <md-table-cell md-label="Acciones">
           <router-link :to="{ name: 'Usuario', params: { userId: item.id }}" class="md-just-icon md-simple md-primary">
             <md-icon>edit</md-icon>                     
