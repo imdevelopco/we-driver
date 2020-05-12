@@ -11,7 +11,7 @@
       </sidebar-link>
 
       <sidebar-link  to="/app/dashboard">
-        <md-icon>dashboard</md-icon>
+        <md-icon>trending_up</md-icon>
         <p>Reportes</p>
       </sidebar-link>
 
@@ -31,7 +31,7 @@
       </sidebar-link>
 
       <sidebar-link to="/login" >
-        <md-icon >library_books</md-icon>
+        <md-icon >logout</md-icon>
         <p @click="logout">Cerrar sesión</p>
       </sidebar-link>
     
