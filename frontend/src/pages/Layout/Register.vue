@@ -24,14 +24,14 @@
             placeholder="Email"
             v-model="form.email"
           />
-          <p id="mensajePass1">{{ cambiarMensaje() }}</p>
+          <p class="mensaje">{{ cambiarMensaje1() }}</p>
           <input
             type="password"
             :class="{ error: validaPassword }"
             placeholder="Contraseña"
             v-model="form.password"
           />
-          <p id="mensajePass2"></p>
+          <p class="mensaje">{{ cambiarMensaje2() }}</p>
           <input
             type="password"
             :class="{ error: verificaPaswordIguales }"
@@ -71,17 +71,27 @@ export default {
         password: "",
         password2: ""
       },
-      mensaje: ""
+      mensaje1: "",
+      mensaje2: "",
     };
   },
   methods: {
-    cambiarMensaje(){
+    cambiarMensaje1(){
       if (this.validaPassword) {
-        this.mensaje = "La contraseña debe tener almenos una mayúscula, una minúscula y un número.";
-        return this.mensaje;
+        this.mensaje1 = "La contraseña debe tener almenos una mayúscula, una minúscula y un número.";
+        return this.mensaje1;
       }else {
-        this.mensaje = ""
-        return this.mensaje;
+        this.mensaje1 = ""
+        return this.mensaje1;
+      }
+    },
+    cambiarMensaje2(){
+      if (this.verificaPaswordIguales) {
+        this.mensaje2 = "Las contraseñas no coinsiden.";
+        return this.mensaje2;
+      }else {
+        this.mensaje2 = ""
+        return this.mensaje2;
       }
     },
     sendForm() {
@@ -152,10 +162,10 @@ export default {
         return true;
       }
     },
-    mostrarMensaje(){
-      //cambiarMensaje();
-      return this.mensaje;
-    }
+    // mostrarMensaje(){
+    //   cambiarMensaje();
+    //   return this.mensaje;
+    // }
   }
 }
 </script>
@@ -181,7 +191,7 @@ export default {
 .divlogin .container .contenido {
   width: 100%;
   max-width: 300px;
-  max-height: 600px;
+  max-height: 700px;
   background: rgba(255, 255, 255, .9);
   padding: 0 20px 20px 20px;
   display: inline-block;
@@ -263,7 +273,7 @@ export default {
   font-weight: lighter;
 }
 
-#mensajePass1 {
+.divlogin .container .contenido .mensaje {
   padding: 0px;
   margin: 0px;
   color:red;
