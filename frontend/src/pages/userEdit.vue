@@ -2,7 +2,7 @@
   <div class="content">
     <div class="md-layout"  v-if="found">
       <div class="md-layout-item md-medium-size-100 md-size-66">
-        <edit-profile-form data-background-color="green" v-bind:user="user"> </edit-profile-form>
+        <edit-profile-form data-background-color="blue" v-bind:user="user"> </edit-profile-form>
       </div>
      <!-- <div class="md-layout-item md-medium-size-100 md-size-33">
         <user-card :name="joinName" :cardUserImage="picture"></user-card>
@@ -16,14 +16,14 @@
 </template>
 
 <script>
-import { EditProfileForm, UserCard } from "@/pages";
+import { EditProfileForm} from "@/pages";
 
 export default {
   data(){
     return{
       found:true,
       user:{},
-      picture:""
+      
     }
   },
   components: {
