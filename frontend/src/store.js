@@ -224,7 +224,8 @@ export const store = new Vuex.Store({
     mutations:{
         //info del usuario en sesion
         setUserData(state, user){
-          state.user = user
+          console.log("[DEUG] setUserData: ", user)
+          state.user = user;
         },
         setUsuarios(state,usuarios){
           state.usuarios = usuarios;
@@ -339,6 +340,8 @@ export const store = new Vuex.Store({
             password: credentials.password
           })
           .then(response => {
+            console.log("[Debug] la respuest adel login:", response.data.user)
+            context.commit('setUserData',response.data.user)
             const token = response.data.token
             localStorage.setItem('token',token)
             resolve(response)
