@@ -12,7 +12,7 @@
 
       <sidebar-link  to="/app/dashboard">
         <md-icon>dashboard</md-icon>
-        <p>Dashboard</p>
+        <p>Reportes</p>
       </sidebar-link>
 
       <sidebar-link to="/app/usuarios">

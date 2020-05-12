@@ -11,7 +11,7 @@ export const store = new Vuex.Store({
     state:{
        //Token de acceso
         token : null || localStorage.getItem('token'),
-        routeAPI : "http://localhost:8000/",
+        routeAPI : "http://we-drive-api.herokuapp.com/",
         registerUser : 'api/registerUser',
         notifications:[
             "Estación de gasolina aprovada",
@@ -329,7 +329,7 @@ export const store = new Vuex.Store({
         
         retrieveToken(context, credentials){
           return new Promise(function(resolve,reject) {
-            axios.post('http://localhost:8000/api/login',{
+            axios.post('http://we-drive-api.herokuapp.com/api/login',{
             username: credentials.username, 
             password: credentials.password
           })

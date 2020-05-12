@@ -51,7 +51,7 @@ const routes = [
       },
       {
         path: "dashboard",
-        name: "Dashboard",
+        name: "Reportes",
         component: Dashboard,
         meta:{
           //admin : true 
