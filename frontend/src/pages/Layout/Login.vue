@@ -106,6 +106,7 @@ export default {
                 password: this.form.password
                 
               }).then(response => {
+                this.$store.commit('setUserData',response.data)
                 this.$router.go('/app')
               }).catch(error => {
                 console.log(error);

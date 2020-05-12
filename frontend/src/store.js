@@ -9,6 +9,7 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
     state:{
+        user:{},
        //Token de acceso
         token : null || localStorage.getItem('token'),
         routeAPI : "http://localhost:8000/",
@@ -109,15 +110,6 @@ export const store = new Vuex.Store({
               ]
             ]
         },
-
-        //users
-        users:[
-          {id:1, name: 'Camilo', lastname: 'Arias', mail:"fakemail@deep.com", city : 'Cali', location:'Oeste','picture':'camilo.jpg' },
-          {id:2, name: 'Pedro', lastname: 'Nel', mail:"fakemail@deep.com", city : 'Cali', location:'Oeste','picture':'marc.jpg'  },
-          {id:3, name: 'Martha', lastname: 'Lamos', mail:"fakemail@deep.com", city : 'Cali', location:'Oeste','picture':'marc.jpg' },
-          {id:4, name: 'Carlos', lastname: 'Mariano Ramos', mail:"fakemail@deep.com", city : 'Cali', location:'Oriente','picture':'marc.jpg' },
-          {id:5, name: 'Sebas', lastname: 'Vaugh', mail:"fakemail@deep.com", city : 'Cali', location:'Sur','picture':'marc.jpg' },
-        ],
 
         //camaras (de aca se toman las camaras por aprobar y aprobadas con los geeters)
         cameras:[],
@@ -230,6 +222,10 @@ export const store = new Vuex.Store({
         }
     },
     mutations:{
+        //info del usuario en sesion
+        setUserData(state, user){
+          state.user = user
+        },
         setUsuarios(state,usuarios){
           state.usuarios = usuarios;
         },

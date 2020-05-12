@@ -26,12 +26,12 @@
               <md-input v-model="emailadress" type="email"></md-input>
             </md-field>
           </div>
-          <div class="md-layout-item md-small-size-100 md-size-100">
+          <!-- <div class="md-layout-item md-small-size-100 md-size-100">
               <md-field>
                <label>Foto</label>
                <md-file v-model="picture" accept="image/*"></md-file>
             </md-field>
-          </div>
+          </div> -->
       
           <div class="md-layout-item md-size-100 text-right">
             <md-button class="md-raised md-success">Actualizar Perfil</md-button>
@@ -60,9 +60,9 @@ export default {
   },
   watch: {
       user(newVal) {
-          this.emailadress = newVal.mail;
-          this.lastname = newVal.lastname;
-          this.firstname = newVal.name;
+          this.emailadress = newVal.email;
+          this.lastname = newVal.last_name;
+          this.firstname = newVal.first_name;
       }
   }
 };
