@@ -11,30 +11,28 @@
           <div class="md-layout-item md-small-size-100 md-size-50">
             <md-field>
               <label>Nombre</label>
-              <md-input v-model="firstname" type="text"></md-input>
+              <md-input v-model="first_name" type="text"></md-input>
             </md-field>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-50">
             <md-field>
               <label>Apellido</label>
-              <md-input v-model="lastname" type="text"></md-input>
+              <md-input v-model="last_name" type="text"></md-input>
             </md-field>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-100">
             <md-field>
               <label>Email</label>
-              <md-input v-model="emailadress" type="email"></md-input>
+              <md-input v-model="email" type="email"></md-input>
             </md-field>
           </div>
-          <div class="md-layout-item md-small-size-100 md-size-100">
-              <md-field>
-               <label>Foto</label>
-               <md-file v-model="picture" accept="image/*"></md-file>
-            </md-field>
+           <div class="md-layout-item md-small-size-100 md-size-50">
+              <label>Crear items sin verificación</label>
+              <br>
+              <md-input type="checkbox" >Activar</md-input>
           </div>
-      
           <div class="md-layout-item md-size-100 text-right">
-            <md-button class="md-raised md-success">Actualizar Perfil</md-button>
+            <md-button class="md-raised md-success" data-background-color="blue" > Actualizar Perfil</md-button>
           </div>
         </div>
       </md-card-content>
@@ -53,16 +51,16 @@ export default {
   },
   data() {
     return {
-      emailadress: "",
-      lastname: "",
-      firstname: "",
+      email: "",
+      last_name: "",
+      first_name: "",
     };
   },
   watch: {
       user(newVal) {
-          this.emailadress = newVal.mail;
-          this.lastname = newVal.lastname;
-          this.firstname = newVal.name;
+          this.email = newVal.email;
+          this.last_name = newVal.last_name;
+          this.first_name = newVal.first_name;
       }
   }
 };
