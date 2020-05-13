@@ -10,7 +10,7 @@
         <p>Mapa</p>
       </sidebar-link>
 
-      <sidebar-link  to="/app/dashboard">
+      <sidebar-link  to="/app/dashboard" v-if="user.is_superuser">
         <md-icon>trending_up</md-icon>
         <p>Reportes</p>
       </sidebar-link>
