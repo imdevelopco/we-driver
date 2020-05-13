@@ -12,12 +12,12 @@
         <md-table-cell md-label="Administrador" md-sort-by="administrador" v-if="item.is_superuser">Sí</md-table-cell>
         <md-table-cell md-label="Administrador" md-sort-by="administrador" v-else>No</md-table-cell>
         <md-table-cell md-label="Acciones">
-          <router-link :to="{ name: 'Usuario', params: { userId: item.id }}" class="md-just-icon md-simple md-primary">
+          <router-link :to="{ name: 'Usuario', params: { userId: item.id }}" class="md-button md-just-icon md-simple md-primary">
             <md-icon>edit</md-icon>                     
             <md-tooltip md-direction="top">Actualizar</md-tooltip>
           </router-link>
           <md-button class="md-just-icon md-simple md-danger" v-on:click="confirmDelete(item)">
-            <md-icon>close</md-icon>
+            <md-icon>delete</md-icon>
             <md-tooltip md-direction="top">Eliminar</md-tooltip>
           </md-button>
         </md-table-cell>
@@ -65,3 +65,4 @@ export default {
   }
 };
 </script>
+
