@@ -109,10 +109,7 @@ export default {
       })
 
       this.$router.push('/app/usuarios');
-      console.log(
-        
-      );
-      
+
     }
   }
 };

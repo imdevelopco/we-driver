@@ -7,8 +7,8 @@
         <md-table-cell md-label="Apellidos" md-sort-by="apellido">{{ item.last_name }}</md-table-cell>
         <md-table-cell md-label="Estado" md-sort-by="estado" v-if="item.is_active">Activo</md-table-cell>
         <md-table-cell md-label="Estado" md-sort-by="estado" v-else>Inactivo</md-table-cell>
-        <md-table-cell md-label="Añadir sin autorización" md-sort-by="añadir" v-if="item.is_staff">Sí</md-table-cell>
-        <md-table-cell md-label="Añadir sin autorización" md-sort-by="añadir" v-else >No</md-table-cell>
+        <md-table-cell md-label="Añadir sin autorización" md-sort-by="anadir" v-if="item.is_staff">Sí</md-table-cell>
+        <md-table-cell md-label="Añadir sin autorización" md-sort-by="anadir" v-else >No</md-table-cell>
         <md-table-cell md-label="Administrador" md-sort-by="administrador" v-if="item.is_superuser">Sí</md-table-cell>
         <md-table-cell md-label="Administrador" md-sort-by="administrador" v-else>No</md-table-cell>
         <md-table-cell md-label="Acciones">
