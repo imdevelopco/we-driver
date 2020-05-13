@@ -29,22 +29,31 @@
            <div class="md-layout-item md-small-size-100 md-size-50">
              <md-field> <label>Crear items sin verificación</label>
               <br>
-              <md-input type="checkbox" v-model="is_staff" >Activar</md-input>
-          </md-field></div>
+              <md-input class="caja" type="checkbox" v-model="is_staff">Activar</md-input>
+            </md-field>
+          </div>
           <div class="md-layout-item md-small-size-100 md-size-50">
             <md-field>  <label>Administrador</label>
               <br>
-              <md-input type="checkbox" v-model="is_superuser">Activar</md-input>
-          </md-field></div>
+              <md-input class="caja" type="checkbox" v-model="is_superuser">Activar</md-input>
+            </md-field>
+          </div>
           <div class="md-layout-item md-small-size-100 md-size-50">
             <md-field>  <label>Estado</label>
               <br>
-              <md-input type="checkbox" v-model="is_active">Activo</md-input>
-          </md-field></div>
-          <div class="md-layout-item md-size-100 text-right">
-            <md-button to="/app/usuarios" class= "md-raised md-success" data-background-color="red">Cancelar</md-button>
-            <md-button class="md-raised md-success" data-background-color="blue" @click="sendForm"> Actualizar Perfil</md-button>
+              <md-input class="caja" type="checkbox" v-model="is_active">Activo</md-input>
+            </md-field>
           </div>
+          <div class="md-layout-item md-small-size-100 md-size-50">
+          </div>
+          <div class="md-layout">              
+            <div class="md-layout-item md-small-size-50 md-size-45">
+            </div>
+            <div class="md-layout-item md-small-size-50 md-size-55 text-right">
+              <md-button to="/app/usuarios" class= "md-raised md-success" data-background-color="red">Cancelar</md-button>
+              <md-button class="md-raised md-success" data-background-color="blue" @click="sendForm"> Actualizar Perfil</md-button>
+            </div>
+          </div>            
         </div>
       </md-card-content>
     </md-card>
@@ -113,4 +122,12 @@ export default {
   color:red;
   font-style: oblique;
 }
+
+.caja {
+  position: relative;
+  margin-left: 90%;
+  height: 10px;
+}
+
+
 </style>
