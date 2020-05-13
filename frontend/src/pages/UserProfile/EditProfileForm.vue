@@ -42,6 +42,7 @@
               <md-input type="checkbox" v-model="is_active">Activo</md-input>
           </div>
           <div class="md-layout-item md-size-100 text-right">
+            <md-button to="/app/usuarios" class= "md-raised md-success" data-background-color="red">Cancelar</md-button>
             <md-button class="md-raised md-success" data-background-color="blue" @click="sendForm"> Actualizar Perfil</md-button>
           </div>
         </div>
@@ -98,4 +99,9 @@ export default {
   }
 };
 </script>
-<style></style>
+<style>
+.title, .category {
+  color:red;
+  font-style: oblique;
+}
+</style>
