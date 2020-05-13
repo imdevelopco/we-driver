@@ -30,7 +30,10 @@ export default {
     methods: {
     },
     mounted(){
-           this.$store.dispatch('setUsuarios')
+        
+           this.$store.dispatch('setUsuarios') 
+        
+           
     },
     watch:{
         

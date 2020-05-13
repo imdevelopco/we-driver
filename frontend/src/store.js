@@ -9,7 +9,7 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
     state:{
-        user:{},
+        //user:{},
        //Token de acceso
         token : null || localStorage.getItem('token'),
         routeAPI : "http://we-drive-api.herokuapp.com/",
@@ -355,7 +355,8 @@ export const store = new Vuex.Store({
              }
              reject(error)
           })
-        })      
+        })  
+          
         },
 
         destroyToken(context){

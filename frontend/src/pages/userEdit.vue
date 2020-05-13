@@ -37,10 +37,12 @@ export default {
   },
   mounted(){
     var userParam = parseInt(this.$route.params.userId)
-    if(this.$store.state.usuarios.length == 0){
+    
            this.$store.dispatch('setUsuarios')
               .then(data => {
                 var editUser = this.$store.state.usuarios.find(user => user.id === userParam );
+                console.log(editUser);
+                
                 if(editUser != undefined){
                   this.user = editUser
                   /*this.picture = require("@/assets/img/faces/"+editUser.picture) */
@@ -49,7 +51,7 @@ export default {
                   this.found = false
                 }
               })
-    }
+    
   }
 };
 </script>
