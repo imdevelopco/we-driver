@@ -26,10 +26,6 @@ export const store = new Vuex.Store({
         // usuarios de wedrive
         usuarios: [],
         //dashboard data
-        totalUsers: 623230,
-        totalCameras: 45,
-        totalGasStation: 78,
-        avgGas: 8400,
         usersRegisterdata: {
             data: {
               labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"],
@@ -219,6 +215,22 @@ export const store = new Vuex.Store({
         },
         getStationsNoAproved(state){
           return state.stations.filter(station => !station.item_aprobado)
+        },
+        getTotalUsers(state){
+          return state.usuarios.length;
+        },
+        getTotalStation(state, getters){
+          return getters.getStationsAproved.length
+        },
+        getTotalCameras(state, getters){
+          return getters.getCamerasAproved.length
+        },
+        getAvgGas(state){
+          var total = 0
+          state.stations.forEach(station => {
+            total =+ station.precio_galon_corriente
+          });
+          return total/state.stations.length
         }
     },
     mutations:{
