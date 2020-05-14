@@ -39,13 +39,13 @@
             Ingresa con Google
           </g-signin-button>    
 
-        <a
+        <!-- <a
           href="javascript:void(0)"
           @click="form.type = 1"
           v-if="form.type == 0"
           class="olvidoLink"
 
-        >Olvidó su contraseña?</a>
+        >Olvidó su contraseña?</a> -->
 
         <router-link to="../registro" 
         class="registroLink" 
@@ -234,7 +234,7 @@ body {
 .g-signin-button:hover {
   background: red;
 }
-.divlogin .container .contenido .olvidoLink {
+/* .divlogin .container .contenido .olvidoLink {
   margin: 10px;
   font-size: 13px;
   color: #333333;
@@ -243,11 +243,11 @@ body {
 }
 .divlogin .container .contenido .olvidoLink:hover{
   font-size: 14px;
-}
+} */
 .divlogin .container .contenido .registroLink {
   color: black;
   font-size: 16px;
-  margin: 0px;
+  margin: 10px 0px;
   text-decoration: none;
   display: block;
 }
