@@ -4,18 +4,18 @@
 
     <side-bar>
       <MobileMenu slot="content"></MobileMenu>
-
+      
       <sidebar-link to="/app/maps">
         <md-icon>location_on</md-icon>
         <p>Mapa</p>
       </sidebar-link>
 
-      <sidebar-link  to="/app/dashboard" v-if="user.is_superuser">
-        <md-icon>dashboard</md-icon>
+      <sidebar-link  to="/app/dashboard">
+        <md-icon>trending_up</md-icon>
         <p>Reportes</p>
       </sidebar-link>
 
-      <sidebar-link to="/app/usuarios" v-if="user.is_superuser">
+      <sidebar-link to="/app/usuarios" >
         <md-icon>group</md-icon>
         <p>Usuarios</p>
       </sidebar-link>
@@ -25,13 +25,13 @@
         <p>Agregar</p>
       </sidebar-link>
 
-      <sidebar-link  to="/app/admin" v-if="user.is_superuser">
+      <sidebar-link  to="/app/admin" >  
         <md-icon>settings</md-icon>
         <p>Administración</p>
       </sidebar-link>
 
       <sidebar-link to="/login" >
-        <md-icon >library_books</md-icon>
+        <md-icon >logout</md-icon>
         <p @click="logout">Cerrar sesión</p>
       </sidebar-link>
     
