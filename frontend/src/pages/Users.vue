@@ -18,9 +18,9 @@
 import {OrderedTable} from "@/components";
 
 export default {
+    
     computed:{
         users(){
-            //return this.$store.getters.getUsuarios;
             return this.$store.state.usuarios
         }
     },
@@ -30,9 +30,14 @@ export default {
     methods: {
     },
     mounted(){
-       if(this.$store.state.usuarios.length == 0){
-           this.$store.dispatch('setUsuarios')
-       }
+        
+           this.$store.dispatch('setUsuarios') 
+        
+           
+    },
+    watch:{
+        
     }
+
 }
 </script>
