@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="imagen">
-      <img  :src="weDriveLogo" />
+    <div class="logoWe">
+      <img  src="@/assets/img/weDrive.png" />
     </div>
     <div class="md-layout">
     <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-30">
@@ -11,7 +11,7 @@
         </template>
 
         <template slot="content">
-          <img :src="camilo" class="img">
+          <img :src="camilo" class="integrantesWe">
         </template>
         <template slot="footer">
           <div class="stats">
@@ -27,7 +27,7 @@
         </template>
 
         <template slot="content">
-          <img :src="carlos" class="img">
+          <img :src="carlos" class="integrantesWe">
         </template>
         <template slot="footer">
           <div class="stats">
@@ -45,7 +45,7 @@
         </template>
 
         <template slot="content">
-          <img :src="henry" class="img">
+          <img :src="henry" class="integrantesWe">
         </template>
         <template slot="footer">
           <div class="stats">
@@ -64,7 +64,7 @@
 
         <template slot="content">
           
-          <img :src="mauricio" class="img">
+          <img :src="mauricio" class="integrantesWe">
         </template>
         <template slot="footer">
           <div class="stats">
@@ -83,7 +83,7 @@
 
         <template slot="content">
           
-          <img :src="jhon" class="img">
+          <img :src="jhon" class="integrantesWe">
         </template>
         <template slot="footer">
           <div class="stats">
@@ -102,7 +102,7 @@
 
         <template slot="content">
           
-          <img :src="miguel" class="img">
+          <img :src="miguel" class="integrantesWe">
         </template>
         <template slot="footer">
           <div class="stats">
@@ -163,13 +163,13 @@ export default {
 </script>
 
 <style>
-.imagen {
+.logoWe {
   margin-left: auto;
   margin-right: auto;
   width: 20%;
   display: block;
 }
-.img{
+.integrantesWe{
   height: 250px !important; 
   border-radius: 8px; 
 }

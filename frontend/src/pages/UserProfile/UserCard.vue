@@ -1,7 +1,6 @@
 <template>
   <md-card class="md-card-profile">
     <div class="md-card-avatar">
-      <img class="img" :src="cardUserImage" />
     </div>
 
     <md-card-content>
@@ -15,10 +14,7 @@ export default {
   props: {
     name:{type:String},
     picture:{type:String},
-    cardUserImage: {
-      type: String,
-      default: require("@/assets/img/faces/marc.jpg")
-    }
+    
   },
   data() {
     return {};

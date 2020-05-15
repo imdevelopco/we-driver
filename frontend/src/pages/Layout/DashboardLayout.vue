@@ -79,9 +79,7 @@ export default {
     } 
   },
   mounted(){
-  
       this.permisos = localStorage.getItem('user')
-
   }
 }
 </script>
