@@ -15,7 +15,10 @@
           <span class="icon-bar"></span>
         </md-button>
 
-        <div class="md-collapse">          
+        <div class="md-collapse">  
+          <div class="md-autocomplete">
+            <h4>Hola, {{name}}</h4>
+          </div>        
           <md-list>
             <md-list-item to="/app/dashboard" v-if="permisos == 'true'">
               <i class="material-icons">dashboard</i>
@@ -56,7 +59,8 @@ export default {
     return {
       selectedSearch: null,
       resentSearches: [],
-      permisos:''
+      permisos:'',
+      name:''
     };
   },
   computed:{
@@ -79,6 +83,7 @@ export default {
   },
   mounted(){
     this.permisos = localStorage.getItem('user')
+    this.name = localStorage.getItem('name')
   }
 };
 </script>

@@ -32,22 +32,22 @@
         </form>
 
           <!-- <button v-if="form.type == 0" >Iniciar sesión con Google</button> -->
-          <g-signin-button
+          <!-- <g-signin-button
             :params="googleSignInParams"
             @success="onSignInSuccess"
             @error="onSignInError">
             Ingresa con Google
           </g-signin-button>
+ -->
 
-
-        <a
+<!--         <a
           href="javascript:void(0)"
           @click="form.type = 1"
           v-if="form.type == 0"
           class="olvidoLink"
 
         >Olvidó su contraseña?</a>
-
+ -->
         <router-link to="../registro" 
         class="registroLink" 
         v-if="form.type == 0">
