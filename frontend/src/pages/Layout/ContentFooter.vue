@@ -15,7 +15,7 @@
       </nav>
       <div class="copyright text-center">
         &copy; {{ new Date().getFullYear() }}
-        <a href="#">WeDrive</a>, hecho en Cali, Colombia con <i class="fa fa-heart heart"></i>
+        <a href="https://github.com/imdevelopco/we-driver" target="_blank">WeDrive</a>, hecho en Cali, Colombia con <i class="fa fa-heart heart"></i>
       </div>
     </div>
   </footer>

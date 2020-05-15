@@ -229,10 +229,14 @@ export const store = new Vuex.Store({
         },
         getAvgGas(state){
           var total = 0
+          var aprobadas = 0
           state.stations.forEach(station => {
-            total =+ station.precio_galon_corriente
+            if(station.precio_galon_corriente > 0){
+              total =+ station.precio_galon_corriente
+              aprobadas++
+            }
           });
-          return total/state.stations.length
+          return total/aprobadas
         }
     },
     mutations:{

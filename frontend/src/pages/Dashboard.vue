@@ -79,7 +79,7 @@
           <template slot="footer">
             <div class="stats">
               <md-icon class="text-danger">videocam</md-icon>
-              total de fotomultas reistradas
+              total de fotomultas registradas
             </div>
           </template>
         </stats-card>
@@ -121,7 +121,7 @@
           <template slot="footer">
             <div class="stats">
               <md-icon>local_gas_station</md-icon>
-              Promedio precio galón de gasolina
+              Promedio precio galón de gasolina Corriente
             </div>
           </template>
         </stats-card>
