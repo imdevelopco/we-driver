@@ -9,6 +9,7 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
     state:{
+        //user:{},
        //Token de acceso
         token : null || localStorage.getItem('token'),
         routeAPI : "http://we-drive-api.herokuapp.com/",
@@ -25,10 +26,6 @@ export const store = new Vuex.Store({
         // usuarios de wedrive
         usuarios: [],
         //dashboard data
-        totalUsers: 623230,
-        totalCameras: 45,
-        totalGasStation: 78,
-        avgGas: 8400,
         usersRegisterdata: {
             data: {
               labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"],
@@ -109,15 +106,6 @@ export const store = new Vuex.Store({
               ]
             ]
         },
-
-        //users
-        users:[
-          {id:1, name: 'Camilo', lastname: 'Arias', mail:"fakemail@deep.com", city : 'Cali', location:'Oeste','picture':'camilo.jpg' },
-          {id:2, name: 'Pedro', lastname: 'Nel', mail:"fakemail@deep.com", city : 'Cali', location:'Oeste','picture':'marc.jpg'  },
-          {id:3, name: 'Martha', lastname: 'Lamos', mail:"fakemail@deep.com", city : 'Cali', location:'Oeste','picture':'marc.jpg' },
-          {id:4, name: 'Carlos', lastname: 'Mariano Ramos', mail:"fakemail@deep.com", city : 'Cali', location:'Oriente','picture':'marc.jpg' },
-          {id:5, name: 'Sebas', lastname: 'Vaugh', mail:"fakemail@deep.com", city : 'Cali', location:'Sur','picture':'marc.jpg' },
-        ],
 
         //camaras (de aca se toman las camaras por aprobar y aprobadas con los geeters)
         cameras:[],
@@ -227,9 +215,30 @@ export const store = new Vuex.Store({
         },
         getStationsNoAproved(state){
           return state.stations.filter(station => !station.item_aprobado)
+        },
+        getTotalUsers(state){
+          return state.usuarios.length;
+        },
+        getTotalStation(state, getters){
+          return getters.getStationsAproved.length
+        },
+        getTotalCameras(state, getters){
+          return getters.getCamerasAproved.length
+        },
+        getAvgGas(state){
+          var total = 0
+          state.stations.forEach(station => {
+            total =+ station.precio_galon_corriente
+          });
+          return total/state.stations.length
         }
     },
     mutations:{
+        //info del usuario en sesion
+        setUserData(state, user){
+          console.log("[DEUG] setUserData: ", user)
+          state.user = user;
+        },
         setUsuarios(state,usuarios){
           state.usuarios = usuarios;
         },
@@ -344,6 +353,8 @@ export const store = new Vuex.Store({
             password: credentials.password
           })
           .then(response => {
+            console.log("[Debug] la respuest adel login:", response.data.user)
+            context.commit('setUserData',response.data.user)
             const token = response.data.token
             localStorage.setItem('token',token)
             resolve(response)
@@ -356,7 +367,8 @@ export const store = new Vuex.Store({
              }
              reject(error)
           })
-        })      
+        })  
+          
         },
 
         destroyToken(context){
