@@ -3,6 +3,7 @@ import Login from '@/pages/Layout/Login';
 import Registro from '@/pages/Layout/Register'
 import DashboardLayout from "@/pages/Layout/DashboardLayout.vue";
 import Error from "@/pages/Layout/Error.vue"
+import AboutUs from "@/pages/Layout/AboutUs.vue"
 
 
 import Dashboard from "@/pages/Dashboard.vue";
@@ -14,6 +15,8 @@ import Maps from "@/pages/Maps.vue";
 import Notifications from "@/pages/Notifications.vue";
 import Usuarios from "@/pages/Users.vue";
 import UserEdit from "@/pages/userEdit.vue";
+
+
 
 const routes = [
   
@@ -94,9 +97,9 @@ const routes = [
         component: Icons
       },
       {
-        path: "notifications",
-        name: "Notifications",
-        component: Notifications
+        path: "aboutUs",
+        name: "AboutUs",
+        component: AboutUs
       }
     ]
   },

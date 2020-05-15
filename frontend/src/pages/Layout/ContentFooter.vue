@@ -7,18 +7,8 @@
             
           </li>
           <li>
-            <a href="#">
+            <a @click="aboutUs">
               Acerca de nosotros
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              Noticias
-            </a>
-          </li>
-          <li>
-            <a href="">
-              Comunidad
             </a>
           </li>
         </ul>
@@ -31,6 +21,12 @@
   </footer>
 </template>
 <script>
-export default {};
+export default {
+  methods:{
+    aboutUs(){
+      this.$router.push('AboutUs');
+    }
+  }
+};
 </script>
 <style></style>
