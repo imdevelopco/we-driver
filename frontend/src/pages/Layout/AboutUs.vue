@@ -15,7 +15,7 @@
         </template>
         <template slot="footer">
           <div class="stats">
-            <md-icon>code</md-icon>https://github.com/CamiloArias47
+            <md-icon>code</md-icon><a href="https://github.com/CamiloArias47" target="_blank">Camilo47</a> 
           </div>
         </template>
       </stats-card>
@@ -31,7 +31,7 @@
         </template>
         <template slot="footer">
           <div class="stats">
-            <md-icon>code</md-icon> https://github.com/imdevelopco
+            <md-icon>code</md-icon> <a href="https://github.com/imdevelopco">imdevelopco</a> 
           </div>
         </template>
       </stats-card>
@@ -49,7 +49,7 @@
         </template>
         <template slot="footer">
           <div class="stats">
-            <md-icon>code</md-icon>https://github.com/henryghost
+            <md-icon>code</md-icon><a href="https://github.com/henrysala">henrysala</a> 
           </div>
         </template>
       </stats-card>
@@ -68,7 +68,7 @@
         </template>
         <template slot="footer">
           <div class="stats">
-            <md-icon>code</md-icon>https://github.com/MauricioDiazR
+            <md-icon>code</md-icon><a href="https://github.com/MauricioDiazR">MauricioDiazR</a> 
           </div>
         </template>
       </stats-card>
@@ -87,7 +87,7 @@
         </template>
         <template slot="footer">
           <div class="stats">
-            <md-icon>code</md-icon>https://github.com/JhonHenao1301
+            <md-icon>code</md-icon><a href="ttps://github.com/JhonHenao1301">JhonHenao1301</a> 
           </div>
         </template>
       </stats-card>
@@ -106,7 +106,7 @@
         </template>
         <template slot="footer">
           <div class="stats">
-            <md-icon>code</md-icon>https://github.com/hackpaladin
+            <md-icon>code</md-icon><a href="https://github.com/hackpaladin">hackpaladin</a> 
           </div>
         </template>
       </stats-card>

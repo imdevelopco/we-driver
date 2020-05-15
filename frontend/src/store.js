@@ -232,12 +232,12 @@ export const store = new Vuex.Store({
           var total = 0
           var aprobadas = 0
           state.stations.forEach(station => {
-            if(station.precio_galon_corriente > 0){
-              total =+ station.precio_galon_corriente
+            if(station.precio_galon_corriente > 0 && station.item_aprobado ){
+              total += station.precio_galon_corriente
               aprobadas++
             }
           });
-          return total/aprobadas
+          return Math.round(total/aprobadas)
         }
     },
     mutations:{
