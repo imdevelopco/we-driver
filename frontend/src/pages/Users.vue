@@ -32,8 +32,7 @@ export default {
     mounted(){
         
            this.$store.dispatch('setUsuarios') 
-        
-           
+
     },
     watch:{
         

@@ -10,12 +10,12 @@
         <p>Mapa</p>
       </sidebar-link>
 
-      <sidebar-link to="/app/dashboard" v-if="permisos">
+      <sidebar-link to="/app/dashboard" v-if="permisos == 'true'">
         <md-icon>trending_up</md-icon>
         <p>Reportes</p>
       </sidebar-link>
 
-      <sidebar-link to="/app/usuarios" v-if="permisos">
+      <sidebar-link to="/app/usuarios" v-if="permisos == 'true'">
         <md-icon>group</md-icon>
         <p>Usuarios</p>
       </sidebar-link>
@@ -25,7 +25,7 @@
         <p>Agregar</p>
       </sidebar-link>
 
-      <sidebar-link to="/app/admin" v-if="permisos">
+      <sidebar-link to="/app/admin" v-if="permisos == 'true'">
         <md-icon>settings</md-icon>
         <p>Administración</p>
       </sidebar-link>
@@ -59,7 +59,7 @@ import MobileMenu from "@/pages/Layout/MobileMenu.vue";
 export default {
    data: function(){   
      return {
-       permisos
+       permisos: ''
      }
    },
   computed:{
@@ -80,7 +80,8 @@ export default {
   },
   mounted(){
   
-      this.permisos = localStorage.getItem('user');
+      this.permisos = localStorage.getItem('user')
+
   }
 }
 </script>
