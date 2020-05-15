@@ -5,12 +5,14 @@ import axios from 'axios';
 import {Loader} from "google-maps";
 import apiKey from './apiKey';
 
+
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
     state:{
-        //user:{},
-       //Token de acceso
+        userPermision:false,
+       
+        //Token de acceso
         token : null || localStorage.getItem('token'),
         routeAPI : "http://we-drive-api.herokuapp.com/",
         registerUser : 'api/registerUser',
@@ -250,12 +252,17 @@ export const store = new Vuex.Store({
         retrieveToken(state,token){
           state.token = token;
         },
+        //permisos
+        setUserPermision(state,value){
+          state.userPermision = value
+        },
         setZoomMap(state, zoom){
           state.googleMapSetting.zoom = zoom;
         },
         //logout
         destroyToken(state){
           state.token = null;
+          state.userPermision = null;
         },
         setCameras(state,cameras){
           state.cameras = cameras;
@@ -334,34 +341,32 @@ export const store = new Vuex.Store({
           })
         },
         
-        retrieveToken(context, credentials){
-          return new Promise(function(resolve,reject) {
-            axios.post('http://we-drive-api.herokuapp.com/api/login',{
-            username: credentials.username, 
-            password: credentials.password
-          })
-          .then(response => {
-            console.log("[Debug] la respuest adel login:", response.data.user)
-            context.commit('setUserData',response.data.user)
-            const token = response.data.token
-            localStorage.setItem('token',token)
-            resolve(response)
-          }).catch(error => {
+        async retrieveToken(context, credentials){
+          try{
+              let response = await axios.post('http://we-drive-api.herokuapp.com/api/login',{
+              username: credentials.username, 
+              password: credentials.password });
+              const token = response.data.token
+              console.log("[Debug] la respuesta del login:", response.data.user)
+              context.commit('setUserPermission',response.data.user.is_superuser)
+              localStorage.setItem('token',token)
+              localStorage.setItem('user',response.data.user.is_superuser)
+              
+            
+          }catch(error){
             if (error.response.status == 400) {
               alert("Credenciales incorrectas, intenta de nuevo");
               console.log(error.response);
              } else if(error.response){
               alert("Problemas internos")
              }
-             reject(error)
-          })
-        })  
-          
+          }
         },
 
         destroyToken(context){
           if(context.getters.loggedIn){
             localStorage.removeItem('token')
+            localStorage.removeItem('user')
             context.commit('destroyToken') 
           }
         } 
