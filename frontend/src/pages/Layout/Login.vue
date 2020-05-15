@@ -106,7 +106,9 @@ export default {
                 password: this.form.password
                 
               }).then(response => {
+                console.log(this.$store.state.user);
                 this.$router.go('/app')
+                
               }).catch(error => {
                 console.log(error);
               })             
