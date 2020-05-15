@@ -11,7 +11,7 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
     state:{
         userPermision:false,
-       
+        userCanAdd: false,
         //Token de acceso
         token : null || localStorage.getItem('token'),
         routeAPI : "http://we-drive-api.herokuapp.com/",
@@ -269,8 +269,9 @@ export const store = new Vuex.Store({
           state.token = token;
         },
         //permisos
-        setUserPermision(state,value){
-          state.userPermision = value
+        setUserPermision(state,admin,canAdd){
+          state.userPermision = admin,
+          state.userCanAdd = canAdd
         },
         setZoomMap(state, zoom){
           state.googleMapSetting.zoom = zoom;
@@ -364,9 +365,10 @@ export const store = new Vuex.Store({
               password: credentials.password });
               const token = response.data.token
               console.log("[Debug] la respuesta del login:", response.data.user)
-              context.commit('setUserPermission',response.data.user.is_superuser)
+              context.commit('setUserPermission',response.data.user.is_superuser,response.data.user.is_staff)
               localStorage.setItem('token',token)
               localStorage.setItem('user',response.data.user.is_superuser)
+              localStorage.setItem('canAdd',response.data.user.is_staff)
               
             
           }catch(error){

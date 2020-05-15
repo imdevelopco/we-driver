@@ -247,7 +247,7 @@ export default {
   },
   mounted() {
     var _this = this;
-    this.permisos = localStorage.getItem('user')
+    this.permisos = localStorage.getItem('canAdd')
     this.$store.state.loader.load().then( google => {
         navigator.geolocation.getCurrentPosition(position => {
             var startLocation = {
