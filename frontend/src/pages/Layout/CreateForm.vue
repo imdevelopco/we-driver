@@ -133,6 +133,7 @@ export default {
   },
   data() {
     return {
+      permisos: '',
       tipo: "camara",
       velMax: null,
       picture:null,
@@ -200,10 +201,17 @@ export default {
           data.append('comentario', this.comment);
           data.append('lat', this.coordinates.lat);
           data.append('lng', this.coordinates.lng);
-
+      
+      if(this.permisos == 'true'){
+          data.append('item_aprobado',true);
+        }
       if(this.tipo == "camara"){
         data.append('velocidad_maxima', this.velMax); 
+        console.log("camara ");
+        console.log( data);
+        
         this.$store.dispatch('saveCamera',data)
+        
           .then(d => {
             this.picture = null;
             this.velMax = null;
@@ -219,6 +227,8 @@ export default {
         data.append('precio_galon_extra',this.extraPrice);
         data.append('precio_galon_acpm',this.acpmPrice);
         data.append('precio_metro_cubico_gas',this.gasPrice);
+        console.log("estacion ");
+        console.log( data);
         this.$store.dispatch('saveStation',data)
         .then(d => {
             this.picture = null;
@@ -237,7 +247,7 @@ export default {
   },
   mounted() {
     var _this = this;
-    
+    this.permisos = localStorage.getItem('user')
     this.$store.state.loader.load().then( google => {
         navigator.geolocation.getCurrentPosition(position => {
             var startLocation = {
