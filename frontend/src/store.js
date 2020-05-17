@@ -15,7 +15,7 @@ export const store = new Vuex.Store({
         userName: '',
         //Token de acceso
         token : null || localStorage.getItem('token'),
-        routeAPI : "http://we-drive-api.herokuapp.com/",
+        routeAPI : "http://localhost:8000/",
         registerUser : 'api/registerUser',
         notifications:[
             "Estación de gasolina aprovada",
