@@ -305,31 +305,31 @@ export const store = new Vuex.Store({
     },
     actions:{
         async setUsuarios(context){
-          let usuarios = await axios.get("https://we-drive-api.herokuapp.com/api/listUsers")
+          let usuarios = await axios.get(this.state.routeAPI + "api/listUsers")
           console.log("pidiendo Usuarios...")
           context.commit('setUsuarios',usuarios.data)
         },
         async updateUsuario(context,updateData){
-          let updateUser = await axios.put("http://we-drive-api.herokuapp.com/api/updateUser/" + updateData.id, updateData.data);
+          let updateUser = await axios.put(this.state.routeAPI + "api/updateUser/" + updateData.id, updateData.data);
           console.log(updateUser.data);
           context.commit('updateUsuario',updateUser.data)
         },
        
         async getCameras(context){
-          let cameras = await axios.get("https://we-drive-api.herokuapp.com/api/v1.0/camara")
+          let cameras = await axios.get(this.state.routeAPI + "api/v1.0/camara")
           console.log("Pidiendo camaras")
           context.commit('setCameras', cameras.data)
         },
 
         async saveCamera(context, formData){
-          let response = await axios.post("https://we-drive-api.herokuapp.com/api/v1.0/camara/",formData)
+          let response = await axios.post(this.state.routeAPI + "api/v1.0/camara/",formData)
           console.log("Guardando camara")
           context.commit('addCamera', response.data)
         },
 
         async updateCamera(context,updateData){
           console.log("UpdateCamera datos",updateData.id)
-          let response = await axios.put("https://we-drive-api.herokuapp.com/api/v1.0/camara/"+updateData.id+"/",updateData.data)
+          let response = await axios.put(this.state.routeAPI + "api/v1.0/camara/"+updateData.id+"/",updateData.data)
           console.log("Actualizando camara")
           context.commit('updateCamera', {
             id:updateData.id, 
@@ -338,20 +338,20 @@ export const store = new Vuex.Store({
         },
 
         async getStations(context){
-          let stations = await axios.get("https://we-drive-api.herokuapp.com/api/v1.0/estacion/")
+          let stations = await axios.get(this.state.routeAPI + "api/v1.0/estacion/")
           console.log("Pidiendo estaciones")
           context.commit('setStations', stations.data)
         },
 
         async saveStation(context, formData){
-          let response = await axios.post("https://we-drive-api.herokuapp.com/api/v1.0/estacion/",formData)
+          let response = await axios.post(this.state.routeAPI + "api/v1.0/estacion/",formData)
           console.log("Guardando estacion")
           context.commit('addStation', response.data)
         },
 
         async updateStation(context,updateData){
           console.log("Updatetation datos",updateData)
-          let response = await axios.put("https://we-drive-api.herokuapp.com/api/v1.0/estacion/"+updateData.id+"/",updateData.data)
+          let response = await axios.put(this.state.routeAPI + "api/v1.0/estacion/"+updateData.id+"/",updateData.data)
           console.log("Actualizando estacion")
           context.commit('updateStation', {
             id:updateData.id, 
@@ -361,7 +361,7 @@ export const store = new Vuex.Store({
         
         async retrieveToken(context, credentials){
           try{
-              let response = await axios.post('http://we-drive-api.herokuapp.com/api/login',{
+              let response = await axios.post(this.state.routeAPI + "api/login",{
               username: credentials.username, 
               password: credentials.password });
               const token = response.data.token
@@ -372,12 +372,14 @@ export const store = new Vuex.Store({
               localStorage.setItem('canAdd',response.data.user.is_staff)
               localStorage.setItem('name',response.data.user.first_name)
           }catch(error){
-            if (error.response.status == 400) {
+            /* if (error.response.status == 400) {
               alert("Credenciales incorrectas, intenta de nuevo");
               console.log(error.response);
              } else if(error.response){
               alert("Problemas internos")
-             }
+             } */
+             console.log(error);
+             
           }
         },
 

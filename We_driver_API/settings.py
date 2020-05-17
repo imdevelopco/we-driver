@@ -92,21 +92,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'We_driver_API.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-DATABASES = {
-       'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'jehrjcxj',
-        'USER': 'jehrjcxj',
-        'PASSWORD': 'ebpWNKDYYUIwLICaaXKop0iTXyaipP89',
-        'HOST': 'drona.db.elephantsql.com',
-        'PORT': '',
-    }
-}
-
-
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
